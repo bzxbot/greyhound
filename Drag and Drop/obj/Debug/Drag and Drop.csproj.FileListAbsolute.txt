@@ -14,3 +14,5 @@ C:\Users\Bernardo\Documents\repositories\unisinos-pgr-2010-1\Drag and Drop\obj\D
 C:\Users\Bernardo\Documents\repositories\unisinos-pgr-2010-1\Drag and Drop\obj\Debug\Drag and Drop.csproj.GenerateResource.Cache
 C:\Users\Bernardo\Documents\repositories\unisinos-pgr-2010-1\Drag and Drop\bin\Debug\Drag and Drop.exe
 C:\Users\Bernardo\Documents\repositories\unisinos-pgr-2010-1\Drag and Drop\bin\Debug\Drag and Drop.pdb
+D:\Unisinos\2010-1\Processamento Grafico\Trabalho Grau A\src\Drag and Drop\obj\Debug\Drag and Drop.exe
+D:\Unisinos\2010-1\Processamento Grafico\Trabalho Grau A\src\Drag and Drop\obj\Debug\Drag and Drop.pdb
