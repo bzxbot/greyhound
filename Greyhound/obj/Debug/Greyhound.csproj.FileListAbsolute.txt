@@ -6,3 +6,5 @@ C:\Users\Bernardo\Documents\Visual Studio 2008\Projects\Greyhound\obj\Debug\Grey
 C:\Users\Bernardo\Documents\Visual Studio 2008\Projects\Greyhound\obj\Debug\Greyhound.csproj.GenerateResource.Cache
 C:\Users\Bernardo\Documents\Visual Studio 2008\Projects\Greyhound\obj\Debug\Greyhound.exe
 C:\Users\Bernardo\Documents\Visual Studio 2008\Projects\Greyhound\obj\Debug\Greyhound.pdb
+C:\Users\Bernardo\Documents\test\unisinos-pgr-2010-1\Greyhound\obj\Debug\Greyhound.exe
+C:\Users\Bernardo\Documents\test\unisinos-pgr-2010-1\Greyhound\obj\Debug\Greyhound.pdb
