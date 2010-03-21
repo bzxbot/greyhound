@@ -76,7 +76,7 @@
             this.pic_Source.TabIndex = 0;
             this.pic_Source.TabStop = false;
             this.pic_Source.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pic_Source_MouseMove);
-            this.pic_Source.DragLeave += new System.EventHandler(this.pic_Source_DragLeave);
+            //this.pic_Source.DragLeave += new System.EventHandler(this.pic_Source_DragLeave);
             // 
             // pic_Target
             // 
