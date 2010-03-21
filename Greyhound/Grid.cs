@@ -6,24 +6,18 @@ namespace Greyhound
     {
         private int NumOfBoxesPerLine = 5;
         private int NumOfBoxesPerColumn = 5;
-        private int TotalNumberOfControls;
 
         public Grid()
         {
-            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-
-            TotalNumberOfControls = NumOfBoxesPerLine * NumOfBoxesPerColumn;
+            //SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
             InitializeComponent();
-
-            for (int i = 0; i < TotalNumberOfControls; i++)
-            {
-                this.Controls.Add(new PictureBox());
-            }
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
+            this.Controls.Clear();
+
             int pictureBoxWidth = pe.ClipRectangle.Width / NumOfBoxesPerLine;
             int pictureBoxHeight = pe.ClipRectangle.Height / NumOfBoxesPerColumn;
 
@@ -31,7 +25,7 @@ namespace Greyhound
             {
                 for (int y = 0; y < this.Height; y += pictureBoxHeight)
                 {
-                    PictureBox pictureBox = this.Controls[x % NumOfBoxesPerLine + y % NumOfBoxesPerColumn] as PictureBox;
+                    PictureBox pictureBox = new PictureBox();
 
                     pictureBox.Width = pictureBoxWidth;
                     pictureBox.Height = pictureBoxHeight;
@@ -40,6 +34,8 @@ namespace Greyhound
 
                     pictureBox.Left = x;
                     pictureBox.Top = y;
+
+                    this.Controls.Add(pictureBox);
                 }
             }
 
