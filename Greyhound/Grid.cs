@@ -1,45 +1,67 @@
 ﻿using System.Windows.Forms;
+using System.Drawing;
+using System;
+using Greyhound.Properties;
 
 namespace Greyhound
 {
     public partial class Grid : Control
     {
-        private int NumOfBoxesPerLine = 5;
-        private int NumOfBoxesPerColumn = 5;
+        Tile[,] tiles = new Tile[5, 5];
+
+        private int RectanglesPerLine = 5;
+        private int RectanglesPerColumn = 5;
 
         public Grid()
         {
-            //SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-
             InitializeComponent();
+
+            for (int i = 0; i < Math.Sqrt(tiles.Length); i++)
+            {
+                for (int j = 0; j < Math.Sqrt(tiles.Length); j++)
+                {
+                    tiles[i, j] = new Tile(i, j);
+                }
+            }
+
+            tiles[0, 0].Image = Resources.Chrysanthemum;
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-            this.Controls.Clear();
-
-            int pictureBoxWidth = pe.ClipRectangle.Width / NumOfBoxesPerLine;
-            int pictureBoxHeight = pe.ClipRectangle.Height / NumOfBoxesPerColumn;
-
-            for (int x = 0; x < this.Width; x += pictureBoxWidth)
-            {
-                for (int y = 0; y < this.Height; y += pictureBoxHeight)
-                {
-                    PictureBox pictureBox = new PictureBox();
-
-                    pictureBox.Width = pictureBoxWidth;
-                    pictureBox.Height = pictureBoxHeight;
-
-                    pictureBox.BorderStyle = BorderStyle.FixedSingle;
-
-                    pictureBox.Left = x;
-                    pictureBox.Top = y;
-
-                    this.Controls.Add(pictureBox);
-                }
-            }
-
             base.OnPaint(pe);
+
+            Pen pen = new Pen(Brushes.Black);
+
+            float rectangleWidth = pe.ClipRectangle.Width / RectanglesPerLine - pen.Width;
+            float rectangleHeight = pe.ClipRectangle.Height / RectanglesPerColumn - pen.Width;
+
+            int i = 0;
+
+            for (float y = 0; y < pe.ClipRectangle.Height && i < RectanglesPerColumn; y += rectangleHeight)
+            {
+                int j = 0;
+
+                for (float x = 0; x < pe.ClipRectangle.Width && j < RectanglesPerLine; x += rectangleWidth)
+                {
+                    if (tiles[i, j].Image == null)
+                    {
+                        pe.Graphics.DrawRectangle(pen, x, y, rectangleWidth, rectangleHeight);
+                    }
+                    else
+                    {
+                        pe.Graphics.DrawImage(tiles[i, j].Image, x, y, rectangleWidth, rectangleHeight);
+                    }
+
+                    j++;
+                }
+
+                i++;
+            }
+        }
+
+        private void Grid_MouseClick(object sender, MouseEventArgs e)
+        {
         }
     }
 }
