@@ -29,36 +29,30 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.grid2 = new Greyhound.Grid();
+            this.grid21 = new Greyhound.Grid2();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(420, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(441, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // grid2
+            // grid21
             // 
-            this.grid2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.grid2.Location = new System.Drawing.Point(12, 28);
-            this.grid2.MaximumSize = new System.Drawing.Size(300, 300);
-            this.grid2.MinimumSize = new System.Drawing.Size(300, 300);
-            this.grid2.Name = "grid2";
-            this.grid2.Size = new System.Drawing.Size(300, 300);
-            this.grid2.TabIndex = 2;
-            this.grid2.Text = "grid2";
+            this.grid21.Location = new System.Drawing.Point(12, 28);
+            this.grid21.Name = "grid21";
+            this.grid21.Size = new System.Drawing.Size(395, 360);
+            this.grid21.TabIndex = 2;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(420, 378);
-            this.Controls.Add(this.grid2);
+            this.ClientSize = new System.Drawing.Size(441, 408);
+            this.Controls.Add(this.grid21);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Main";
             this.Text = "Tileset Editor";
@@ -71,7 +65,7 @@
 
         private Grid grid1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private Grid grid2;
+        private Grid2 grid21;
     }
 }
 

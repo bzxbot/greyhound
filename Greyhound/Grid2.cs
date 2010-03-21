@@ -1,20 +1,26 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
-using System;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
 using Greyhound.Properties;
 
 namespace Greyhound
 {
-    public partial class Grid : Control
+    public partial class Grid2 : UserControl
     {
         Tile[,] tiles = new Tile[5, 5];
 
         private int RectanglesPerLine = 5;
         private int RectanglesPerColumn = 5;
 
-        public Grid()
+        public Grid2()
         {
             InitializeComponent();
+
 
             for (int i = 0; i < Math.Sqrt(tiles.Length); i++)
             {
@@ -27,14 +33,7 @@ namespace Greyhound
             tiles[0, 0].Image = Resources.Chrysanthemum;
         }
 
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            panel1.CreateGraphics();
-            
-            base.OnPaint(pe);
-        }
-
-        void panel1_Paint(object sender, PaintEventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
             Pen pen = new Pen(Brushes.Black);
 
@@ -63,10 +62,6 @@ namespace Greyhound
 
                 i++;
             }
-        }
-
-        private void Grid_MouseClick(object sender, MouseEventArgs e)
-        {
         }
     }
 }
