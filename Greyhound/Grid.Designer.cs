@@ -28,38 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnl_Grig = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnl_Grig
             // 
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // panel2
-            // 
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 100);
-            this.panel2.TabIndex = 0;
+            this.pnl_Grig.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnl_Grig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_Grig.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Grig.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Grig.Name = "pnl_Grig";
+            this.pnl_Grig.Size = new System.Drawing.Size(200, 100);
+            this.pnl_Grig.TabIndex = 0;
+            this.pnl_Grig.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Grid_Paint);
+            this.pnl_Grig.Resize += new System.EventHandler(this.pnl_Grig_Resize);
             // 
             // Grid
             // 
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Grid_MouseClick);
+            this.Resize += new System.EventHandler(this.Grid_Resize);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnl_Grig;
 
     }
 }

@@ -9,8 +9,9 @@ namespace Greyhound
     {
         Tile[,] tiles = new Tile[5, 5];
 
-        private int RectanglesPerLine = 5;
-        private int RectanglesPerColumn = 5;
+        private int SquaresPerLine = 5;
+        private int SquaresPerColumn = 5;
+        private int Margin = 5;
 
         public Grid()
         {
@@ -29,25 +30,25 @@ namespace Greyhound
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-            panel1.CreateGraphics();
+            pnl_Grig.CreateGraphics();
             
             base.OnPaint(pe);
         }
 
-        void panel1_Paint(object sender, PaintEventArgs e)
+        private void pnl_Grid_Paint(object sender, PaintEventArgs e)
         {
             Pen pen = new Pen(Brushes.Black);
 
-            float rectangleWidth = e.ClipRectangle.Width / RectanglesPerLine - pen.Width;
-            float rectangleHeight = e.ClipRectangle.Height / RectanglesPerColumn - pen.Width;
+            float rectangleWidth = e.ClipRectangle.Width / SquaresPerLine - pen.Width;
+            float rectangleHeight = e.ClipRectangle.Height / SquaresPerColumn - pen.Width;
 
             int i = 0;
 
-            for (float y = 0; y < e.ClipRectangle.Height && i < RectanglesPerColumn; y += rectangleHeight)
+            for (float y = 0; y < e.ClipRectangle.Height && i < SquaresPerColumn; y += rectangleHeight)
             {
                 int j = 0;
 
-                for (float x = 0; x < e.ClipRectangle.Width && j < RectanglesPerLine; x += rectangleWidth)
+                for (float x = 0; x < e.ClipRectangle.Width && j < SquaresPerLine; x += rectangleWidth)
                 {
                     if (tiles[i, j].Image == null)
                     {
@@ -67,6 +68,16 @@ namespace Greyhound
 
         private void Grid_MouseClick(object sender, MouseEventArgs e)
         {
+        }
+
+        private void Grid_Resize(object sender, EventArgs e)
+        {
+            this.pnl_Grig.Refresh();
+        }
+
+        private void pnl_Grig_Resize(object sender, EventArgs e)
+        {
+            this.pnl_Grig.Refresh();
         }
     }
 }
