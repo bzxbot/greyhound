@@ -117,6 +117,56 @@
   <ItemGroup>
     <None Include="Resources\Chrysanthemum.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Tiles City\Tile_01.png" />
+    <Content Include="Resources\Tiles City\Tile_02.png" />
+    <Content Include="Resources\Tiles City\Tile_03.png" />
+    <Content Include="Resources\Tiles City\Tile_04.png" />
+    <Content Include="Resources\Tiles City\Tile_05.png" />
+    <Content Include="Resources\Tiles City\Tile_06.png" />
+    <Content Include="Resources\Tiles City\Tile_07.png" />
+    <Content Include="Resources\Tiles City\Tile_08.png" />
+    <Content Include="Resources\Tiles City\Tile_09.png" />
+    <Content Include="Resources\Tiles City\Tile_10.png" />
+    <Content Include="Resources\Tiles City\Tile_11.png" />
+    <Content Include="Resources\Tiles City\Tile_12.png" />
+    <Content Include="Resources\Tiles City\Tile_13.png" />
+    <Content Include="Resources\Tiles City\Tile_14.png" />
+    <Content Include="Resources\Tiles City\Tile_15.png" />
+    <Content Include="Resources\Tiles City\Tile_16.png" />
+    <Content Include="Resources\Tiles City\Tile_17.png" />
+    <Content Include="Resources\Tiles City\Tile_18.png" />
+    <Content Include="Resources\Tiles City\Tile_19.png" />
+    <Content Include="Resources\Tiles City\Tile_20.png" />
+    <Content Include="Resources\Tiles City\Tile_21.png" />
+    <Content Include="Resources\Tiles City\Tile_22.png" />
+    <Content Include="Resources\Tiles City\Tile_23.png" />
+    <Content Include="Resources\Tiles City\Tile_24.png" />
+    <Content Include="Resources\Tiles City\Tile_25.png" />
+    <Content Include="Resources\Tiles City\Tile_26.png" />
+    <Content Include="Resources\Tiles City\Tile_27.png" />
+    <Content Include="Resources\Tiles City\Tile_28.png" />
+    <Content Include="Resources\Tiles City\Tile_29.png" />
+    <Content Include="Resources\Tiles City\Tile_30.png" />
+    <Content Include="Resources\Tiles City\Tile_31.png" />
+    <Content Include="Resources\Tiles City\Tile_32.png" />
+    <Content Include="Resources\Tiles City\Tile_33.png" />
+    <Content Include="Resources\Tiles City\Tile_34.png" />
+    <Content Include="Resources\Tiles City\Tile_35.png" />
+    <Content Include="Resources\Tiles City\Tile_36.png" />
+    <Content Include="Resources\Tiles City\Tile_37.png" />
+    <Content Include="Resources\Tiles City\Tile_38.png" />
+    <Content Include="Resources\Tiles City\Tile_39.png" />
+    <Content Include="Resources\Tiles City\Tile_40.png" />
+    <Content Include="Resources\Tiles City\Tile_41.png" />
+    <Content Include="Resources\Tiles City\Tile_42.png" />
+    <Content Include="Resources\Tiles City\Tile_43.png" />
+    <Content Include="Resources\Tiles City\Tile_44.png" />
+    <Content Include="Resources\Tiles City\Tile_45.png" />
+    <Content Include="Resources\Tiles City\Tile_46.png" />
+    <Content Include="Resources\Tiles City\Tile_47.png" />
+    <Content Include="Resources\Tiles City\Tile_48.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

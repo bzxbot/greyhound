@@ -121,4 +121,148 @@
   <data name="Chrysanthemum" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Chrysanthemum.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Tile_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_01.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_02.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_03.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_04.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_05.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_06.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_07.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_08.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_09.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_10.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_11.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_12.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_13.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_14.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_15.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_17.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_18.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_19.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_20.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_23.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_25.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_26.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_27" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_27.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_28.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_29" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_29.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_30.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_31.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_33" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_33.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_34" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_34.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_35" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_35.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_36.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_37" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_37.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_38" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_38.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_39" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_39.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_41" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_41.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_42.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_43" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_43.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_44" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_44.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_45" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_45.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_46" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_46.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_47" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_47.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tile_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tiles city\tile_48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
