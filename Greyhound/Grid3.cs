@@ -14,13 +14,36 @@ namespace Greyhound
     {
         #region Private Fields
 
-        Tile[,] tiles = new Tile[5, 5];
+        Tile[,] tiles;
 
-        private int SquaresPerLine = 10;
-        private int SquaresPerColumn = 16;
+        private int SquareLines = 10;
+        private int SquareColumns = 16;
         private int GridMargin = 5;
 
+        private int _PenWidth = 1;
+
         #endregion Private Fields
+
+        #region Properties
+
+        public int GridThickness
+        {
+            get 
+            { 
+                return this._PenWidth ;
+            }
+
+            set 
+            {
+                if (this._PenWidth != value)
+                {
+                    this._PenWidth = value;
+                    this.pnl_Grid.Refresh();
+                }
+            }
+        }
+
+        #endregion
 
         #region Constructors
 
@@ -28,30 +51,147 @@ namespace Greyhound
         {
             InitializeComponent();
 
+            this.tiles = new Tile[SquareLines, SquareColumns];
 
-            for (int i = 0; i < Math.Sqrt(tiles.Length); i++)
+            for (int i = 0; i < this.tiles.GetLength(0); i++)
             {
-                for (int j = 0; j < Math.Sqrt(tiles.Length); j++)
+                for (int j = 0; j < this.tiles.GetLength(1); j++)
                 {
                     tiles[i, j] = new Tile(i, j);
                 }
             }
-
-            tiles[0, 0].Image = Resources.Chrysanthemum;
         }
 
         #endregion Constructors
 
         #region Private Events
 
+        private void Grid3_Load(object sender, EventArgs e)
+        {
+            this.pnl_Grid.AllowDrop = true;
+        }
+
         private void pnl_Grid_Paint(object sender, PaintEventArgs e)
         {
             DrawGrid(e.Graphics);
+            //DrawTiles(e.Graphics);
         }
 
         private void pnl_Grid_Resize(object sender, EventArgs e)
         {
             pnl_Grid.Refresh();
+        } 
+
+        private void pnl_Grid_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Bitmap))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void pnl_Grid_DragDrop(object sender, DragEventArgs e)
+        {
+            if ((e.Data.GetDataPresent(DataFormats.Bitmap)))
+            {
+                //int lin;
+                //int col;
+
+                //Pen pen = new Pen(Brushes.Black);
+
+                //int maxHeight = this.pnl_Grid.Height / SquareLines;
+                //int maxWidth = this.pnl_Grid.Width / SquareColumns;
+                //int maxSize;
+                //int SquareSize;
+
+                //if (maxHeight <= maxWidth)
+                //{
+                //    maxSize = (this.pnl_Grid.Height) - (GridMargin / 2);
+                //    SquareSize = (maxSize / SquareLines) - (int)pen.Width;
+                //}
+                //else
+                //{
+                //    maxSize = (this.pnl_Grid.Width) - (GridMargin / 2);
+                //    SquareSize = (maxSize / SquareColumns) - (int)pen.Width;
+                //}
+
+                //int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * SquareLines) / 2);
+                //int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * SquareColumns) / 2);
+
+
+                ////testa se esta em cima da linha ou fora da grid
+                //if ((gridPoint.X - leftStart) % SquareSize == 0 || (gridPoint.Y - topStart) % SquareSize == 0 ||
+                //    (gridPoint.X - leftStart) < 0 || (gridPoint.Y - topStart) < 0 ||
+                //    (gridPoint.X - leftStart) > (SquareSize * SquareColumns) ||
+                //    (gridPoint.Y - topStart) > (SquareSize * SquareLines))
+                //{
+                //    //ignora se sim
+                //    return;
+                //}
+
+                //col = (gridPoint.X - leftStart) / SquareSize;
+                //lin = (gridPoint.Y - topStart) / SquareSize;
+                Point gridPoint = pnl_Grid.PointToClient(new Point(e.X, e.Y));
+
+                Tile t = this.GetTileByPosition(gridPoint);
+
+                if (t != null)
+                {
+                    t.Image = (Bitmap)((Bitmap)(e.Data.GetData(DataFormats.Bitmap))).Clone();
+                }
+
+                //this.tiles[lin, col].Image = (Bitmap)((Bitmap)(e.Data.GetData(DataFormats.Bitmap))).Clone();
+                pnl_Grid.Refresh();
+            }
+        }
+
+        private void pnl_Grid_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+                Tile t = this.GetTileByPosition(e.Location);
+
+                if (t != null && t.Image != null)
+                {
+                    t.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    this.pnl_Grid.Refresh();
+                }
+            }
+        }
+        
+        private void cms_TileOptions_Opening(object sender, CancelEventArgs e)
+        {
+            Tile t = GetTileByPosition(pnl_Grid.PointToClient(new Point(cms_TileOptions.Left, cms_TileOptions.Top)));
+            if (t == null || t.Image == null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void tsmi_Rotate_Click(object sender, EventArgs e)
+        {
+            Tile t = GetTileByPosition(pnl_Grid.PointToClient(new Point(cms_TileOptions.Left, cms_TileOptions.Top)));
+            
+            if (t != null && t.Image != null)
+            {
+                t.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                this.pnl_Grid.Refresh();
+            }
+        }
+
+        private void tsmi_Erase_Click(object sender, EventArgs e)
+        {
+            Tile t = GetTileByPosition(pnl_Grid.PointToClient(new Point(cms_TileOptions.Left, cms_TileOptions.Top)));
+
+            if (t != null && t.Image != null)
+            {
+                t.Image = null;
+                this.pnl_Grid.Refresh();
+            }
         }
 
         #endregion Private Events
@@ -61,56 +201,169 @@ namespace Greyhound
         private void DrawGrid(Graphics g)
         {
             Pen pen = new Pen(Brushes.Black);
+            pen.Width = this.GridThickness;
 
-            int maxHeight = this.pnl_Grid.Height / SquaresPerLine;
-            int maxWidth = this.pnl_Grid.Width / SquaresPerColumn;
+            int maxHeight = this.pnl_Grid.Height / SquareLines;
+            int maxWidth = this.pnl_Grid.Width / SquareColumns;
             int maxSize;
             int SquareSize;
             
+            //Descobre se tamanho estora em altura ou largura
             if (maxHeight <= maxWidth)
             {
                 maxSize = (this.pnl_Grid.Height) - (GridMargin / 2);
-                SquareSize = (maxSize / SquaresPerLine) - (int)pen.Width;
+                SquareSize = (maxSize / SquareLines) - (int)pen.Width;
             }
             else
             {
                 maxSize = (this.pnl_Grid.Width) - (GridMargin / 2);
-                SquareSize = (maxSize / SquaresPerColumn) - (int)pen.Width;
+                SquareSize = (maxSize / SquareColumns) - (int)pen.Width;
             }
 
-            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize*SquaresPerLine) / 2);
-            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * SquaresPerColumn) / 2);            
+            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize*SquareLines) / 2);
+            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * SquareColumns) / 2);            
 
             Point startPoint;
             Point endPoint;
 
-            for (int collumCounter = 0; collumCounter < SquaresPerColumn; collumCounter++)
+            //Desenha a grid percorrento todas colunas e linhas
+            for (int collumCounter = 0; collumCounter < SquareColumns; collumCounter++)
             {
                 //desenha linha da coluna
                 startPoint = new Point(leftStart + (collumCounter * SquareSize), topStart);
-                endPoint = new Point(leftStart + (collumCounter * SquareSize), topStart + (SquareSize * SquaresPerLine));
+                endPoint = new Point(leftStart + (collumCounter * SquareSize), topStart + (SquareSize * SquareLines));
                 g.DrawLine(pen, startPoint, endPoint);
 
-                for (int lineCounter = 0; lineCounter < SquaresPerLine; lineCounter++)
+                for (int lineCounter = 0; lineCounter < SquareLines; lineCounter++)
                 {
                     //desenha linha da linha
                     startPoint = new Point(leftStart, topStart + (lineCounter * SquareSize));
-                    endPoint = new Point(leftStart + (SquareSize * SquaresPerColumn), topStart + (lineCounter * SquareSize));
+                    endPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart + (lineCounter * SquareSize));
                     g.DrawLine(pen, startPoint, endPoint);
+
+                    if (tiles[lineCounter, collumCounter].Image != null)
+                    {
+                        Tile t = tiles[lineCounter, collumCounter];
+
+                        //Image im = tiles[lineCounter, collumCounter].Image;
+                        g.DrawImage(t.Image, leftStart + (collumCounter * SquareSize) + pen.Width, 
+                                             topStart + (lineCounter * SquareSize) + pen.Width, SquareSize - pen.Width, SquareSize - pen.Width);
+                    }
                 }
             }
 
             //desenha ultimas linha das colunas
-            startPoint = new Point(leftStart + (SquareSize * SquaresPerColumn), topStart);
-            endPoint = new Point(leftStart + (SquareSize * SquaresPerColumn), topStart + (SquareSize * SquaresPerLine));
+            startPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart);
+            endPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart + (SquareSize * SquareLines));
             g.DrawLine(pen, startPoint, endPoint);
 
             //desenha ultima linha das linhas
-            startPoint = new Point(leftStart, topStart + (SquaresPerLine * SquareSize));
-            endPoint = new Point(leftStart + (SquareSize * SquaresPerColumn), topStart + (SquaresPerLine * SquareSize));
+            startPoint = new Point(leftStart, topStart + (SquareLines * SquareSize));
+            endPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart + (SquareLines * SquareSize));
             g.DrawLine(pen, startPoint, endPoint);
         }
 
+        private Tile GetTileByPosition(int x, int y)
+        {
+            return GetTileByPosition(new Point(x, y));
+        }
+
+        private Tile GetTileByPosition(Point pos)
+        {
+            int lin;
+            int col;
+
+            Pen pen = new Pen(Brushes.Black);
+
+            int maxHeight = this.pnl_Grid.Height / SquareLines;
+            int maxWidth = this.pnl_Grid.Width / SquareColumns;
+            int maxSize;
+            int SquareSize;
+
+            if (maxHeight <= maxWidth)
+            {
+                maxSize = (this.pnl_Grid.Height) - (GridMargin / 2);
+                SquareSize = (maxSize / SquareLines) - (int)pen.Width;
+            }
+            else
+            {
+                maxSize = (this.pnl_Grid.Width) - (GridMargin / 2);
+                SquareSize = (maxSize / SquareColumns) - (int)pen.Width;
+            }
+
+            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * SquareLines) / 2);
+            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * SquareColumns) / 2);
+
+
+            //testa se esta em cima da linha ou fora da grid
+            if ((pos.X - leftStart) % SquareSize == 0 || (pos.Y - topStart) % SquareSize == 0 ||
+                (pos.X - leftStart) < 0 || (pos.Y - topStart) < 0 ||
+                (pos.X - leftStart) > (SquareSize * SquareColumns) ||
+                (pos.Y - topStart) > (SquareSize * SquareLines))
+            {
+                //ignora se sim
+                return null;
+            }
+
+            col = (pos.X - leftStart) / SquareSize;
+            lin = (pos.Y - topStart) / SquareSize;
+
+            try
+            {
+                return this.tiles[lin, col];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return null;
+            }
+
+        }
+
         #endregion Private Methods
+
+        private void pnl_Grid_MouseMove(object sender, MouseEventArgs e)
+        {
+            lbl_GridPlace.Text = String.Format(" Panel: x:{0:00} y:{1:00}", e.X, e.Y);
+
+            int lin;
+            int col;
+
+            Pen pen = new Pen(Brushes.Black);
+
+            int maxHeight = this.pnl_Grid.Height / SquareLines;
+            int maxWidth = this.pnl_Grid.Width / SquareColumns;
+            int maxSize;
+            int SquareSize;
+
+            if (maxHeight <= maxWidth)
+            {
+                maxSize = (this.pnl_Grid.Height) - (GridMargin / 2);
+                SquareSize = (maxSize / SquareLines) - (int)pen.Width;
+            }
+            else
+            {
+                maxSize = (this.pnl_Grid.Width) - (GridMargin / 2);
+                SquareSize = (maxSize / SquareColumns) - (int)pen.Width;
+            }
+
+            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * SquareLines) / 2);
+            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * SquareColumns) / 2);
+
+
+            if ((e.X - leftStart) % SquareSize == 0 || (e.Y - topStart) % SquareSize == 0 ||
+                (e.X - leftStart) < 0 || (e.Y - topStart) < 0 ||
+                (e.X - leftStart) > (SquareSize * SquareColumns) ||
+                (e.Y - topStart) > (SquareSize * SquareLines))
+            {
+                lin = col = -1;
+                lbl_GridSquare.Text = String.Format("Square: L:{0:00} C:{1:00}", lin, col);
+                return;
+            }
+                        
+            lin = (e.Y - topStart)/SquareSize;
+            col = (e.X - leftStart) / SquareSize;
+
+            lbl_GridSquare.Text = String.Format("Square: L:{0:00} C:{1:00}", lin, col);            
+        }
     }
 }

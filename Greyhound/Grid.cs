@@ -11,7 +11,6 @@ namespace Greyhound
 
         private int SquaresPerLine = 5;
         private int SquaresPerColumn = 5;
-        private int Margin = 5;
 
         public Grid()
         {
