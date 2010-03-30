@@ -200,6 +200,11 @@ namespace Greyhound
                         return;
                     }
 
+                    if (tileSource == tileTarget)
+                    {
+                        return;
+                    }
+
                     if (e.Effect == DragDropEffects.Copy)
                     {
                         tileTarget.Image = (Image)tileSource.Image.Clone();

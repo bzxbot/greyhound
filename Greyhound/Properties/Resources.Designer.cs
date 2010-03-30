@@ -60,6 +60,41 @@ namespace Greyhound.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _32x32_EditImage {
+            get {
+                object obj = ResourceManager.GetObject("_32x32_EditImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _32x32_New {
+            get {
+                object obj = ResourceManager.GetObject("_32x32_New", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _32x32_Open {
+            get {
+                object obj = ResourceManager.GetObject("_32x32_Open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _32x32_OpenImage {
+            get {
+                object obj = ResourceManager.GetObject("_32x32_OpenImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _32x32_Save {
+            get {
+                object obj = ResourceManager.GetObject("_32x32_Save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Chrysanthemum {
             get {
                 object obj = ResourceManager.GetObject("Chrysanthemum", resourceCulture);

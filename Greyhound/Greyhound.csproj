@@ -118,6 +118,16 @@
     <None Include="Resources\Chrysanthemum.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Icons\32x32\32x32_EditImage.png" />
+    <Content Include="Resources\Icons\32x32\32x32_New.png" />
+    <Content Include="Resources\Icons\32x32\32x32_Open.png" />
+    <Content Include="Resources\Icons\32x32\32x32_OpenImage.png" />
+    <Content Include="Resources\Icons\32x32\32x32_Save.png" />
+    <Content Include="Resources\Icons\48x48\48x48_EditImage.png" />
+    <Content Include="Resources\Icons\48x48\48x48_New.png" />
+    <Content Include="Resources\Icons\48x48\48x48_Open.png" />
+    <Content Include="Resources\Icons\48x48\48x48_OpenImage.png" />
+    <Content Include="Resources\Icons\48x48\48x48_Save.png" />
     <Content Include="Resources\Tiles City\Tile_01.png" />
     <Content Include="Resources\Tiles City\Tile_02.png" />
     <Content Include="Resources\Tiles City\Tile_03.png" />

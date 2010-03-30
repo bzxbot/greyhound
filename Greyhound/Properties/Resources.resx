@@ -265,4 +265,19 @@
   <data name="Tile_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\tiles city\tile_48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_32x32_EditImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\32x32\32x32_editimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_32x32_New" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\32x32\32x32_new.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_32x32_Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\32x32\32x32_open.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_32x32_OpenImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\32x32\32x32_openimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_32x32_Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\32x32\32x32_save.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
