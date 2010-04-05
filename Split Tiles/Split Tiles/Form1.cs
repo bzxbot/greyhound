@@ -47,6 +47,16 @@ namespace Split_Tiles
             }
         }
 
+        private void lbl_MaskColor_DoubleClick(object sender, EventArgs e)
+        {
+            this.cd_SelectColor.Color = this.lbl_MaskColor.BackColor;
+
+            if (this.cd_SelectColor.ShowDialog() == DialogResult.OK)
+            {
+                this.lbl_MaskColor.BackColor = this.cd_SelectColor.Color;
+            }
+        }
+
         #endregion Private Events
 
         #region Private Mehtods
@@ -73,14 +83,14 @@ namespace Split_Tiles
         {
             int totalCollumTiles = this.pic_Tiles.Image.Width / (int)nud_PixelsPerTile.Value;
             int totalLineTiles = this.pic_Tiles.Image.Height / (int)nud_PixelsPerTile.Value;
-            int tileSize = (int)nud_PixelsPerTile.Value;;
+            int tileSize = (int)nud_PixelsPerTile.Value; ;
 
             Bitmap bmpImage = new Bitmap(this.pic_Tiles.Image);
             //Bitmap bmpCrop = bmpImage.Clone(cropArea,
             //bmpImage.PixelFormat);
             //return (Image)(bmpCrop);
 
-            String name = folderPath+@"\Tile_{0:00}.png";
+            String name = folderPath + @"\Tile_{0:00}.png";
             int totalTileCounter = 0;
 
             for (int collumTileCounter = 0; collumTileCounter < totalCollumTiles; collumTileCounter++)
@@ -88,9 +98,9 @@ namespace Split_Tiles
                 for (int lineTileCounter = 0; lineTileCounter < totalLineTiles; lineTileCounter++)
                 {
                     totalTileCounter++;
-                    bmpImage.Clone(new Rectangle(collumTileCounter * tileSize, 
-                                                 lineTileCounter * tileSize, 
-                                                 tileSize, tileSize), 
+                    bmpImage.Clone(new Rectangle(collumTileCounter * tileSize,
+                                                 lineTileCounter * tileSize,
+                                                 tileSize, tileSize),
                                                  System.Drawing.Imaging.PixelFormat.Format24bppRgb).
                                                  Save(String.Format(name, totalTileCounter), System.Drawing.Imaging.ImageFormat.Png);
                 }
@@ -100,5 +110,42 @@ namespace Split_Tiles
         }
 
         #endregion Private Methods
+
+        private void cmb_ShowMask_Click(object sender, EventArgs e)
+        {
+            if (this.pic_Tiles.Image == null)
+            {
+                return;
+            }
+
+            int pixelSize = (int)nud_PixelsPerTile.Value;
+
+            int maxNumOfColumns = this.pic_Tiles.Image.Width / pixelSize;
+            int maxNumOfLines = this.pic_Tiles.Image.Height / pixelSize;
+
+            Graphics g = this.pic_Tiles.CreateGraphics();
+            Pen p = new Pen(lbl_MaskColor.BackColor);
+
+            Point start;
+            Point end;
+
+            for (int colCounter = 0; colCounter <= maxNumOfColumns; colCounter++)
+            {
+                start = new Point(colCounter * pixelSize, 0);
+                end = new Point(colCounter * pixelSize, maxNumOfLines * pixelSize);
+
+                g.DrawLine(p, start, end);
+
+                for (int lineCounter = 0; lineCounter <= maxNumOfLines; lineCounter++)
+                {
+                    start = new Point(0, lineCounter * pixelSize);
+                    end = new Point(maxNumOfColumns * pixelSize, lineCounter * pixelSize);
+
+                    g.DrawLine(p, start, end);
+                }
+            }
+        }
+
+
     }
 }

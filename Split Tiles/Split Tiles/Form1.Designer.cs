@@ -33,15 +33,16 @@
             this.pic_Tiles = new System.Windows.Forms.PictureBox();
             this.cmb_Split = new System.Windows.Forms.Button();
             this.pnl_Top = new System.Windows.Forms.Panel();
+            this.lbl_MaskColor = new System.Windows.Forms.Label();
+            this.inf_MaskColor = new System.Windows.Forms.Label();
+            this.cmb_ShowMask = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_Abrir = new System.Windows.Forms.ToolStripMenuItem();
             this.ofd_Picture = new System.Windows.Forms.OpenFileDialog();
             this.fbd_SaveTiles = new System.Windows.Forms.FolderBrowserDialog();
-            this.cmb_ShowMask = new System.Windows.Forms.Button();
-            this.cmBox_MaskColor = new System.Windows.Forms.ComboBox();
             this.lbl_Splitter = new System.Windows.Forms.Label();
-            this.inf_MaskColor = new System.Windows.Forms.Label();
+            this.cd_SelectColor = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nud_PixelsPerTile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Tiles)).BeginInit();
             this.pnl_Top.SuspendLayout();
@@ -90,7 +91,7 @@
             // 
             // cmb_Split
             // 
-            this.cmb_Split.Location = new System.Drawing.Point(15, 123);
+            this.cmb_Split.Location = new System.Drawing.Point(15, 106);
             this.cmb_Split.Name = "cmb_Split";
             this.cmb_Split.Size = new System.Drawing.Size(75, 23);
             this.cmb_Split.TabIndex = 3;
@@ -100,8 +101,8 @@
             // 
             // pnl_Top
             // 
+            this.pnl_Top.Controls.Add(this.lbl_MaskColor);
             this.pnl_Top.Controls.Add(this.inf_MaskColor);
-            this.pnl_Top.Controls.Add(this.cmBox_MaskColor);
             this.pnl_Top.Controls.Add(this.cmb_ShowMask);
             this.pnl_Top.Controls.Add(this.lbl_PixelPerTile);
             this.pnl_Top.Controls.Add(this.cmb_Split);
@@ -111,6 +112,35 @@
             this.pnl_Top.Name = "pnl_Top";
             this.pnl_Top.Size = new System.Drawing.Size(177, 380);
             this.pnl_Top.TabIndex = 4;
+            // 
+            // lbl_MaskColor
+            // 
+            this.lbl_MaskColor.BackColor = System.Drawing.Color.Lime;
+            this.lbl_MaskColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_MaskColor.Location = new System.Drawing.Point(102, 51);
+            this.lbl_MaskColor.Name = "lbl_MaskColor";
+            this.lbl_MaskColor.Size = new System.Drawing.Size(15, 13);
+            this.lbl_MaskColor.TabIndex = 7;
+            this.lbl_MaskColor.DoubleClick += new System.EventHandler(this.lbl_MaskColor_DoubleClick);
+            // 
+            // inf_MaskColor
+            // 
+            this.inf_MaskColor.AutoSize = true;
+            this.inf_MaskColor.Location = new System.Drawing.Point(12, 51);
+            this.inf_MaskColor.Name = "inf_MaskColor";
+            this.inf_MaskColor.Size = new System.Drawing.Size(84, 13);
+            this.inf_MaskColor.TabIndex = 6;
+            this.inf_MaskColor.Text = "Cor da máscara:";
+            // 
+            // cmb_ShowMask
+            // 
+            this.cmb_ShowMask.Location = new System.Drawing.Point(15, 77);
+            this.cmb_ShowMask.Name = "cmb_ShowMask";
+            this.cmb_ShowMask.Size = new System.Drawing.Size(121, 23);
+            this.cmb_ShowMask.TabIndex = 4;
+            this.cmb_ShowMask.Text = "Ver máscara";
+            this.cmb_ShowMask.UseVisualStyleBackColor = true;
+            this.cmb_ShowMask.Click += new System.EventHandler(this.cmb_ShowMask_Click);
             // 
             // menuStrip1
             // 
@@ -133,36 +163,13 @@
             // tsmi_Abrir
             // 
             this.tsmi_Abrir.Name = "tsmi_Abrir";
-            this.tsmi_Abrir.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_Abrir.Size = new System.Drawing.Size(100, 22);
             this.tsmi_Abrir.Text = "Abrir";
             this.tsmi_Abrir.Click += new System.EventHandler(this.tsmi_Abrir_Click);
             // 
             // ofd_Picture
             // 
             this.ofd_Picture.FileName = "openFileDialog1";
-            // 
-            // cmb_ShowMask
-            // 
-            this.cmb_ShowMask.Location = new System.Drawing.Point(15, 94);
-            this.cmb_ShowMask.Name = "cmb_ShowMask";
-            this.cmb_ShowMask.Size = new System.Drawing.Size(121, 23);
-            this.cmb_ShowMask.TabIndex = 4;
-            this.cmb_ShowMask.Text = "Ver máscara";
-            this.cmb_ShowMask.UseVisualStyleBackColor = true;
-            // 
-            // cmBox_MaskColor
-            // 
-            this.cmBox_MaskColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmBox_MaskColor.FormattingEnabled = true;
-            this.cmBox_MaskColor.Items.AddRange(new object[] {
-            "Branco",
-            "Preto",
-            "Vermelho",
-            "Verde"});
-            this.cmBox_MaskColor.Location = new System.Drawing.Point(15, 67);
-            this.cmBox_MaskColor.Name = "cmBox_MaskColor";
-            this.cmBox_MaskColor.Size = new System.Drawing.Size(121, 21);
-            this.cmBox_MaskColor.TabIndex = 5;
             // 
             // lbl_Splitter
             // 
@@ -172,15 +179,6 @@
             this.lbl_Splitter.Name = "lbl_Splitter";
             this.lbl_Splitter.Size = new System.Drawing.Size(1, 380);
             this.lbl_Splitter.TabIndex = 6;
-            // 
-            // inf_MaskColor
-            // 
-            this.inf_MaskColor.AutoSize = true;
-            this.inf_MaskColor.Location = new System.Drawing.Point(12, 51);
-            this.inf_MaskColor.Name = "inf_MaskColor";
-            this.inf_MaskColor.Size = new System.Drawing.Size(84, 13);
-            this.inf_MaskColor.TabIndex = 6;
-            this.inf_MaskColor.Text = "Cor da máscara:";
             // 
             // Form1
             // 
@@ -217,10 +215,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_Abrir;
         private System.Windows.Forms.OpenFileDialog ofd_Picture;
         private System.Windows.Forms.FolderBrowserDialog fbd_SaveTiles;
-        private System.Windows.Forms.ComboBox cmBox_MaskColor;
         private System.Windows.Forms.Button cmb_ShowMask;
         private System.Windows.Forms.Label lbl_Splitter;
         private System.Windows.Forms.Label inf_MaskColor;
+        private System.Windows.Forms.Label lbl_MaskColor;
+        private System.Windows.Forms.ColorDialog cd_SelectColor;
     }
 }
 

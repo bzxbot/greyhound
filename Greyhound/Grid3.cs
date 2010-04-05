@@ -77,53 +77,6 @@ namespace Greyhound
             DrawTiles(e.Graphics);
         }
 
-        private void DrawTiles(Graphics g)
-        {
-            SolidBrush sb = new SolidBrush(this.pnl_Grid.BackColor);
-            Pen pen = new Pen(Brushes.Black);
-            pen.Width = this.GridThickness;
-
-            int maxHeight = this.pnl_Grid.Height / SquareLines;
-            int maxWidth = this.pnl_Grid.Width / SquareColumns;
-            int maxSize;
-            int SquareSize;
-
-            //Descobre se tamanho estora em altura ou largura
-            if (maxHeight <= maxWidth)
-            {
-                maxSize = (this.pnl_Grid.Height) - (GridMargin / 2);
-                SquareSize = (maxSize / SquareLines) - (int)pen.Width;
-            }
-            else
-            {
-                maxSize = (this.pnl_Grid.Width) - (GridMargin / 2);
-                SquareSize = (maxSize / SquareColumns) - (int)pen.Width;
-            }
-
-            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * SquareLines) / 2);
-            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * SquareColumns) / 2);
-
-            //Desenha a grid percorrento todas colunas e linhas
-            for (int collumCounter = 0; collumCounter < SquareColumns; collumCounter++)
-            {
-                for (int lineCounter = 0; lineCounter < SquareLines; lineCounter++)
-                {
-                    if (tiles[lineCounter, collumCounter].Image != null)
-                    {
-                        Tile t = tiles[lineCounter, collumCounter];
-
-                        g.DrawImage(t.Image, leftStart + (collumCounter * SquareSize) + pen.Width,
-                                             topStart + (lineCounter * SquareSize) + pen.Width, SquareSize - pen.Width, SquareSize - pen.Width);
-                    }
-                    else
-                    {
-                        g.FillRectangle(sb, leftStart + (collumCounter * SquareSize) + pen.Width,
-                                             topStart + (lineCounter * SquareSize) + pen.Width, SquareSize - pen.Width, SquareSize - pen.Width);
-                    }
-                }
-            }
-        }
-
         private void pnl_Grid_Resize(object sender, EventArgs e)
         {
             pnl_Grid.Refresh();
@@ -280,14 +233,14 @@ namespace Greyhound
             Point endPoint;
 
             //Desenha a grid percorrento todas colunas e linhas
-            for (int collumCounter = 0; collumCounter < SquareColumns; collumCounter++)
+            for (int collumCounter = 0; collumCounter <= SquareColumns; collumCounter++)
             {
                 //desenha linha da coluna
                 startPoint = new Point(leftStart + (collumCounter * SquareSize), topStart);
                 endPoint = new Point(leftStart + (collumCounter * SquareSize), topStart + (SquareSize * SquareLines));
                 g.DrawLine(pen, startPoint, endPoint);
 
-                for (int lineCounter = 0; lineCounter < SquareLines; lineCounter++)
+                for (int lineCounter = 0; lineCounter <= SquareLines; lineCounter++)
                 {
                     //desenha linha da linha
                     startPoint = new Point(leftStart, topStart + (lineCounter * SquareSize));
@@ -305,15 +258,62 @@ namespace Greyhound
                 }
             }
 
-            //desenha ultimas linha das colunas
-            startPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart);
-            endPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart + (SquareSize * SquareLines));
-            g.DrawLine(pen, startPoint, endPoint);
+            ////desenha ultimas linha das colunas
+            //startPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart);
+            //endPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart + (SquareSize * SquareLines));
+            //g.DrawLine(pen, startPoint, endPoint);
 
-            //desenha ultima linha das linhas
-            startPoint = new Point(leftStart, topStart + (SquareLines * SquareSize));
-            endPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart + (SquareLines * SquareSize));
-            g.DrawLine(pen, startPoint, endPoint);
+            ////desenha ultima linha das linhas
+            //startPoint = new Point(leftStart, topStart + (SquareLines * SquareSize));
+            //endPoint = new Point(leftStart + (SquareSize * SquareColumns), topStart + (SquareLines * SquareSize));
+            //g.DrawLine(pen, startPoint, endPoint);
+        }
+
+        private void DrawTiles(Graphics g)
+        {
+            SolidBrush sb = new SolidBrush(this.pnl_Grid.BackColor);
+            Pen pen = new Pen(Brushes.Black);
+            pen.Width = this.GridThickness;
+
+            int maxHeight = this.pnl_Grid.Height / SquareLines;
+            int maxWidth = this.pnl_Grid.Width / SquareColumns;
+            int maxSize;
+            int SquareSize;
+
+            //Descobre se tamanho estora em altura ou largura
+            if (maxHeight <= maxWidth)
+            {
+                maxSize = (this.pnl_Grid.Height) - (GridMargin / 2);
+                SquareSize = (maxSize / SquareLines) - (int)pen.Width;
+            }
+            else
+            {
+                maxSize = (this.pnl_Grid.Width) - (GridMargin / 2);
+                SquareSize = (maxSize / SquareColumns) - (int)pen.Width;
+            }
+
+            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * SquareLines) / 2);
+            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * SquareColumns) / 2);
+
+            //Desenha a grid percorrento todas colunas e linhas
+            for (int collumCounter = 0; collumCounter < SquareColumns; collumCounter++)
+            {
+                for (int lineCounter = 0; lineCounter < SquareLines; lineCounter++)
+                {
+                    if (tiles[lineCounter, collumCounter].Image != null)
+                    {
+                        Tile t = tiles[lineCounter, collumCounter];
+
+                        g.DrawImage(t.Image, leftStart + (collumCounter * SquareSize) + pen.Width,
+                                             topStart + (lineCounter * SquareSize) + pen.Width, SquareSize - pen.Width, SquareSize - pen.Width);
+                    }
+                    else
+                    {
+                        g.FillRectangle(sb, leftStart + (collumCounter * SquareSize) + pen.Width,
+                                             topStart + (lineCounter * SquareSize) + pen.Width, SquareSize - pen.Width, SquareSize - pen.Width);
+                    }
+                }
+            }
         }
 
         private Tile GetTileByPosition(int x, int y)
