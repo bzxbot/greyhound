@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{390D89D0-23E4-49D6-A0C9-A59CFC50075C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Greyhound</RootNamespace>
+    <AssemblyName>Greyhound</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Grid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Grid.Designer.cs">
+      <DependentUpon>Grid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Grid3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Grid3.Designer.cs">
+      <DependentUpon>Grid3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PPMReader.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Grid.resx">
+      <DependentUpon>Grid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grid3.resx">
+      <DependentUpon>Grid3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grid2.resx">
+      <DependentUpon>Grid2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+<<<<<<< local
+    <EmbeddedResource Include="Tile Splitter\TileSplitter.resx">
+      <DependentUpon>TileSplitter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TileSet.resx">
+      <DependentUpon>TileSet.cs</DependentUpon>
+    </EmbeddedResource>
+=======
+>>>>>>> other
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tile Splitter\TileSplitter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tile Splitter\TileSplitter.Designer.cs">
+      <DependentUpon>TileSplitter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tile.cs" />
+    <Compile Include="Grid2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Grid2.Designer.cs">
+      <DependentUpon>Grid2.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chrysanthemum.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Icons\32x32\32x32_EditImage.png" />
+    <Content Include="Resources\Icons\32x32\32x32_New.png" />
+    <Content Include="Resources\Icons\32x32\32x32_Open.png" />
+    <Content Include="Resources\Icons\32x32\32x32_OpenImage.png" />
+    <Content Include="Resources\Icons\32x32\32x32_Save.png" />
+    <Content Include="Resources\Icons\48x48\48x48_EditImage.png" />
+    <Content Include="Resources\Icons\48x48\48x48_New.png" />
+    <Content Include="Resources\Icons\48x48\48x48_Open.png" />
+    <Content Include="Resources\Icons\48x48\48x48_OpenImage.png" />
+    <Content Include="Resources\Icons\48x48\48x48_Save.png" />
+    <Content Include="Resources\Tiles City\Tile_01.png" />
+    <Content Include="Resources\Tiles City\Tile_02.png" />
+    <Content Include="Resources\Tiles City\Tile_03.png" />
+    <Content Include="Resources\Tiles City\Tile_04.png" />
+    <Content Include="Resources\Tiles City\Tile_05.png" />
+    <Content Include="Resources\Tiles City\Tile_06.png" />
+    <Content Include="Resources\Tiles City\Tile_07.png" />
+    <Content Include="Resources\Tiles City\Tile_08.png" />
+    <Content Include="Resources\Tiles City\Tile_09.png" />
+    <Content Include="Resources\Tiles City\Tile_10.png" />
+    <Content Include="Resources\Tiles City\Tile_11.png" />
+    <Content Include="Resources\Tiles City\Tile_12.png" />
+    <Content Include="Resources\Tiles City\Tile_13.png" />
+    <Content Include="Resources\Tiles City\Tile_14.png" />
+    <Content Include="Resources\Tiles City\Tile_15.png" />
+    <Content Include="Resources\Tiles City\Tile_16.png" />
+    <Content Include="Resources\Tiles City\Tile_17.png" />
+    <Content Include="Resources\Tiles City\Tile_18.png" />
+    <Content Include="Resources\Tiles City\Tile_19.png" />
+    <Content Include="Resources\Tiles City\Tile_20.png" />
+    <Content Include="Resources\Tiles City\Tile_21.png" />
+    <Content Include="Resources\Tiles City\Tile_22.png" />
+    <Content Include="Resources\Tiles City\Tile_23.png" />
+    <Content Include="Resources\Tiles City\Tile_24.png" />
+    <Content Include="Resources\Tiles City\Tile_25.png" />
+    <Content Include="Resources\Tiles City\Tile_26.png" />
+    <Content Include="Resources\Tiles City\Tile_27.png" />
+    <Content Include="Resources\Tiles City\Tile_28.png" />
+    <Content Include="Resources\Tiles City\Tile_29.png" />
+    <Content Include="Resources\Tiles City\Tile_30.png" />
+    <Content Include="Resources\Tiles City\Tile_31.png" />
+    <Content Include="Resources\Tiles City\Tile_32.png" />
+    <Content Include="Resources\Tiles City\Tile_33.png" />
+    <Content Include="Resources\Tiles City\Tile_34.png" />
+    <Content Include="Resources\Tiles City\Tile_35.png" />
+    <Content Include="Resources\Tiles City\Tile_36.png" />
+    <Content Include="Resources\Tiles City\Tile_37.png" />
+    <Content Include="Resources\Tiles City\Tile_38.png" />
+    <Content Include="Resources\Tiles City\Tile_39.png" />
+    <Content Include="Resources\Tiles City\Tile_40.png" />
+    <Content Include="Resources\Tiles City\Tile_41.png" />
+    <Content Include="Resources\Tiles City\Tile_42.png" />
+    <Content Include="Resources\Tiles City\Tile_43.png" />
+    <Content Include="Resources\Tiles City\Tile_44.png" />
+    <Content Include="Resources\Tiles City\Tile_45.png" />
+    <Content Include="Resources\Tiles City\Tile_46.png" />
+    <Content Include="Resources\Tiles City\Tile_47.png" />
+    <Content Include="Resources\Tiles City\Tile_48.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
