@@ -44,6 +44,7 @@
             this.pnl_Grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnl_Grid.AutoScroll = true;
             this.pnl_Grid.ContextMenuStrip = this.cms_TileOptions;
             this.pnl_Grid.Controls.Add(this.lbl_GridPlace);
             this.pnl_Grid.Controls.Add(this.lbl_GridSquare);

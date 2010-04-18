@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Greyhound.Properties;
+using Greyhound.TileSplitter;
+using PNMReader;
+using System.IO;
 
 namespace Greyhound
 {
@@ -25,28 +28,28 @@ namespace Greyhound
 
         private void LoadImages(Bitmap[] images)
         {
-            int margin = 5;
-            int LastPosition = 0;
+            //int margin = 5;
+            //int LastPosition = 0;
 
-            for (int bmCounter = 0; bmCounter < images.Length; bmCounter++)
-            {
-                PictureBox pic_Source = new PictureBox();
-                pic_Source.Image = images[bmCounter];
-                pic_Source.SizeMode = PictureBoxSizeMode.Zoom;
+            //for (int bmCounter = 0; bmCounter < images.Length; bmCounter++)
+            //{
+            //    PictureBox pic_Source = new PictureBox();
+            //    pic_Source.Image = images[bmCounter];
+            //    pic_Source.SizeMode = PictureBoxSizeMode.Zoom;
 
-                pic_Source.Parent = pnl_Bottom;
-                pic_Source.BorderStyle = BorderStyle.FixedSingle;
-                pic_Source.MouseClick += new MouseEventHandler(pic_Source_MouseClick);
-                pic_Source.MouseMove += new MouseEventHandler(pic_Source_MouseMove);
+            //    pic_Source.Parent = pnl_Bottom;
+            //    pic_Source.BorderStyle = BorderStyle.FixedSingle;
+            //    pic_Source.MouseClick += new MouseEventHandler(pic_Source_MouseClick);
+            //    pic_Source.MouseMove += new MouseEventHandler(pic_Source_MouseMove);
 
-                pic_Source.Top = margin;
-                pic_Source.Left = LastPosition + margin;
+            //    pic_Source.Top = margin;
+            //    pic_Source.Left = LastPosition + margin;
 
-                pic_Source.Width = 32;
-                pic_Source.Height = 32;
+            //    pic_Source.Width = 32;
+            //    pic_Source.Height = 32;
 
-                LastPosition = pic_Source.Width + pic_Source.Left;
-            }
+            //    LastPosition = pic_Source.Width + pic_Source.Left;
+            //}
         }
 
         #endregion Private Methods
@@ -64,37 +67,122 @@ namespace Greyhound
                                              Resources.Tile_19, Resources.Tile_20, Resources.Tile_21,
                                              Resources.Tile_22, Resources.Tile_23, Resources.Tile_24 };
 
-            LoadImages(images);
+            this.TileSet.AddImages(images);
+
+            //LoadImages(images);
         }
 
-        private void pic_Source_MouseClick(object sender, MouseEventArgs e)
+        private void imagemDeTilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Middle && sender is PictureBox)
+            this.ofd_Tiles.Multiselect = false;
+            this.ofd_Tiles.Title = "Abrir imagem com tiles.";
+            Image image = null;
+            if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
             {
-                PictureBox picBox = (PictureBox)sender;
+                FileInfo fInfo = new FileInfo(this.ofd_Tiles.FileName);
 
-                if (picBox.Image == null)
+                try
                 {
+                    if (fInfo.Extension.ToLower() == "pnm")
+                    {
+                        PPMReader ppmReader = new PPMReader();
+                        image = ppmReader.GetImage(fInfo.FullName);
+                    }
+                    else
+                    {
+                        image = Image.FromFile(fInfo.FullName);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessageBox.Show(String.Format("Erro ao carregar imagem {0}", fInfo.FullName), ex);
                     return;
                 }
 
-                picBox.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                picBox.Refresh();
+                Frm_TileSplitter tileSplitter = new Frm_TileSplitter(image);
+
+                if (tileSplitter.ShowDialog() == DialogResult.OK)
+                {
+                    this.TileSet.AddImages(tileSplitter.SplittedTiles);
+                }
             }
         }
 
-        private void pic_Source_MouseMove(object sender, MouseEventArgs e)
+        private void abrirTileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left && sender is PictureBox)
+            this.ofd_Tiles.Multiselect = true;
+            this.ofd_Tiles.Title = "Abrir tile(s)";
             {
-                PictureBox picBox = (PictureBox)sender;
-
-                if (picBox.Image == null)
+                if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
                 {
-                    return;
-                }
+                    string[] files = this.ofd_Tiles.FileNames;
+                    List<Image> images = new List<Image>();
 
-                picBox.DoDragDrop(picBox.Image, DragDropEffects.All);
+                    foreach (string file in files)
+                    {
+                        FileInfo fInfo = new FileInfo(file);
+
+                        try
+                        {
+                            if (fInfo.Extension.ToLower() == "pnm")
+                            {
+                                PPMReader ppmReader = new PPMReader();
+                                images.Add(ppmReader.GetImage(fInfo.FullName));
+                            }
+                            else
+                            {
+                                images.Add(Image.FromFile(fInfo.FullName));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ErrorMessageBox.Show(String.Format("Erro ao carregar imagem {0}", fInfo.FullName), ex);
+                        }
+                    }
+
+                    this.TileSet.AddImages(images.ToArray());
+                }
+            }
+        }
+
+        //private void pic_Source_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Middle && sender is PictureBox)
+        //    {
+        //        PictureBox picBox = (PictureBox)sender;
+
+        //        if (picBox.Image == null)
+        //        {
+        //            return;
+        //        }
+
+        //        picBox.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+        //        picBox.Refresh();
+        //    }
+        //}
+
+        //private void pic_Source_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Left && sender is PictureBox)
+        //    {
+        //        PictureBox picBox = (PictureBox)sender;
+
+        //        if (picBox.Image == null)
+        //        {
+        //            return;
+        //        }
+
+        //        picBox.DoDragDrop(picBox.Image, DragDropEffects.All);
+        //    }
+        //}
+
+        private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            int limitLocation = this.pnl_Fill.Top + this.pnl_Fill.MinimumSize.Height;
+
+            if (this.splitter1.Top < limitLocation)
+            {
+                e.SplitY = limitLocation;
             }
         }
 
