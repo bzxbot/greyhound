@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.pnl_Grid = new System.Windows.Forms.Panel();
             this.cms_TileOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmi_Selecionar = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_Rotate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_Erase = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_GridPlace = new System.Windows.Forms.Label();
@@ -63,23 +64,32 @@
             // cms_TileOptions
             // 
             this.cms_TileOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_Selecionar,
             this.tsmi_Rotate,
             this.tsmi_Erase});
             this.cms_TileOptions.Name = "cms_TileOptions";
-            this.cms_TileOptions.Size = new System.Drawing.Size(113, 48);
+            this.cms_TileOptions.Size = new System.Drawing.Size(153, 92);
             this.cms_TileOptions.Opening += new System.ComponentModel.CancelEventHandler(this.cms_TileOptions_Opening);
+            // 
+            // tsmi_Selecionar
+            // 
+            this.tsmi_Selecionar.Name = "tsmi_Selecionar";
+            this.tsmi_Selecionar.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_Selecionar.Text = "Selecionar";
+            this.tsmi_Selecionar.Visible = false;
+            this.tsmi_Selecionar.Click += new System.EventHandler(this.tsmi_Selecionar_Click);
             // 
             // tsmi_Rotate
             // 
             this.tsmi_Rotate.Name = "tsmi_Rotate";
-            this.tsmi_Rotate.Size = new System.Drawing.Size(112, 22);
+            this.tsmi_Rotate.Size = new System.Drawing.Size(152, 22);
             this.tsmi_Rotate.Text = "Girar";
             this.tsmi_Rotate.Click += new System.EventHandler(this.tsmi_Rotate_Click);
             // 
             // tsmi_Erase
             // 
             this.tsmi_Erase.Name = "tsmi_Erase";
-            this.tsmi_Erase.Size = new System.Drawing.Size(112, 22);
+            this.tsmi_Erase.Size = new System.Drawing.Size(152, 22);
             this.tsmi_Erase.Text = "Apagar";
             this.tsmi_Erase.Click += new System.EventHandler(this.tsmi_Erase_Click);
             // 
@@ -129,5 +139,6 @@
         private System.Windows.Forms.ContextMenuStrip cms_TileOptions;
         private System.Windows.Forms.ToolStripMenuItem tsmi_Rotate;
         private System.Windows.Forms.ToolStripMenuItem tsmi_Erase;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_Selecionar;
     }
 }

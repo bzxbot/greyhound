@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace Greyhound
 {
-    class Tile
+    public class Tile
     {
         public int X { get; private set; }
         public int Y { get; private set; }

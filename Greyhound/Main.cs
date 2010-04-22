@@ -10,6 +10,7 @@ using Greyhound.Properties;
 using Greyhound.TileSplitter;
 using PNMReader;
 using System.IO;
+using Greyhound.Tile_Editor;
 
 namespace Greyhound
 {
@@ -72,7 +73,22 @@ namespace Greyhound
             //LoadImages(images);
         }
 
-        private void imagemDeTilesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsb_New_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsb_Open_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsb_Save_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmi_openTileImage_Click(object sender, EventArgs e)
         {
             this.ofd_Tiles.Multiselect = false;
             this.ofd_Tiles.Title = "Abrir imagem com tiles.";
@@ -108,7 +124,7 @@ namespace Greyhound
             }
         }
 
-        private void abrirTileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmi_OpenTile_Click(object sender, EventArgs e)
         {
             this.ofd_Tiles.Multiselect = true;
             this.ofd_Tiles.Title = "Abrir tile(s)";
@@ -141,6 +157,29 @@ namespace Greyhound
                     }
 
                     this.TileSet.AddImages(images.ToArray());
+                }
+            }
+        }
+
+        private void tsb_EditTile_Click(object sender, EventArgs e)
+        {
+            if (this.TileSet.SelectedPic != null)
+            {
+                Frm_TileEditor frm_TileEditor = new Frm_TileEditor(this.TileSet.SelectedPic.Image);
+                if (frm_TileEditor.ShowDialog() == DialogResult.OK)
+                {
+                    if (frm_TileEditor.EditedImage != null)
+                    {
+                        if (frm_TileEditor.ReplaceImage)
+                        {
+                            this.TileSet.SelectedPic.Image = frm_TileEditor.EditedImage;
+                            this.TileSet.SelectedPic.Refresh();
+                        }
+                        else
+                        {
+                            this.TileSet.AddImage(frm_TileEditor.EditedImage);
+                        }
+                    }
                 }
             }
         }

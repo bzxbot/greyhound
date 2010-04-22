@@ -26,6 +26,33 @@ namespace Greyhound
         [Description("Margin size between tiles.")]
         public Int16 TileMargin { get; set; }
 
+        private Color _selectedColor = Color.Red;
+        public Color SelectedColor
+        {
+            get { return this._selectedColor;}
+            set
+            {
+                if (this._selectedColor != value)
+                {
+                    this._selectedColor = value;
+
+                    if (this._selectedPic != null)
+                    {
+                        this._selectedPic.BackColor = this._selectedColor;
+                    }
+                }                
+            }
+        }
+
+        private PictureBox _selectedPic = null;
+        public PictureBox SelectedPic
+        {
+            get
+            {
+                return this._selectedPic;
+            }
+        }
+
         #endregion
 
         #region Private Events
@@ -44,6 +71,20 @@ namespace Greyhound
                 picBox.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 picBox.Refresh();
             }
+
+            if (e.Button == MouseButtons.Left && sender is PictureBox)
+            {
+                PictureBox lastSelected = this._selectedPic;
+
+                PictureBox picBox = (PictureBox)sender;
+                this._selectedPic = picBox;
+                picBox.Refresh();
+
+                if (lastSelected != null)
+                {
+                    lastSelected.Refresh();
+                }
+            }
         }
 
         private void tile_Source_MouseMove(object sender, MouseEventArgs e)
@@ -58,6 +99,19 @@ namespace Greyhound
                 }
 
                 picBox.DoDragDrop(picBox.Image, DragDropEffects.All);
+            }
+        }
+
+        private void tile_Source_Paint(object sender, PaintEventArgs e)
+        {
+            if (sender is PictureBox && ((PictureBox)sender) == this._selectedPic)
+            {
+                PictureBox picBox = (PictureBox) sender;
+
+                Pen pen = new Pen(new SolidBrush(this._selectedColor));
+                pen.Width = 2;
+
+                e.Graphics.DrawRectangle(pen, 0, 0, picBox.Width, picBox.Height);
             }
         }
 
@@ -96,15 +150,17 @@ namespace Greyhound
             pic_Source.SizeMode = PictureBoxSizeMode.Zoom;
 
             //pic_Source.Parent = pnl_Tiles;
-            pic_Source.BorderStyle = BorderStyle.FixedSingle;
+            //pic_Source.BorderStyle = BorderStyle.FixedSingle;
+            pic_Source.BackColor = Color.Black;
             pic_Source.MouseClick += new MouseEventHandler(tile_Source_MouseClick);
             pic_Source.MouseMove += new MouseEventHandler(tile_Source_MouseMove);
+            pic_Source.Paint += new PaintEventHandler(tile_Source_Paint);
             pic_Source.ContextMenuStrip = this.cms_TileOptions;
 
             pic_Source.Margin = new Padding(this.TileMargin);
 
-            pic_Source.Width = 32;
-            pic_Source.Height = 32;
+            pic_Source.Width = 48;
+            pic_Source.Height = 48;
 
             this.flpnl_Tiles.Controls.Add(pic_Source);
         }

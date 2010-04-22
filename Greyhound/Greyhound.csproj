@@ -91,6 +91,9 @@
       <DependentUpon>Grid2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tile Editor\Frm_TileEditor.resx">
+      <DependentUpon>Frm_TileEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tile Splitter\TileSplitter.resx">
       <DependentUpon>TileSplitter.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +113,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tile Editor\Frm_TileEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tile Editor\Frm_TileEditor.Designer.cs">
+      <DependentUpon>Frm_TileEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Tile Splitter\TileSplitter.cs">
       <SubType>Form</SubType>

@@ -43,6 +43,40 @@ namespace Greyhound
             }
         }
 
+        private Color _selectionColor = Color.Red;
+        public Color SelectionColor
+        {
+            get { return this._selectionColor; }
+            set
+            {
+                if (this._selectionColor != value)
+                {
+                    this._selectionColor = value;
+                    this.DrawTiles(pnl_Grid.CreateGraphics());
+                }
+            }
+        }
+
+        private int _selectionThickness = 1;
+        public int SelectionThickness
+        {
+            get { return this._selectionThickness; }
+            set
+            {
+                if (this._selectionThickness != value)
+                {
+                    this._selectionThickness = value;
+                    this.DrawTiles(pnl_Grid.CreateGraphics());
+                }
+            }
+        }
+
+        private Tile _selectedTile = null;
+        public  Tile SelectedTile
+        {
+            get { return this._selectedTile; }
+        }
+
         #endregion
 
         #region Constructors
@@ -190,6 +224,11 @@ namespace Greyhound
             }
         }
 
+        private void tsmi_Selecionar_Click(object sender, EventArgs e)
+        {
+            this.SelectTile(GetTileByPosition(pnl_Grid.PointToClient(new Point(cms_TileOptions.Left, cms_TileOptions.Top))));
+        }
+
         private void tsmi_Rotate_Click(object sender, EventArgs e)
         {
             this.FlipTile(GetTileByPosition(pnl_Grid.PointToClient(new Point(cms_TileOptions.Left, cms_TileOptions.Top))));
@@ -304,13 +343,35 @@ namespace Greyhound
                     {
                         Tile t = tiles[lineCounter, collumCounter];
 
+                        //g.DrawRectangle(pen, leftStart + (collumCounter * SquareSize) + pen.Width,
+                        //                     topStart + (lineCounter * SquareSize) + pen.Width,
+                        //                     SquareSize - pen.Width, SquareSize - pen.Width);
+
                         g.DrawImage(t.Image, leftStart + (collumCounter * SquareSize) + pen.Width,
-                                             topStart + (lineCounter * SquareSize) + pen.Width, SquareSize - pen.Width, SquareSize - pen.Width);
+                                             topStart + (lineCounter * SquareSize) + pen.Width,
+                                             SquareSize - pen.Width, SquareSize - pen.Width);
+
+                        if (this._selectedTile != null && t == this._selectedTile)
+                        {
+                            float savePenWidth = pen.Width;
+                            Color savedPenColo = pen.Color;
+
+                            pen.Width = this.SelectionThickness;
+                            pen.Color = this.SelectionColor;
+
+                            g.DrawRectangle(pen, leftStart + (collumCounter * SquareSize) + savePenWidth + pen.Width / 2,
+                                             topStart + (lineCounter * SquareSize) + savePenWidth + pen.Width / 2,
+                                             SquareSize - (pen.Width + pen.Width / 2), SquareSize - (pen.Width + pen.Width / 2));
+
+                            pen.Width = savePenWidth;
+                            pen.Color = savedPenColo;
+                        }
                     }
                     else
                     {
                         g.FillRectangle(sb, leftStart + (collumCounter * SquareSize) + pen.Width,
-                                             topStart + (lineCounter * SquareSize) + pen.Width, SquareSize - pen.Width, SquareSize - pen.Width);
+                                             topStart + (lineCounter * SquareSize) + pen.Width,
+                                             SquareSize - pen.Width, SquareSize - pen.Width);
                     }
                 }
             }
@@ -381,10 +442,24 @@ namespace Greyhound
             }
         }
 
+        private void SelectTile(Tile t)
+        {
+            if (t != null && t.Image != null)
+            {
+                this._selectedTile = t;
+                this.DrawTiles(pnl_Grid.CreateGraphics());
+            }
+        }
+
         private void RemoveTileImage(Tile t)
         {
             if (t != null && t.Image != null)
             {
+                if (t == this._selectedTile)
+                {
+                    this._selectedTile = null;
+                }
+
                 t.Image = null;
                 this.DrawTiles(pnl_Grid.CreateGraphics());
             }
