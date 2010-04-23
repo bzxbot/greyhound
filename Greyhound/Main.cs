@@ -140,7 +140,7 @@ namespace Greyhound
 
                         try
                         {
-                            if (fInfo.Extension.ToLower() == "pnm")
+                            if (fInfo.Extension.ToLower() == ".ppm")
                             {
                                 PPMReader ppmReader = new PPMReader();
                                 images.Add(ppmReader.GetImage(fInfo.FullName));

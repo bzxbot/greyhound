@@ -45,22 +45,7 @@ namespace Greyhound.Tile_Editor
 
         #region Private Mehtods
 
-        private Image ApplyGrayScale(Image imgOrig)
-        {
-            Bitmap grayScale = new Bitmap(imgOrig);
 
-            for (int x = 0; x < grayScale.Width; x++)
-            {
-                for (int y = 0; y < grayScale.Height; y++)
-                {
-                    Color pixel = grayScale.GetPixel(x, y);
-                    byte grayedValue = (byte)(.299 * pixel.R + .587 * pixel.G + .114 * pixel.B);
-                    grayScale.SetPixel(x, y, Color.FromArgb(grayedValue, grayedValue, grayedValue));
-                }
-            }
-
-            return grayScale;
-        }
 
         #endregion Private Methods
 
@@ -73,7 +58,7 @@ namespace Greyhound.Tile_Editor
 
         private void cmb_GrayScale_Click(object sender, EventArgs e)
         {
-            imgEdit = this.ApplyGrayScale(imgOrig);
+            imgEdit = ImageFilters.ApplyGrayScale(imgOrig);
             this.pic_Edited.Image = imgEdit;
         }
 
