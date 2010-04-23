@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{390D89D0-23E4-49D6-A0C9-A59CFC50075C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -67,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="TileMap.resx">
       <DependentUpon>TileMap.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -79,12 +80,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tile Editor\Frm_TileEditor.resx">
       <DependentUpon>Frm_TileEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Tile Splitter\TileSplitter.resx">
       <DependentUpon>TileSplitter.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TileSet.resx">
       <DependentUpon>TileSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -120,6 +124,7 @@
     <Compile Include="TileSet.Designer.cs">
       <DependentUpon>TileSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tmap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Image1.jpg" />
