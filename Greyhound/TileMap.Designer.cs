@@ -1,6 +1,6 @@
 ﻿namespace Greyhound
 {
-    partial class Grid3
+    partial class TileMap
     {
         /// <summary> 
         /// Required designer variable.

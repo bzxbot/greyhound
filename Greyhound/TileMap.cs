@@ -10,7 +10,7 @@ using Greyhound.Properties;
 
 namespace Greyhound
 {
-    public partial class Grid3 : UserControl
+    public partial class TileMap : UserControl
     {
         #region Private Fields
 
@@ -81,7 +81,7 @@ namespace Greyhound
 
         #region Constructors
 
-        public Grid3()
+        public TileMap()
         {
             InitializeComponent();
 
