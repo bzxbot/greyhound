@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.pnl_Fill = new System.Windows.Forms.Panel();
-            this.grid31 = new Greyhound.Grid3();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.ts_Menu = new System.Windows.Forms.ToolStrip();
             this.tsb_New = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -39,37 +38,28 @@
             this.tsb_Save = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_OpenTiles = new System.Windows.Forms.ToolStripDropDownButton();
-            this.abrirTileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imagemDeTilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_OpenTile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_OpenTileImage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_EditTile = new System.Windows.Forms.ToolStripButton();
-            this.pnl_Bottom = new System.Windows.Forms.Panel();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.pnl_Fill.SuspendLayout();
+            this.pnl_Fill = new System.Windows.Forms.Panel();
+            this.ofd_Tiles = new System.Windows.Forms.OpenFileDialog();
+            this.TileMap = new Greyhound.TileMap();
+            this.TileSet = new Greyhound.TileSet();
             this.ts_Menu.SuspendLayout();
+            this.pnl_Fill.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnl_Fill
+            // splitter1
             // 
-            this.pnl_Fill.Controls.Add(this.grid31);
-            this.pnl_Fill.Controls.Add(this.ts_Menu);
-            this.pnl_Fill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Fill.Location = new System.Drawing.Point(0, 0);
-            this.pnl_Fill.Name = "pnl_Fill";
-            this.pnl_Fill.Size = new System.Drawing.Size(753, 349);
-            this.pnl_Fill.TabIndex = 2;
-            // 
-            // grid31
-            // 
-            this.grid31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid31.GridThickness = 1;
-            this.grid31.Location = new System.Drawing.Point(0, 39);
-            this.grid31.MinimumSize = new System.Drawing.Size(300, 300);
-            this.grid31.Name = "grid31";
-            this.grid31.Size = new System.Drawing.Size(753, 310);
-            this.grid31.TabIndex = 0;
+            this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter1.Location = new System.Drawing.Point(0, 353);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(753, 4);
+            this.splitter1.TabIndex = 4;
+            this.splitter1.TabStop = false;
+            this.splitter1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter1_SplitterMoved);
             // 
             // ts_Menu
             // 
@@ -87,7 +77,7 @@
             this.ts_Menu.Location = new System.Drawing.Point(0, 0);
             this.ts_Menu.Name = "ts_Menu";
             this.ts_Menu.Size = new System.Drawing.Size(753, 39);
-            this.ts_Menu.TabIndex = 1;
+            this.ts_Menu.TabIndex = 6;
             this.ts_Menu.Text = "toolStrip1";
             // 
             // tsb_New
@@ -100,6 +90,7 @@
             this.tsb_New.Size = new System.Drawing.Size(36, 36);
             this.tsb_New.Text = "Novo";
             this.tsb_New.ToolTipText = "Novo tile map.";
+            this.tsb_New.Click += new System.EventHandler(this.tsb_New_Click);
             // 
             // toolStripSeparator1
             // 
@@ -116,6 +107,7 @@
             this.tsb_Open.Size = new System.Drawing.Size(36, 36);
             this.tsb_Open.Text = "Abrir";
             this.tsb_Open.ToolTipText = "Abrir tile map.";
+            this.tsb_Open.Click += new System.EventHandler(this.tsb_Open_Click);
             // 
             // toolStripSeparator2
             // 
@@ -132,6 +124,7 @@
             this.tsb_Save.Size = new System.Drawing.Size(36, 36);
             this.tsb_Save.Text = "Salvar";
             this.tsb_Save.ToolTipText = "Salvar tile map.";
+            this.tsb_Save.Click += new System.EventHandler(this.tsb_Save_Click);
             // 
             // toolStripSeparator3
             // 
@@ -142,8 +135,8 @@
             // 
             this.tsb_OpenTiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsb_OpenTiles.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirTileToolStripMenuItem,
-            this.imagemDeTilesToolStripMenuItem});
+            this.tsmi_OpenTile,
+            this.tsmi_OpenTileImage});
             this.tsb_OpenTiles.Image = ((System.Drawing.Image)(resources.GetObject("tsb_OpenTiles.Image")));
             this.tsb_OpenTiles.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsb_OpenTiles.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -152,17 +145,19 @@
             this.tsb_OpenTiles.Text = "Carregar Tile";
             this.tsb_OpenTiles.ToolTipText = "Carregar tile.";
             // 
-            // abrirTileToolStripMenuItem
+            // tsmi_OpenTile
             // 
-            this.abrirTileToolStripMenuItem.Name = "abrirTileToolStripMenuItem";
-            this.abrirTileToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.abrirTileToolStripMenuItem.Text = "Tile";
+            this.tsmi_OpenTile.Name = "tsmi_OpenTile";
+            this.tsmi_OpenTile.Size = new System.Drawing.Size(158, 22);
+            this.tsmi_OpenTile.Text = "Tile";
+            this.tsmi_OpenTile.Click += new System.EventHandler(this.tsmi_OpenTile_Click);
             // 
-            // imagemDeTilesToolStripMenuItem
+            // tsmi_OpenTileImage
             // 
-            this.imagemDeTilesToolStripMenuItem.Name = "imagemDeTilesToolStripMenuItem";
-            this.imagemDeTilesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.imagemDeTilesToolStripMenuItem.Text = "Imagem de tiles";
+            this.tsmi_OpenTileImage.Name = "tsmi_OpenTileImage";
+            this.tsmi_OpenTileImage.Size = new System.Drawing.Size(158, 22);
+            this.tsmi_OpenTileImage.Text = "Imagem de tiles";
+            this.tsmi_OpenTileImage.Click += new System.EventHandler(this.tsmi_openTileImage_Click);
             // 
             // toolStripSeparator4
             // 
@@ -179,43 +174,45 @@
             this.tsb_EditTile.Size = new System.Drawing.Size(36, 36);
             this.tsb_EditTile.Text = "Editar Tile";
             this.tsb_EditTile.ToolTipText = "Editar tile.";
+            this.tsb_EditTile.Click += new System.EventHandler(this.tsb_EditTile_Click);
             // 
-            // pnl_Bottom
+            // pnl_Fill
             // 
-            this.pnl_Bottom.AutoScroll = true;
-            this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Bottom.Location = new System.Drawing.Point(0, 352);
-            this.pnl_Bottom.Name = "pnl_Bottom";
-            this.pnl_Bottom.Size = new System.Drawing.Size(753, 100);
-            this.pnl_Bottom.TabIndex = 3;
+            this.pnl_Fill.Controls.Add(this.TileMap);
+            this.pnl_Fill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Fill.Location = new System.Drawing.Point(0, 39);
+            this.pnl_Fill.MinimumSize = new System.Drawing.Size(300, 300);
+            this.pnl_Fill.Name = "pnl_Fill";
+            this.pnl_Fill.Size = new System.Drawing.Size(753, 314);
+            this.pnl_Fill.TabIndex = 7;
             // 
-            // splitter1
+            // ofd_Tiles
             // 
-            this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 349);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(753, 3);
-            this.splitter1.TabIndex = 4;
-            this.splitter1.TabStop = false;
+            this.ofd_Tiles.Filter = "Image Files(*.BMP;*.JPG;*.GIF,*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG;*.PNM";
             // 
-            // toolStripButton1
+            // TileMap
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.TileMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TileMap.GridThickness = 1;
+            this.TileMap.Location = new System.Drawing.Point(0, 0);
+            this.TileMap.Margin = new System.Windows.Forms.Padding(0);
+            this.TileMap.MinimumSize = new System.Drawing.Size(300, 300);
+            this.TileMap.Name = "TileMap";
+            this.TileMap.SelectionColor = System.Drawing.Color.Red;
+            this.TileMap.SelectionThickness = 3;
+            this.TileMap.Size = new System.Drawing.Size(753, 314);
+            this.TileMap.TabIndex = 8;
             // 
-            // toolStripButton2
+            // TileSet
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.TileSet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TileSet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.TileSet.Location = new System.Drawing.Point(0, 357);
+            this.TileSet.Name = "TileSet";
+            this.TileSet.SelectedColor = System.Drawing.Color.Red;
+            this.TileSet.Size = new System.Drawing.Size(753, 95);
+            this.TileSet.TabIndex = 5;
+            this.TileSet.TileMargin = ((short)(2));
             // 
             // Main
             // 
@@ -223,39 +220,40 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 452);
             this.Controls.Add(this.pnl_Fill);
+            this.Controls.Add(this.ts_Menu);
             this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.pnl_Bottom);
+            this.Controls.Add(this.TileSet);
+            this.MinimumSize = new System.Drawing.Size(769, 490);
             this.Name = "Main";
             this.Text = "Tileset Editor";
             this.Load += new System.EventHandler(this.Main_Load);
-            this.pnl_Fill.ResumeLayout(false);
-            this.pnl_Fill.PerformLayout();
             this.ts_Menu.ResumeLayout(false);
             this.ts_Menu.PerformLayout();
+            this.pnl_Fill.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pnl_Fill;
-        private System.Windows.Forms.Panel pnl_Bottom;
         private System.Windows.Forms.Splitter splitter1;
-        private Grid3 grid31;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStrip ts_Menu;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton tsb_New;
-        private System.Windows.Forms.ToolStripButton tsb_Open;
-        private System.Windows.Forms.ToolStripButton tsb_Save;
-        private System.Windows.Forms.ToolStripButton tsb_EditTile;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsb_Open;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tsb_Save;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripDropDownButton tsb_OpenTiles;
-        private System.Windows.Forms.ToolStripMenuItem abrirTileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem imagemDeTilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_OpenTile;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_OpenTileImage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton tsb_EditTile;
+        private TileSet TileSet;
+        private System.Windows.Forms.Panel pnl_Fill;
+        private TileMap TileMap;
+        private System.Windows.Forms.OpenFileDialog ofd_Tiles;
     }
 }
 

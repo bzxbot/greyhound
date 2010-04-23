@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{390D89D0-23E4-49D6-A0C9-A59CFC50075C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -49,12 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErrorMessageBox.cs" />
-    <Compile Include="TileMap.cs">
+    <Compile Include="Grid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Grid.Designer.cs">
+      <DependentUpon>Grid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Grid3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TileMap.Designer.cs">
-      <DependentUpon>TileMap.cs</DependentUpon>
+    <Compile Include="Grid3.Designer.cs">
+      <DependentUpon>Grid3.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -65,8 +70,12 @@
     <Compile Include="PPMReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="TileMap.resx">
-      <DependentUpon>TileMap.cs</DependentUpon>
+    <EmbeddedResource Include="Grid.resx">
+      <DependentUpon>Grid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grid3.resx">
+      <DependentUpon>Grid3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -77,15 +86,19 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tile Editor\Frm_TileEditor.resx">
-      <DependentUpon>Frm_TileEditor.cs</DependentUpon>
+    <EmbeddedResource Include="Grid2.resx">
+      <DependentUpon>Grid2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+<<<<<<< local
     <EmbeddedResource Include="Tile Splitter\TileSplitter.resx">
       <DependentUpon>TileSplitter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TileSet.resx">
       <DependentUpon>TileSet.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> other
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -100,13 +113,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Tile Editor\Frm_TileEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tile Editor\Frm_TileEditor.Designer.cs">
-      <DependentUpon>Frm_TileEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Tile Editor\ImageFilters.cs" />
     <Compile Include="Tile Splitter\TileSplitter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,11 +120,11 @@
       <DependentUpon>TileSplitter.cs</DependentUpon>
     </Compile>
     <Compile Include="Tile.cs" />
-    <Compile Include="TileSet.cs">
+    <Compile Include="Grid2.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TileSet.Designer.cs">
-      <DependentUpon>TileSet.cs</DependentUpon>
+    <Compile Include="Grid2.Designer.cs">
+      <DependentUpon>Grid2.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

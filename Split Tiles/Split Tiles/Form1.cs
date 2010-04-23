@@ -24,7 +24,7 @@ namespace Split_Tiles
 
         private void tsmi_Abrir_Click(object sender, EventArgs e)
         {
-            ofd_Picture.Filter = "Image Files(*.BMP;*.JPG;*.GIF,*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+            ofd_Picture.Filter = "Image Files(*.BMP;*.JPG;*.GIF,*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG;*.PNM";
 
             if (ofd_Picture.ShowDialog() == DialogResult.OK)
             {
