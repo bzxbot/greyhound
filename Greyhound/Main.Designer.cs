@@ -44,7 +44,7 @@
             this.tsb_EditTile = new System.Windows.Forms.ToolStripButton();
             this.pnl_Fill = new System.Windows.Forms.Panel();
             this.ofd_Tiles = new System.Windows.Forms.OpenFileDialog();
-            this.TileMap = new Greyhound.TileMap();
+            this.TileMap = new Greyhound.TileMapGrid();
             this.TileSet = new Greyhound.TileSet();
             this.ts_Menu.SuspendLayout();
             this.pnl_Fill.SuspendLayout();
@@ -252,7 +252,7 @@
         private System.Windows.Forms.ToolStripButton tsb_EditTile;
         private TileSet TileSet;
         private System.Windows.Forms.Panel pnl_Fill;
-        private TileMap TileMap;
+        private TileMapGrid TileMap;
         private System.Windows.Forms.OpenFileDialog ofd_Tiles;
     }
 }

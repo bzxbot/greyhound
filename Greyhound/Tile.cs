@@ -11,7 +11,7 @@ namespace Greyhound
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public Image Image { get; set; }
+        public Bitmap Bitmap { get; set; }
 
         public Tile(int x, int y)
         {
