@@ -11,12 +11,30 @@ namespace Greyhound
     {
         public int Width { get; set; }
         public int Height { get; set; }
-        public int[,] TileMap { get; set; }
+        public int[,] TileMatrix { get; set; }
         public int TileWidth { get; set; }
         public int TileHeight { get; set; }
         public int TileCount { get; set; }
         public TileFormat TileFormat { get; set; }
-        public Tile[] Tiles { get; set; }
+        public List<Tile> Tiles { get; set; }
+
+        public TileMap(int width, int height)
+        {
+            Width = width;
+            Height = height;
+
+            TileMatrix = new int[Width, Height];
+
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    TileMatrix[x, y] = -1;
+                }
+            }
+
+            Tiles = new List<Tile>();
+        }
 
         public void Load(string filePath)
         {
@@ -31,11 +49,11 @@ namespace Greyhound
             sw.Write("  ");
             sw.WriteLine(Height);
 
-            for (int i = 0; i < Height; i++)
+            for (int i = 0; i < Width; i++)
             {
-                for (int j = 0; j < Width; j++)
+                for (int j = 0; j < Height; j++)
                 {
-                    sw.Write(TileMap[i, j]);
+                    sw.Write(TileMatrix[i, j]);
                     sw.Write(" ");
                 }
 
@@ -48,13 +66,16 @@ namespace Greyhound
 
             sw.Write(TileCount);
             sw.Write("  ");
-            sw.Write(TileFormat);
+            sw.WriteLine(TileFormat);
 
             foreach (Tile tile in Tiles)
             {
-                for (int x = 0; x < TileWidth; x++)
+                if (tile.Bitmap == null)
+                    continue;
+
+                for (int x = 0; x < tile.Bitmap.Width; x++)
                 {
-                    for (int y = 0; y < TileHeight; y++)
+                    for (int y = 0; y < tile.Bitmap.Height; y++)
                     {
                         Color color = tile.Bitmap.GetPixel(x, y);
 
@@ -64,6 +85,8 @@ namespace Greyhound
                     }
                 }
             }
+
+            sw.Close();
         }
     }
 

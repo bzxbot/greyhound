@@ -14,7 +14,9 @@ namespace Greyhound
     {
         #region Private Fields
 
-        Tile[,] tiles;
+        //Tile[,] tiles;
+
+        public TileMap tileMap;
 
         private int SquareLines = 10;
         private int SquareColumns = 16;
@@ -85,15 +87,17 @@ namespace Greyhound
         {
             InitializeComponent();
 
-            this.tiles = new Tile[SquareLines, SquareColumns];
+            //this.tiles = new Tile[SquareLines, SquareColumns];
 
-            for (int i = 0; i < this.tiles.GetLength(0); i++)
-            {
-                for (int j = 0; j < this.tiles.GetLength(1); j++)
-                {
-                    tiles[i, j] = new Tile(i, j);
-                }
-            }
+            //for (int i = 0; i < this.tiles.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < this.tiles.GetLength(1); j++)
+            //    {
+            //        tiles[i, j] = new Tile(i, j);
+            //    }
+            //}
+
+            tileMap = new TileMap(SquareLines, SquareColumns);
         }
 
         #endregion Constructors
@@ -122,7 +126,7 @@ namespace Greyhound
             {
                 Tile t = GetTileByPosition(e.X, e.Y);
 
-                if (t != null && t.Image != null)
+                if (t != null && t.Bitmap != null)
                 {
                     pnl_Grid.DoDragDrop(t, DragDropEffects.All);
                 }
@@ -165,46 +169,66 @@ namespace Greyhound
         {
             Point gridPoint = pnl_Grid.PointToClient(new Point(e.X, e.Y));
 
-            Tile tileTarget = this.GetTileByPosition(gridPoint);
+            //Tile tileTarget = this.GetTileByPosition(gridPoint);
 
-            if ((e.Data.GetDataPresent(DataFormats.Bitmap)) && tileTarget != null)
+            Point point = GetMatrixPosition(gridPoint);
+
+            if (point.X == -1 || point.Y == -1)
             {
-                tileTarget.Image = (Bitmap)((Bitmap)(e.Data.GetData(DataFormats.Bitmap))).Clone();
+                return;
+            }
 
+            if (e.Data.GetDataPresent(DataFormats.Bitmap))
+            {
+                Tile tile = new Tile();
+
+                tile.Bitmap = (Bitmap)((Bitmap)(e.Data.GetData(DataFormats.Bitmap))).Clone();
+
+                tileMap.Tiles.Add(tile);
+
+                tileMap.TileMatrix[point.X, point.Y] = tileMap.Tiles.Count - 1;
+                
                 this.DrawTiles(pnl_Grid.CreateGraphics());
             }
 
-            if (e.Data is object && tileTarget != null)
-            {
-                object o = e.Data.GetData(typeof(Tile));
+            //if ((e.Data.GetDataPresent(DataFormats.Bitmap)) && tileTarget != null)
+            //{
+            //    tileTarget.Bitmap = (Bitmap)((Bitmap)(e.Data.GetData(DataFormats.Bitmap))).Clone();
 
-                if (o is Tile)
-                {
-                    Tile tileSource = (Tile)o;
+            //    this.DrawTiles(pnl_Grid.CreateGraphics());
+            //}
 
-                    if (tileSource == null || tileSource.Image == null)
-                    {
-                        return;
-                    }
+            //if (e.Data is object && tileTarget != null)
+            //{
+            //    object o = e.Data.GetData(typeof(Tile));
 
-                    if (tileSource == tileTarget)
-                    {
-                        return;
-                    }
+            //    if (o is Tile)
+            //    {
+            //        Tile tileSource = (Tile)o;
 
-                    if (e.Effect == DragDropEffects.Copy)
-                    {
-                        tileTarget.Image = (Image)tileSource.Image.Clone();
-                    }
-                    else
-                    {
-                        tileTarget.Image = (Image)tileSource.Image.Clone();
-                        tileSource.Image = null;
-                    }
+            //        if (tileSource == null || tileSource.Bitmap == null)
+            //        {
+            //            return;
+            //        }
 
-                    this.DrawTiles(pnl_Grid.CreateGraphics());
-                }
-            }
+            //        if (tileSource == tileTarget)
+            //        {
+            //            return;
+            //        }
+
+            //        if (e.Effect == DragDropEffects.Copy)
+            //        {
+            //            tileTarget.Bitmap = (Bitmap)tileSource.Bitmap.Clone();
+            //        }
+            //        else
+            //        {
+            //            tileTarget.Bitmap = (Bitmap)tileSource.Bitmap.Clone();
+            //            tileSource.Bitmap = null;
+            //        }
+
+            //        this.DrawTiles(pnl_Grid.CreateGraphics());
+            //    }
+            //}
         }
 
         private void pnl_Grid_MouseClick(object sender, MouseEventArgs e)
@@ -218,7 +242,7 @@ namespace Greyhound
         private void cms_TileOptions_Opening(object sender, CancelEventArgs e)
         {
             Tile t = GetTileByPosition(pnl_Grid.PointToClient(new Point(cms_TileOptions.Left, cms_TileOptions.Top)));
-            if (t == null || t.Image == null)
+            if (t == null || t.Bitmap == null)
             {
                 e.Cancel = true;
             }
@@ -339,15 +363,18 @@ namespace Greyhound
             {
                 for (int lineCounter = 0; lineCounter < SquareLines; lineCounter++)
                 {
-                    if (tiles[lineCounter, collumCounter].Image != null)
+                    if (tileMap.TileMatrix[lineCounter, collumCounter] > -1)
+                    //if (tiles[lineCounter, collumCounter].Bitmap != null)
                     {
-                        Tile t = tiles[lineCounter, collumCounter];
+                        //Tile t = tiles[lineCounter, collumCounter];
+
+                        Tile t = tileMap.Tiles[tileMap.TileMatrix[lineCounter, collumCounter]];
 
                         //g.DrawRectangle(pen, leftStart + (collumCounter * SquareSize) + pen.Width,
                         //                     topStart + (lineCounter * SquareSize) + pen.Width,
                         //                     SquareSize - pen.Width, SquareSize - pen.Width);
 
-                        g.DrawImage(t.Image, leftStart + (collumCounter * SquareSize) + pen.Width,
+                        g.DrawImage(t.Bitmap, leftStart + (collumCounter * SquareSize) + pen.Width,
                                              topStart + (lineCounter * SquareSize) + pen.Width,
                                              SquareSize - pen.Width, SquareSize - pen.Width);
 
@@ -424,27 +451,70 @@ namespace Greyhound
 
             try
             {
-                return this.tiles[lin, col];
+                //return this.tiles[lin, col];
+                return tileMap.Tiles[tileMap.TileMatrix[lin, col]];
             }
-            catch (IndexOutOfRangeException)
+            catch (ArgumentOutOfRangeException)
             {
                 return null;
             }
+        }
 
+        private Point GetMatrixPosition(Point pos)
+        {
+            int lin;
+            int col;
+
+            Pen pen = new Pen(Brushes.Black);
+
+            int maxHeight = this.pnl_Grid.Height / SquareLines;
+            int maxWidth = this.pnl_Grid.Width / SquareColumns;
+            int maxSize;
+            int SquareSize;
+
+            if (maxHeight <= maxWidth)
+            {
+                maxSize = (this.pnl_Grid.Height) - (GridMargin / 2);
+                SquareSize = (maxSize / SquareLines) - (int)pen.Width;
+            }
+            else
+            {
+                maxSize = (this.pnl_Grid.Width) - (GridMargin / 2);
+                SquareSize = (maxSize / SquareColumns) - (int)pen.Width;
+            }
+
+            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * SquareLines) / 2);
+            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * SquareColumns) / 2);
+
+
+            //testa se esta em cima da linha ou fora da grid
+            if ((pos.X - leftStart) % SquareSize == 0 || (pos.Y - topStart) % SquareSize == 0 ||
+                (pos.X - leftStart) < 0 || (pos.Y - topStart) < 0 ||
+                (pos.X - leftStart) > (SquareSize * SquareColumns) ||
+                (pos.Y - topStart) > (SquareSize * SquareLines))
+            {
+                //ignora se sim
+                return new Point(-1, -1);
+            }
+
+            col = (pos.X - leftStart) / SquareSize;
+            lin = (pos.Y - topStart) / SquareSize;
+
+            return new Point(lin, col);
         }
 
         private void FlipTile(Tile t)
         {
-            if (t != null && t.Image != null)
+            if (t != null && t.Bitmap != null)
             {
-                t.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                t.Bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 this.DrawTiles(pnl_Grid.CreateGraphics());
             }
         }
 
         private void SelectTile(Tile t)
         {
-            if (t != null && t.Image != null)
+            if (t != null && t.Bitmap != null)
             {
                 this._selectedTile = t;
                 this.DrawTiles(pnl_Grid.CreateGraphics());
@@ -453,14 +523,14 @@ namespace Greyhound
 
         private void RemoveTileImage(Tile t)
         {
-            if (t != null && t.Image != null)
+            if (t != null && t.Bitmap != null)
             {
                 if (t == this._selectedTile)
                 {
                     this._selectedTile = null;
                 }
 
-                t.Image = null;
+                t.Bitmap = null;
                 this.DrawTiles(pnl_Grid.CreateGraphics());
             }
         }

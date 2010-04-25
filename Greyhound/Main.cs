@@ -85,7 +85,7 @@ namespace Greyhound
 
         private void tsb_Save_Click(object sender, EventArgs e)
         {
-
+            TileMap.tileMap.Save(@"C:\temp\t.tmap");
         }
 
         private void tsmi_openTileImage_Click(object sender, EventArgs e)
