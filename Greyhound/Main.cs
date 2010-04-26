@@ -16,6 +16,9 @@ namespace Greyhound
 {
     public partial class Main : Form
     {
+        OpenFileDialog ofd = new OpenFileDialog() { Filter = "Arquivo Tmap (*.tmap)|*.tmap" };
+        SaveFileDialog sfd = new SaveFileDialog() { Filter = "Arquivo Tmap (*.tmap)|*.tmap" };
+
         #region Contructors
 
         public Main()
@@ -80,12 +83,23 @@ namespace Greyhound
 
         private void tsb_Open_Click(object sender, EventArgs e)
         {
+            ofd.ShowDialog();
 
+            if (!string.IsNullOrEmpty(ofd.FileName))
+            {
+                TileMap.tileMap.Load(ofd.FileName);
+                TileMap.Refresh();
+            }
         }
 
         private void tsb_Save_Click(object sender, EventArgs e)
         {
-            TileMap.tileMap.Save(@"C:\temp\t.tmap");
+            sfd.ShowDialog();
+
+            if (!string.IsNullOrEmpty(sfd.FileName))
+            {
+                TileMap.tileMap.Save(sfd.FileName);
+            }
         }
 
         private void tsmi_openTileImage_Click(object sender, EventArgs e)

@@ -74,7 +74,7 @@ namespace Greyhound
         }
 
         private Tile _selectedTile = null;
-        public  Tile SelectedTile
+        public Tile SelectedTile
         {
             get { return this._selectedTile; }
         }
@@ -178,18 +178,36 @@ namespace Greyhound
                 return;
             }
 
+            Tile tile;
+
             if (e.Data.GetDataPresent(DataFormats.Bitmap))
             {
-                Tile tile = new Tile();
-
+                tile = new Tile();
                 tile.Bitmap = (Bitmap)((Bitmap)(e.Data.GetData(DataFormats.Bitmap))).Clone();
-
-                tileMap.Tiles.Add(tile);
-
-                tileMap.TileMatrix[point.X, point.Y] = tileMap.Tiles.Count - 1;
-                
-                this.DrawTiles(pnl_Grid.CreateGraphics());
             }
+            else if (e.Data is object && e.Data.GetData(typeof(Tile)) is Tile)
+            {
+                tile = e.Data.GetData(typeof(Tile)) as Tile;
+            }
+            else
+            {
+                return;
+            }
+
+            int index = tileMap.Tiles.FindIndex(t => t.ImageHash == tile.ImageHash);
+
+            if (index == -1)
+            {
+                tileMap.Tiles.Add(tile);
+                tileMap.TileMatrix[point.X, point.Y] = tileMap.Tiles.Count - 1;
+            }
+            else
+            {
+                tileMap.TileMatrix[point.X, point.Y] = index;
+            }
+
+            this.DrawTiles(pnl_Grid.CreateGraphics());
+
 
             //if ((e.Data.GetDataPresent(DataFormats.Bitmap)) && tileTarget != null)
             //{
@@ -373,6 +391,8 @@ namespace Greyhound
                         //g.DrawRectangle(pen, leftStart + (collumCounter * SquareSize) + pen.Width,
                         //                     topStart + (lineCounter * SquareSize) + pen.Width,
                         //                     SquareSize - pen.Width, SquareSize - pen.Width);
+
+                        //MessageBox.Show(t.ImageHash);
 
                         g.DrawImage(t.Bitmap, leftStart + (collumCounter * SquareSize) + pen.Width,
                                              topStart + (lineCounter * SquareSize) + pen.Width,

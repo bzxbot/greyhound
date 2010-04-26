@@ -9,14 +9,9 @@ namespace PNMReader
 {
     class PPMReader
     {
-        public Image GetImage(string filePath)
+        public Image GetImage(string path)
         {
-            if (string.IsNullOrEmpty(filePath))
-            {
-                return null;
-            }
-
-            using (BinaryReader reader = new BinaryReader(new FileStream(filePath, FileMode.Open)))
+            using (BinaryReader reader = new BinaryReader(new FileStream(path, FileMode.Open)))
             {
                 if (reader.ReadChar() == 'P')
                 {
