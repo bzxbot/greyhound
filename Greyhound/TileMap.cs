@@ -98,7 +98,7 @@ namespace Greyhound
             {
                 Tile tile = new Tile();
 
-                tile.Bitmap = new Bitmap(TileWidth, TileHeight);
+                Bitmap bitmap = new Bitmap(TileWidth, TileHeight);
 
                 for (int j = 0; j < TileHeight * TileWidth; j++)
                 {
@@ -106,8 +106,10 @@ namespace Greyhound
                     int g = int.Parse(split[offset++]);
                     int b = int.Parse(split[offset++]);
 
-                    tile.Bitmap.SetPixel(j / TileWidth, j % TileHeight, Color.FromArgb(r, g, b));
+                    bitmap.SetPixel(j / TileWidth, j % TileHeight, Color.FromArgb(r, g, b));
                 }
+
+                tile.Bitmap = bitmap;
 
                 Tiles.Add(tile);
             }

@@ -472,6 +472,8 @@ namespace Greyhound
             try
             {
                 //return this.tiles[lin, col];
+                Console.WriteLine(tileMap.TileMatrix[lin, col]);
+                Console.WriteLine(col + " " + lin);
                 return tileMap.Tiles[tileMap.TileMatrix[lin, col]];
             }
             catch (ArgumentOutOfRangeException)

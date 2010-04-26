@@ -23,16 +23,16 @@ namespace Greyhound
 
                 using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
                 {
-                    MemoryStream ms = new MemoryStream();
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
 
-                    bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-
-                    ImageHash = Convert.ToBase64String(sha1.ComputeHash(ms));
+                        ImageHash = Convert.ToBase64String(sha1.ComputeHash(ms.ToArray()));
+                    }
                 }
             }
         }
 
         public string ImageHash { get; private set; }
-
     }
 }
