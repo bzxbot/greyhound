@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using Greyhound.Properties;
+using Greyhound.Tile_Editor;
 using Greyhound.TileSplitter;
 using PNMReader;
-using System.IO;
-using Greyhound.Tile_Editor;
 
 namespace Greyhound
 {
     public partial class Main : Form
     {
-        OpenFileDialog ofd = new OpenFileDialog() { Filter = "Arquivo Tmap (*.tmap)|*.tmap" };
-        SaveFileDialog sfd = new SaveFileDialog() { Filter = "Arquivo Tmap (*.tmap)|*.tmap" };
-
         #region Contructors
 
         public Main()
@@ -78,27 +71,46 @@ namespace Greyhound
 
         private void tsb_New_Click(object sender, EventArgs e)
         {
-
+            TileMap.TileMap = new TileMap(10, 16);
         }
 
         private void tsb_Open_Click(object sender, EventArgs e)
         {
-            ofd.ShowDialog();
+            ofdTMap.ShowDialog();
 
-            if (!string.IsNullOrEmpty(ofd.FileName))
+            if (!string.IsNullOrEmpty(ofdTMap.FileName))
             {
-                TileMap.tileMap.Load(ofd.FileName);
+                try
+                {
+                    TileMap.TileMap.Load(ofdTMap.FileName);
+                }
+                catch (IOException ex)
+                {
+                    ErrorMessageBox.Show("Não foi possível ler o arquivo especificado.", ex);
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessageBox.Show("O arquivo informado não está em um formato válido.", ex);
+                }
+
                 TileMap.Refresh();
             }
         }
 
         private void tsb_Save_Click(object sender, EventArgs e)
         {
-            sfd.ShowDialog();
+            sfdTMap.ShowDialog();
 
-            if (!string.IsNullOrEmpty(sfd.FileName))
+            if (!string.IsNullOrEmpty(sfdTMap.FileName))
             {
-                TileMap.tileMap.Save(sfd.FileName);
+                try
+                {
+                    TileMap.TileMap.Save(sfdTMap.FileName);
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessageBox.Show("Erro ao carregar imagem.", ex);
+                }
             }
         }
 
