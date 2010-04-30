@@ -18,10 +18,12 @@ namespace Greyhound
         public TileFormat TileFormat { get; set; }
         public List<Tile> Tiles { get; set; }
 
-        public TileMap(int lines, int columns)
+        public TileMap(int lines, int columns, int tileSize)
         {
             Lines = lines;
             Columns = columns;
+            TileWidth = tileSize;
+            TileHeight = tileSize;
 
             TileMatrix = new int[Lines, Columns];
 

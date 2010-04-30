@@ -14,8 +14,10 @@ namespace Greyhound
     {
         #region Private Fields
 
+        public static int MAXHEIGHTWIDTH = 20;
+
         private int SquareLines = 10;
-        private int SquareColumns = 16;
+        private int SquareColumns = 10;
         private int GridMargin = 5;
 
         private int _PenWidth = 1;
@@ -82,10 +84,28 @@ namespace Greyhound
         #region Constructors
 
         public TileMapGrid()
+            : this(10, 16, 32)
         {
+        }
+
+        public TileMapGrid(int heigh, int width, int tileSize)
+        {
+            this.SquareColumns = width;
+            this.SquareLines = heigh;
+
+            if (this.SquareColumns > MAXHEIGHTWIDTH)
+            {
+                this.SquareColumns = MAXHEIGHTWIDTH;
+            }
+
+            if (this.SquareLines > MAXHEIGHTWIDTH)
+            {
+                this.SquareLines = MAXHEIGHTWIDTH;
+            }
+
             InitializeComponent();
 
-            TileMap = new TileMap(SquareLines, SquareColumns);
+            this.TileMap = new TileMap(SquareLines, SquareColumns, tileSize);
         }
 
         #endregion Constructors
@@ -263,7 +283,7 @@ namespace Greyhound
             }
 
             TileMap.RemoveTile(point.X, point.Y);
-            
+
             pnl_Grid.Refresh();
         }
 
@@ -545,6 +565,26 @@ namespace Greyhound
         //}
 
         #endregion Private Methods
+
+        public void ReloadValues(int heigh, int width, int tileSize)
+        {
+            this.SquareColumns = width;
+            this.SquareLines = heigh;
+
+            if (this.SquareColumns > MAXHEIGHTWIDTH)
+            {
+                this.SquareColumns = MAXHEIGHTWIDTH;
+            }
+
+            if (this.SquareLines > MAXHEIGHTWIDTH)
+            {
+                this.SquareLines = MAXHEIGHTWIDTH;
+            }
+
+            this.TileMap = new TileMap(SquareLines, SquareColumns, tileSize);
+
+            this.Refresh();
+        }
 
         private void pnl_Grid_MouseMove(object sender, MouseEventArgs e)
         {
