@@ -83,17 +83,24 @@ namespace Greyhound
                 try
                 {
                     TileMap.TileMap.Load(ofdTMap.FileName);
+
+                    TileMap.Refresh();
+
+                    TileSet.ClearImages();
+
+                    foreach (Tile tile in TileMap.TileMap.Tiles)
+                    {
+                        TileSet.AddImage(tile.Bitmap);
+                    }
                 }
                 catch (IOException ex)
                 {
-                    ErrorMessageBox.Show("Não foi possível ler o arquivo especificado.", ex);
+                    ErrorMessageBox.Show("Não foi possível ler o arquivo especificado. Verifique se o arquivo está acessível.", ex);
                 }
                 catch (Exception ex)
                 {
-                    ErrorMessageBox.Show("O arquivo informado não está em um formato válido.", ex);
+                    ErrorMessageBox.Show("Ocorreu um erro na leitura do arquivo. Verifique se o arquivo tem um formato válido.", ex);
                 }
-
-                TileMap.Refresh();
             }
         }
 
@@ -109,7 +116,7 @@ namespace Greyhound
                 }
                 catch (Exception ex)
                 {
-                    ErrorMessageBox.Show("Erro ao carregar imagem.", ex);
+                    ErrorMessageBox.Show("Não foi possível salvar a imagem no local informado. Verifique o nome e o local do arquivo.", ex);
                 }
             }
         }

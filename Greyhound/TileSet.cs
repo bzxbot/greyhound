@@ -141,6 +141,7 @@ namespace Greyhound
 
         public void ClearImages()
         {
+            flpnl_Tiles.Controls.Clear();
         }
 
         public void AddImage(Image image)
