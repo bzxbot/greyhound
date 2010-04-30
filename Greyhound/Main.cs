@@ -65,8 +65,6 @@ namespace Greyhound
                                              Resources.Tile_22, Resources.Tile_23, Resources.Tile_24 };
 
             this.tileSetPanel.AddImages(images);
-
-            //LoadImages(images);
         }
 
         private void tsb_New_Click(object sender, EventArgs e)
