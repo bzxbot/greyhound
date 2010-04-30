@@ -43,7 +43,7 @@ namespace Greyhound.Tile_Editor
 
         #endregion Constructors
 
-        #region Private Mehtods
+        #region Private Methods
 
 
 
@@ -56,10 +56,31 @@ namespace Greyhound.Tile_Editor
             this.pic_Orig.Image = this.imgOrig;
         }
 
-        private void cmb_GrayScale_Click(object sender, EventArgs e)
+        private void tsmi_GrayScale_Click(object sender, EventArgs e)
         {
-            imgEdit = ImageFilters.ApplyGrayScale(imgOrig);
+            imgEdit = ImageProcessing.ApplyGrayScale(imgOrig);
             this.pic_Edited.Image = imgEdit;
+        }
+
+        private void tsmi_Sepia_Click(object sender, EventArgs e)
+        {
+            imgEdit = ImageProcessing.ApplySepia(imgOrig);
+            this.pic_Edited.Image = imgEdit;
+        }
+
+        private void tsmi_InvertColors_Click(object sender, EventArgs e)
+        {
+            imgEdit = ImageProcessing.ApplyInvertColor(imgOrig);
+            this.pic_Edited.Image = imgEdit;
+        }
+
+        private void tsmi_ChangeHue_Click(object sender, EventArgs e)
+        {
+            if (this.cd_SelectColor.ShowDialog() == DialogResult.OK)
+            {
+                imgEdit = ImageProcessing.ChangeHue(imgOrig, cd_SelectColor.Color);
+                this.pic_Edited.Image = imgEdit;
+            }
         }
 
         #endregion Private Events

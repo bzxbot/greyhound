@@ -35,11 +35,16 @@
             this.cb_SaveAsCopy = new System.Windows.Forms.CheckBox();
             this.cmb_Cancel = new System.Windows.Forms.Button();
             this.cmb_Ok = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.filtrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_TileEditor = new System.Windows.Forms.MenuStrip();
+            this.tsmi_Filters = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_GrayScale = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_Sepia = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_InvertColors = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_ChangeHue = new System.Windows.Forms.ToolStripMenuItem();
+            this.cd_SelectColor = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Orig)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Edited)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.menu_TileEditor.SuspendLayout();
             this.SuspendLayout();
             // 
             // pic_Orig
@@ -112,21 +117,54 @@
             this.cmb_Ok.Text = "Ok";
             this.cmb_Ok.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
+            // menu_TileEditor
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filtrosToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(338, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menu_TileEditor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_Filters});
+            this.menu_TileEditor.Location = new System.Drawing.Point(0, 0);
+            this.menu_TileEditor.Name = "menu_TileEditor";
+            this.menu_TileEditor.Size = new System.Drawing.Size(338, 24);
+            this.menu_TileEditor.TabIndex = 4;
+            this.menu_TileEditor.Text = "menuStrip1";
             // 
-            // filtrosToolStripMenuItem
+            // tsmi_Filters
             // 
-            this.filtrosToolStripMenuItem.Name = "filtrosToolStripMenuItem";
-            this.filtrosToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.filtrosToolStripMenuItem.Text = "Filtros";
+            this.tsmi_Filters.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_GrayScale,
+            this.tsmi_Sepia,
+            this.tsmi_InvertColors,
+            this.tsmi_ChangeHue});
+            this.tsmi_Filters.Name = "tsmi_Filters";
+            this.tsmi_Filters.Size = new System.Drawing.Size(51, 20);
+            this.tsmi_Filters.Text = "Filtros";
+            // 
+            // tsmi_GrayScale
+            // 
+            this.tsmi_GrayScale.Name = "tsmi_GrayScale";
+            this.tsmi_GrayScale.Size = new System.Drawing.Size(170, 22);
+            this.tsmi_GrayScale.Text = "Escala de Cinza";
+            this.tsmi_GrayScale.Click += new System.EventHandler(this.tsmi_GrayScale_Click);
+            // 
+            // tsmi_Sepia
+            // 
+            this.tsmi_Sepia.Name = "tsmi_Sepia";
+            this.tsmi_Sepia.Size = new System.Drawing.Size(170, 22);
+            this.tsmi_Sepia.Text = "Sepia";
+            this.tsmi_Sepia.Click += new System.EventHandler(this.tsmi_Sepia_Click);
+            // 
+            // tsmi_InvertColors
+            // 
+            this.tsmi_InvertColors.Name = "tsmi_InvertColors";
+            this.tsmi_InvertColors.Size = new System.Drawing.Size(170, 22);
+            this.tsmi_InvertColors.Text = "Inverter Cores";
+            this.tsmi_InvertColors.Click += new System.EventHandler(this.tsmi_InvertColors_Click);
+            // 
+            // tsmi_ChangeHue
+            // 
+            this.tsmi_ChangeHue.Name = "tsmi_ChangeHue";
+            this.tsmi_ChangeHue.Size = new System.Drawing.Size(170, 22);
+            this.tsmi_ChangeHue.Text = "Trocar Tonalidade";
+            this.tsmi_ChangeHue.Click += new System.EventHandler(this.tsmi_ChangeHue_Click);
             // 
             // Frm_TileEditor
             // 
@@ -142,15 +180,19 @@
             this.Controls.Add(this.inf_ImgEdit);
             this.Controls.Add(this.pic_Edited);
             this.Controls.Add(this.pic_Orig);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menu_TileEditor);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menu_TileEditor;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Frm_TileEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tile Editor";
             this.Load += new System.EventHandler(this.Frm_TileEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic_Orig)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Edited)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu_TileEditor.ResumeLayout(false);
+            this.menu_TileEditor.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,7 +207,12 @@
         private System.Windows.Forms.CheckBox cb_SaveAsCopy;
         private System.Windows.Forms.Button cmb_Cancel;
         private System.Windows.Forms.Button cmb_Ok;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem filtrosToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menu_TileEditor;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_Filters;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_GrayScale;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_Sepia;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_InvertColors;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_ChangeHue;
+        private System.Windows.Forms.ColorDialog cd_SelectColor;
     }
 }

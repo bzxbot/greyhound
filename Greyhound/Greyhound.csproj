@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{390D89D0-23E4-49D6-A0C9-A59CFC50075C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorMessageBox.cs" />
+    <Compile Include="Tile Editor\ColorConverter.cs" />
+    <Compile Include="Tile Editor\HSLColor.cs" />
+    <Compile Include="Tile Editor\ImageProcessing.cs" />
     <Compile Include="TileMapGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
