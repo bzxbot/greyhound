@@ -112,11 +112,14 @@ namespace Greyhound
         {
             if (e.Button == MouseButtons.Left)
             {
-                Tile t = GetTileByPosition(e.X, e.Y);
+                //Tile t = GetTileByPosition(e.X, e.Y);
 
-                if (t != null && t.Bitmap != null)
+                Point p = GetMatrixPosition(e.X, e.Y);
+
+                //if (t != null && t.Bitmap != null)
+                if (p.X != -1 && p.Y != -1)
                 {
-                    pnl_Grid.DoDragDrop(t, DragDropEffects.All);
+                    pnl_Grid.DoDragDrop(p, DragDropEffects.All);
                 }
             }
         }
@@ -130,12 +133,11 @@ namespace Greyhound
             }
             else if (e.Data is object)
             {
-                object o = e.Data.GetData(typeof(Tile));
+                Point o = (Point)e.Data.GetData(typeof(Point));
 
-                if (o is Tile)
+                if (o is Point)
                 {
                     if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
-                    //if (e.KeyState == 9)
                     {
                         e.Effect = DragDropEffects.Copy;
                     }
@@ -171,9 +173,10 @@ namespace Greyhound
                 tile = new Tile();
                 tile.Bitmap = (Bitmap)((Bitmap)(e.Data.GetData(DataFormats.Bitmap))).Clone();
             }
-            else if (e.Data is object && e.Data.GetData(typeof(Tile)) is Tile)
+            else if (e.Data is object && e.Data.GetData(typeof(Point)) is Point)
             {
-                tile = e.Data.GetData(typeof(Tile)) as Tile;
+                Point p = (Point)e.Data.GetData(typeof(Point));
+                tile = TileMap.Tiles[TileMap.TileMatrix[p.X, p.Y]];
             }
             else
             {
@@ -263,8 +266,10 @@ namespace Greyhound
             }
 
             TileMap.RemoveTile(point.X, point.Y);
-            
-            pnl_Grid.Refresh();
+
+            //pnl_Grid.Refresh();
+
+            DrawTiles(pnl_Grid.CreateGraphics());
         }
 
         #endregion Private Events
@@ -466,6 +471,11 @@ namespace Greyhound
             {
                 return null;
             }
+        }
+
+        private Point GetMatrixPosition(int x, int y)
+        {
+            return GetMatrixPosition(new Point(x, y));
         }
 
         private Point GetMatrixPosition(Point pos)
