@@ -46,6 +46,8 @@
             this.ofd_Tiles = new System.Windows.Forms.OpenFileDialog();
             this.TileMap = new Greyhound.TileMapGrid();
             this.TileSet = new Greyhound.TileSet();
+            this.ofdTMap = new System.Windows.Forms.OpenFileDialog();
+            this.sfdTMap = new System.Windows.Forms.SaveFileDialog();
             this.ts_Menu.SuspendLayout();
             this.pnl_Fill.SuspendLayout();
             this.SuspendLayout();
@@ -54,9 +56,9 @@
             // 
             this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 353);
+            this.splitter1.Location = new System.Drawing.Point(0, 363);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(753, 4);
+            this.splitter1.Size = new System.Drawing.Size(761, 4);
             this.splitter1.TabIndex = 4;
             this.splitter1.TabStop = false;
             this.splitter1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter1_SplitterMoved);
@@ -76,7 +78,7 @@
             this.tsb_EditTile});
             this.ts_Menu.Location = new System.Drawing.Point(0, 0);
             this.ts_Menu.Name = "ts_Menu";
-            this.ts_Menu.Size = new System.Drawing.Size(753, 39);
+            this.ts_Menu.Size = new System.Drawing.Size(761, 39);
             this.ts_Menu.TabIndex = 6;
             this.ts_Menu.Text = "toolStrip1";
             // 
@@ -183,12 +185,12 @@
             this.pnl_Fill.Location = new System.Drawing.Point(0, 39);
             this.pnl_Fill.MinimumSize = new System.Drawing.Size(300, 300);
             this.pnl_Fill.Name = "pnl_Fill";
-            this.pnl_Fill.Size = new System.Drawing.Size(753, 314);
+            this.pnl_Fill.Size = new System.Drawing.Size(761, 324);
             this.pnl_Fill.TabIndex = 7;
             // 
             // ofd_Tiles
             // 
-            this.ofd_Tiles.Filter = "Image Files(*.BMP;*.JPG;*.GIF,*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG;*.PNM";
+            this.ofd_Tiles.Filter = "Image Files(*.bmp,*.jpg,*.gif,*.png,*.pnm)|*.bmp;*.jpg;*.gif;*.png;*.pnm";
             // 
             // TileMap
             // 
@@ -200,25 +202,33 @@
             this.TileMap.Name = "TileMap";
             this.TileMap.SelectionColor = System.Drawing.Color.Red;
             this.TileMap.SelectionThickness = 3;
-            this.TileMap.Size = new System.Drawing.Size(753, 314);
+            this.TileMap.Size = new System.Drawing.Size(761, 324);
             this.TileMap.TabIndex = 8;
             // 
             // TileSet
             // 
             this.TileSet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TileSet.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.TileSet.Location = new System.Drawing.Point(0, 357);
+            this.TileSet.Location = new System.Drawing.Point(0, 367);
             this.TileSet.Name = "TileSet";
             this.TileSet.SelectedColor = System.Drawing.Color.Red;
-            this.TileSet.Size = new System.Drawing.Size(753, 95);
+            this.TileSet.Size = new System.Drawing.Size(761, 95);
             this.TileSet.TabIndex = 5;
             this.TileSet.TileMargin = ((short)(2));
+            // 
+            // ofdTMap
+            // 
+            this.ofdTMap.Filter = "Arquivo Tmap (*.tmap)|*.tmap";
+            // 
+            // sfdTMap
+            // 
+            this.sfdTMap.Filter = "Arquivo Tmap (*.tmap)|*.tmap";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 452);
+            this.ClientSize = new System.Drawing.Size(761, 462);
             this.Controls.Add(this.pnl_Fill);
             this.Controls.Add(this.ts_Menu);
             this.Controls.Add(this.splitter1);
@@ -254,6 +264,8 @@
         private System.Windows.Forms.Panel pnl_Fill;
         private TileMapGrid TileMap;
         private System.Windows.Forms.OpenFileDialog ofd_Tiles;
+        private System.Windows.Forms.SaveFileDialog sfdTMap;
+        private System.Windows.Forms.OpenFileDialog ofdTMap;
     }
 }
 

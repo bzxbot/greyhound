@@ -17,7 +17,6 @@ namespace Greyhound
         public int TileCount { get; set; }
         public TileFormat TileFormat { get; set; }
         public List<Tile> Tiles { get; set; }
-        public Dictionary<string, Tile> Tiles2 { get; set; }
 
         public TileMap(int lines, int columns)
         {
@@ -35,7 +34,6 @@ namespace Greyhound
             }
 
             Tiles = new List<Tile>();
-            Tiles2 = new Dictionary<string, Tile>();
 
             TileFormat = TileFormat.Text;
         }
@@ -70,7 +68,6 @@ namespace Greyhound
             }
 
             line = sw.ReadLine();
-
             split = line.Split(' ');
 
             TileWidth = int.Parse(split[0]);
@@ -80,7 +77,6 @@ namespace Greyhound
             TileHeight = 32;
 
             line = sw.ReadLine();
-
             split = line.Split(' ');
 
             TileCount = int.Parse(split[0]);
@@ -89,7 +85,6 @@ namespace Greyhound
             Tiles = new List<Tile>();
 
             line = sw.ReadLine();
-
             split = line.Split(' ');
 
             int offset = 0;
@@ -166,6 +161,70 @@ namespace Greyhound
             }
 
             sw.Close();
+        }
+
+        public void RemoveTile(int x, int y)
+        {
+            if (TileMatrix[x, y] == -1)
+            {
+                return;
+            }
+
+            int index = TileMatrix[x, y];
+
+            bool inUse = false;
+
+            for (int i = 0; i < Lines; i++)
+            {
+                if (inUse)
+                {
+                    break;
+                }
+
+                for (int j = 0; j < Columns; j++)
+                {
+                    if ((x != i || y != j) && TileMatrix[i, j] == TileMatrix[x, y])
+                    {
+                        inUse = true;
+
+                        break;
+                    }
+                }
+            }
+
+            if (!inUse)
+            {
+                Tiles.RemoveAt(index);
+
+                for (int i = 0; i < Lines; i++)
+                {
+                    for (int j = 0; j < Columns; j++)
+                    {
+                        if (TileMatrix[i, j] > index)
+                        {
+                            TileMatrix[i, j]--;
+                        }
+                    }
+                }
+            }
+
+            TileMatrix[x, y] = -1;
+        }
+
+        public void SetTile(int x, int y, Tile tile)
+        {
+            int index = Tiles.FindIndex(t => t.ImageHash == tile.ImageHash);
+
+            if (index == -1)
+            {
+                Tiles.Add(tile);
+
+                TileMatrix[x, y] = Tiles.Count - 1;
+            }
+            else
+            {
+                TileMatrix[x, y] = index;
+            }
         }
     }
 

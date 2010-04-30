@@ -14,10 +14,6 @@ namespace Greyhound
     {
         #region Private Fields
 
-        //Tile[,] tiles;
-
-        public TileMap tileMap;
-
         private int SquareLines = 10;
         private int SquareColumns = 16;
         private int GridMargin = 5;
@@ -27,6 +23,8 @@ namespace Greyhound
         #endregion Private Fields
 
         #region Properties
+
+        public TileMap TileMap { get; set; }
 
         public int GridThickness
         {
@@ -87,17 +85,7 @@ namespace Greyhound
         {
             InitializeComponent();
 
-            //this.tiles = new Tile[SquareLines, SquareColumns];
-
-            //for (int i = 0; i < this.tiles.GetLength(0); i++)
-            //{
-            //    for (int j = 0; j < this.tiles.GetLength(1); j++)
-            //    {
-            //        tiles[i, j] = new Tile(i, j);
-            //    }
-            //}
-
-            tileMap = new TileMap(SquareLines, SquareColumns);
+            TileMap = new TileMap(SquareLines, SquareColumns);
         }
 
         #endregion Constructors
@@ -136,8 +124,6 @@ namespace Greyhound
         private void pnl_Grid_DragEnter(object sender, DragEventArgs e)
         {
             //Testa se ctrl está sendo segurado
-
-
             if (e.Data.GetDataPresent(DataFormats.Bitmap))
             {
                 e.Effect = DragDropEffects.Copy;
@@ -194,17 +180,7 @@ namespace Greyhound
                 return;
             }
 
-            int index = tileMap.Tiles.FindIndex(t => t.ImageHash == tile.ImageHash);
-
-            if (index == -1)
-            {
-                tileMap.Tiles.Add(tile);
-                tileMap.TileMatrix[point.X, point.Y] = tileMap.Tiles.Count - 1;
-            }
-            else
-            {
-                tileMap.TileMatrix[point.X, point.Y] = index;
-            }
+            TileMap.SetTile(point.X, point.Y, tile);
 
             this.DrawTiles(pnl_Grid.CreateGraphics());
 
@@ -260,6 +236,7 @@ namespace Greyhound
         private void cms_TileOptions_Opening(object sender, CancelEventArgs e)
         {
             Tile t = GetTileByPosition(pnl_Grid.PointToClient(new Point(cms_TileOptions.Left, cms_TileOptions.Top)));
+
             if (t == null || t.Bitmap == null)
             {
                 e.Cancel = true;
@@ -278,7 +255,16 @@ namespace Greyhound
 
         private void tsmi_Erase_Click(object sender, EventArgs e)
         {
-            RemoveTileImage(GetTileByPosition(pnl_Grid.PointToClient(new Point(cms_TileOptions.Left, cms_TileOptions.Top))));
+            Point point = GetMatrixPosition(pnl_Grid.PointToClient((new Point(cms_TileOptions.Left, cms_TileOptions.Top))));
+
+            if (point.X == -1 || point.Y == -1)
+            {
+                return;
+            }
+
+            TileMap.RemoveTile(point.X, point.Y);
+            
+            pnl_Grid.Refresh();
         }
 
         #endregion Private Events
@@ -381,12 +367,12 @@ namespace Greyhound
             {
                 for (int lineCounter = 0; lineCounter < SquareLines; lineCounter++)
                 {
-                    if (tileMap.TileMatrix[lineCounter, collumCounter] > -1)
+                    if (TileMap.TileMatrix[lineCounter, collumCounter] > -1)
                     //if (tiles[lineCounter, collumCounter].Bitmap != null)
                     {
                         //Tile t = tiles[lineCounter, collumCounter];
 
-                        Tile t = tileMap.Tiles[tileMap.TileMatrix[lineCounter, collumCounter]];
+                        Tile t = TileMap.Tiles[TileMap.TileMatrix[lineCounter, collumCounter]];
 
                         //g.DrawRectangle(pen, leftStart + (collumCounter * SquareSize) + pen.Width,
                         //                     topStart + (lineCounter * SquareSize) + pen.Width,
@@ -472,9 +458,9 @@ namespace Greyhound
             try
             {
                 //return this.tiles[lin, col];
-                Console.WriteLine(tileMap.TileMatrix[lin, col]);
-                Console.WriteLine(col + " " + lin);
-                return tileMap.Tiles[tileMap.TileMatrix[lin, col]];
+                //Console.WriteLine(TileMap.TileMatrix[lin, col]);
+                //Console.WriteLine(col + " " + lin);
+                return TileMap.Tiles[TileMap.TileMatrix[lin, col]];
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -543,19 +529,20 @@ namespace Greyhound
             }
         }
 
-        private void RemoveTileImage(Tile t)
-        {
-            if (t != null && t.Bitmap != null)
-            {
-                if (t == this._selectedTile)
-                {
-                    this._selectedTile = null;
-                }
+        //private void RemoveTileImage(Tile t)
+        //{
+        //    if (t != null && t.Bitmap != null)
+        //    {
+        //        if (t == this._selectedTile)
+        //        {
+        //            this._selectedTile = null;
+        //        }
 
-                t.Bitmap = null;
-                this.DrawTiles(pnl_Grid.CreateGraphics());
-            }
-        }
+        //        t.Bitmap = null;
+
+        //        this.DrawTiles(pnl_Grid.CreateGraphics());
+        //    }
+        //}
 
         #endregion Private Methods
 
