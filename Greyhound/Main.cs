@@ -69,7 +69,14 @@ namespace Greyhound
 
         private void tsb_New_Click(object sender, EventArgs e)
         {
-            tileMapGrid.TileMap = new TileMap(10, 16);
+            Frm_NewTileMap tileMapInstance = new Frm_NewTileMap();
+
+            if (tileMapInstance.ShowDialog() == DialogResult.OK)
+            {
+                this.tileMapGrid.ReloadValues(tileMapInstance.TileMapWidth,
+                                                   tileMapInstance.TileMapHeight,
+                                                   tileMapInstance.TileImageSize);
+            }
         }
 
         private void tsb_Open_Click(object sender, EventArgs e)

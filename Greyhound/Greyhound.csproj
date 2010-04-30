@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorMessageBox.cs" />
+    <Compile Include="Frm_NewTileMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_NewTileMap.Designer.cs">
+      <DependentUpon>Frm_NewTileMap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tile Editor\ColorConverter.cs" />
     <Compile Include="Tile Editor\HSLColor.cs" />
     <Compile Include="Tile Editor\ImageProcessing.cs" />
@@ -68,6 +74,9 @@
     <Compile Include="PPMReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Frm_NewTileMap.resx">
+      <DependentUpon>Frm_NewTileMap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TileMapGrid.resx">
       <DependentUpon>TileMapGrid.cs</DependentUpon>
       <SubType>Designer</SubType>
