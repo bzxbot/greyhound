@@ -43,9 +43,9 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_EditTile = new System.Windows.Forms.ToolStripButton();
             this.pnl_Fill = new System.Windows.Forms.Panel();
+            this.tileMapGrid = new Greyhound.TileMapGrid();
             this.ofd_Tiles = new System.Windows.Forms.OpenFileDialog();
-            this.TileMap = new Greyhound.TileMapGrid();
-            this.TileSet = new Greyhound.TileSet();
+            this.tileSetPanel = new Greyhound.TileSetPanel();
             this.ofdTMap = new System.Windows.Forms.OpenFileDialog();
             this.sfdTMap = new System.Windows.Forms.SaveFileDialog();
             this.ts_Menu.SuspendLayout();
@@ -180,7 +180,7 @@
             // 
             // pnl_Fill
             // 
-            this.pnl_Fill.Controls.Add(this.TileMap);
+            this.pnl_Fill.Controls.Add(this.tileMapGrid);
             this.pnl_Fill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Fill.Location = new System.Drawing.Point(0, 39);
             this.pnl_Fill.MinimumSize = new System.Drawing.Size(300, 300);
@@ -188,33 +188,33 @@
             this.pnl_Fill.Size = new System.Drawing.Size(761, 324);
             this.pnl_Fill.TabIndex = 7;
             // 
+            // tileMapGrid
+            // 
+            this.tileMapGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tileMapGrid.GridThickness = 1;
+            this.tileMapGrid.Location = new System.Drawing.Point(0, 0);
+            this.tileMapGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.tileMapGrid.MinimumSize = new System.Drawing.Size(300, 300);
+            this.tileMapGrid.Name = "tileMapGrid";
+            this.tileMapGrid.SelectionColor = System.Drawing.Color.Red;
+            this.tileMapGrid.SelectionThickness = 3;
+            this.tileMapGrid.Size = new System.Drawing.Size(761, 324);
+            this.tileMapGrid.TabIndex = 8;
+            // 
             // ofd_Tiles
             // 
             this.ofd_Tiles.Filter = "Image Files(*.bmp,*.jpg,*.gif,*.png,*.pnm)|*.bmp;*.jpg;*.gif;*.png;*.pnm";
             // 
-            // TileMap
+            // tileSetPanel
             // 
-            this.TileMap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TileMap.GridThickness = 1;
-            this.TileMap.Location = new System.Drawing.Point(0, 0);
-            this.TileMap.Margin = new System.Windows.Forms.Padding(0);
-            this.TileMap.MinimumSize = new System.Drawing.Size(300, 300);
-            this.TileMap.Name = "TileMap";
-            this.TileMap.SelectionColor = System.Drawing.Color.Red;
-            this.TileMap.SelectionThickness = 3;
-            this.TileMap.Size = new System.Drawing.Size(761, 324);
-            this.TileMap.TabIndex = 8;
-            // 
-            // TileSet
-            // 
-            this.TileSet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TileSet.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.TileSet.Location = new System.Drawing.Point(0, 367);
-            this.TileSet.Name = "TileSet";
-            this.TileSet.SelectedColor = System.Drawing.Color.Red;
-            this.TileSet.Size = new System.Drawing.Size(761, 95);
-            this.TileSet.TabIndex = 5;
-            this.TileSet.TileMargin = ((short)(2));
+            this.tileSetPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tileSetPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tileSetPanel.Location = new System.Drawing.Point(0, 367);
+            this.tileSetPanel.Name = "tileSetPanel";
+            this.tileSetPanel.SelectedColor = System.Drawing.Color.Red;
+            this.tileSetPanel.Size = new System.Drawing.Size(761, 95);
+            this.tileSetPanel.TabIndex = 5;
+            this.tileSetPanel.TileMargin = ((short)(2));
             // 
             // ofdTMap
             // 
@@ -232,7 +232,7 @@
             this.Controls.Add(this.pnl_Fill);
             this.Controls.Add(this.ts_Menu);
             this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.TileSet);
+            this.Controls.Add(this.tileSetPanel);
             this.MinimumSize = new System.Drawing.Size(769, 490);
             this.Name = "Main";
             this.Text = "Tileset Editor";
@@ -260,9 +260,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_OpenTileImage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton tsb_EditTile;
-        private TileSet TileSet;
+        private TileSetPanel tileSetPanel;
         private System.Windows.Forms.Panel pnl_Fill;
-        private TileMapGrid TileMap;
+        private TileMapGrid tileMapGrid;
         private System.Windows.Forms.OpenFileDialog ofd_Tiles;
         private System.Windows.Forms.SaveFileDialog sfdTMap;
         private System.Windows.Forms.OpenFileDialog ofdTMap;

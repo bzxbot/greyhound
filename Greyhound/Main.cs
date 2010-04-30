@@ -64,14 +64,14 @@ namespace Greyhound
                                              Resources.Tile_19, Resources.Tile_20, Resources.Tile_21,
                                              Resources.Tile_22, Resources.Tile_23, Resources.Tile_24 };
 
-            this.TileSet.AddImages(images);
+            this.tileSetPanel.AddImages(images);
 
             //LoadImages(images);
         }
 
         private void tsb_New_Click(object sender, EventArgs e)
         {
-            TileMap.TileMap = new TileMap(10, 16);
+            tileMapGrid.TileMap = new TileMap(10, 16);
         }
 
         private void tsb_Open_Click(object sender, EventArgs e)
@@ -82,15 +82,15 @@ namespace Greyhound
             {
                 try
                 {
-                    TileMap.TileMap.Load(ofdTMap.FileName);
+                    tileMapGrid.TileMap.Load(ofdTMap.FileName);
 
-                    TileMap.Refresh();
+                    tileMapGrid.Refresh();
 
-                    TileSet.ClearImages();
+                    tileSetPanel.ClearImages();
 
-                    foreach (Tile tile in TileMap.TileMap.Tiles)
+                    foreach (Tile tile in tileMapGrid.TileMap.Tiles)
                     {
-                        TileSet.AddImage(tile.Bitmap);
+                        tileSetPanel.AddImage(tile.Bitmap);
                     }
                 }
                 catch (IOException ex)
@@ -112,7 +112,7 @@ namespace Greyhound
             {
                 try
                 {
-                    TileMap.TileMap.Save(sfdTMap.FileName);
+                    tileMapGrid.TileMap.Save(sfdTMap.FileName);
                 }
                 catch (Exception ex)
                 {
@@ -152,7 +152,7 @@ namespace Greyhound
 
                 if (tileSplitter.ShowDialog() == DialogResult.OK)
                 {
-                    this.TileSet.AddImages(tileSplitter.SplittedTiles);
+                    this.tileSetPanel.AddImages(tileSplitter.SplittedTiles);
                 }
             }
         }
@@ -189,28 +189,28 @@ namespace Greyhound
                         }
                     }
 
-                    this.TileSet.AddImages(images.ToArray());
+                    this.tileSetPanel.AddImages(images.ToArray());
                 }
             }
         }
 
         private void tsb_EditTile_Click(object sender, EventArgs e)
         {
-            if (this.TileSet.SelectedPic != null)
+            if (this.tileSetPanel.SelectedPic != null)
             {
-                Frm_TileEditor frm_TileEditor = new Frm_TileEditor(this.TileSet.SelectedPic.Image);
+                Frm_TileEditor frm_TileEditor = new Frm_TileEditor(this.tileSetPanel.SelectedPic.Image);
                 if (frm_TileEditor.ShowDialog() == DialogResult.OK)
                 {
                     if (frm_TileEditor.EditedImage != null)
                     {
                         if (frm_TileEditor.ReplaceImage)
                         {
-                            this.TileSet.SelectedPic.Image = frm_TileEditor.EditedImage;
-                            this.TileSet.SelectedPic.Refresh();
+                            this.tileSetPanel.SelectedPic.Image = frm_TileEditor.EditedImage;
+                            this.tileSetPanel.SelectedPic.Refresh();
                         }
                         else
                         {
-                            this.TileSet.AddImage(frm_TileEditor.EditedImage);
+                            this.tileSetPanel.AddImage(frm_TileEditor.EditedImage);
                         }
                     }
                 }

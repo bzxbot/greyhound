@@ -1,6 +1,6 @@
 ﻿namespace Greyhound
 {
-    partial class TileSet
+    partial class TileSetPanel
     {
         /// <summary> 
         /// Required designer variable.
