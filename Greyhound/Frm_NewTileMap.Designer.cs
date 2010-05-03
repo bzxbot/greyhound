@@ -33,14 +33,14 @@
             this.nud_Height = new System.Windows.Forms.NumericUpDown();
             this.inf_Width = new System.Windows.Forms.Label();
             this.grp_Config = new System.Windows.Forms.GroupBox();
-            this.inf_Height = new System.Windows.Forms.Label();
+            this.nud_TileSize = new System.Windows.Forms.NumericUpDown();
             this.nud_Width = new System.Windows.Forms.NumericUpDown();
             this.inf_TileSize = new System.Windows.Forms.Label();
-            this.nud_TileSize = new System.Windows.Forms.NumericUpDown();
+            this.inf_Height = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Height)).BeginInit();
             this.grp_Config.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TileSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Width)).BeginInit();
             this.SuspendLayout();
             // 
             // cmb_Ok
@@ -49,7 +49,7 @@
             this.cmb_Ok.Location = new System.Drawing.Point(21, 118);
             this.cmb_Ok.Name = "cmb_Ok";
             this.cmb_Ok.Size = new System.Drawing.Size(75, 23);
-            this.cmb_Ok.TabIndex = 0;
+            this.cmb_Ok.TabIndex = 1;
             this.cmb_Ok.Text = "Ok";
             this.cmb_Ok.UseVisualStyleBackColor = true;
             // 
@@ -59,7 +59,7 @@
             this.cmb_Cancel.Location = new System.Drawing.Point(121, 118);
             this.cmb_Cancel.Name = "cmb_Cancel";
             this.cmb_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.cmb_Cancel.TabIndex = 0;
+            this.cmb_Cancel.TabIndex = 2;
             this.cmb_Cancel.Text = "Cancelar";
             this.cmb_Cancel.UseVisualStyleBackColor = true;
             // 
@@ -105,18 +105,36 @@
             this.grp_Config.Location = new System.Drawing.Point(12, 12);
             this.grp_Config.Name = "grp_Config";
             this.grp_Config.Size = new System.Drawing.Size(192, 100);
-            this.grp_Config.TabIndex = 3;
+            this.grp_Config.TabIndex = 0;
             this.grp_Config.TabStop = false;
             this.grp_Config.Text = "Configurações";
             // 
-            // inf_Height
+            // nud_TileSize
             // 
-            this.inf_Height.AutoSize = true;
-            this.inf_Height.Location = new System.Drawing.Point(54, 48);
-            this.inf_Height.Name = "inf_Height";
-            this.inf_Height.Size = new System.Drawing.Size(46, 13);
-            this.inf_Height.TabIndex = 2;
-            this.inf_Height.Text = "Largura:";
+            this.nud_TileSize.Increment = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.nud_TileSize.Location = new System.Drawing.Point(109, 72);
+            this.nud_TileSize.Maximum = new decimal(new int[] {
+            96,
+            0,
+            0,
+            0});
+            this.nud_TileSize.Minimum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.nud_TileSize.Name = "nud_TileSize";
+            this.nud_TileSize.Size = new System.Drawing.Size(57, 20);
+            this.nud_TileSize.TabIndex = 1;
+            this.nud_TileSize.Value = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
             // 
             // nud_Width
             // 
@@ -149,32 +167,14 @@
             this.inf_TileSize.TabIndex = 2;
             this.inf_TileSize.Text = "Tamanho dos Tiles";
             // 
-            // nud_TileSize
+            // inf_Height
             // 
-            this.nud_TileSize.Increment = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.nud_TileSize.Location = new System.Drawing.Point(109, 72);
-            this.nud_TileSize.Maximum = new decimal(new int[] {
-            96,
-            0,
-            0,
-            0});
-            this.nud_TileSize.Minimum = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.nud_TileSize.Name = "nud_TileSize";
-            this.nud_TileSize.Size = new System.Drawing.Size(57, 20);
-            this.nud_TileSize.TabIndex = 1;
-            this.nud_TileSize.Value = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
+            this.inf_Height.AutoSize = true;
+            this.inf_Height.Location = new System.Drawing.Point(54, 48);
+            this.inf_Height.Name = "inf_Height";
+            this.inf_Height.Size = new System.Drawing.Size(46, 13);
+            this.inf_Height.TabIndex = 2;
+            this.inf_Height.Text = "Largura:";
             // 
             // Frm_NewTileMap
             // 
@@ -196,8 +196,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_Height)).EndInit();
             this.grp_Config.ResumeLayout(false);
             this.grp_Config.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Width)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TileSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Width)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -68,13 +68,13 @@
             this.tsmi_Rotate,
             this.tsmi_Erase});
             this.cms_TileOptions.Name = "cms_TileOptions";
-            this.cms_TileOptions.Size = new System.Drawing.Size(153, 92);
+            this.cms_TileOptions.Size = new System.Drawing.Size(129, 70);
             this.cms_TileOptions.Opening += new System.ComponentModel.CancelEventHandler(this.cms_TileOptions_Opening);
             // 
             // tsmi_Selecionar
             // 
             this.tsmi_Selecionar.Name = "tsmi_Selecionar";
-            this.tsmi_Selecionar.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_Selecionar.Size = new System.Drawing.Size(128, 22);
             this.tsmi_Selecionar.Text = "Selecionar";
             this.tsmi_Selecionar.Visible = false;
             this.tsmi_Selecionar.Click += new System.EventHandler(this.tsmi_Selecionar_Click);
@@ -82,14 +82,14 @@
             // tsmi_Rotate
             // 
             this.tsmi_Rotate.Name = "tsmi_Rotate";
-            this.tsmi_Rotate.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_Rotate.Size = new System.Drawing.Size(128, 22);
             this.tsmi_Rotate.Text = "Girar";
             this.tsmi_Rotate.Click += new System.EventHandler(this.tsmi_Rotate_Click);
             // 
             // tsmi_Erase
             // 
             this.tsmi_Erase.Name = "tsmi_Erase";
-            this.tsmi_Erase.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_Erase.Size = new System.Drawing.Size(128, 22);
             this.tsmi_Erase.Text = "Apagar";
             this.tsmi_Erase.Click += new System.EventHandler(this.tsmi_Erase_Click);
             // 
@@ -103,6 +103,7 @@
             this.lbl_GridPlace.Size = new System.Drawing.Size(14, 14);
             this.lbl_GridPlace.TabIndex = 0;
             this.lbl_GridPlace.Text = ".";
+            this.lbl_GridPlace.Visible = false;
             // 
             // lbl_GridSquare
             // 
@@ -114,14 +115,15 @@
             this.lbl_GridSquare.Size = new System.Drawing.Size(14, 14);
             this.lbl_GridSquare.TabIndex = 0;
             this.lbl_GridSquare.Text = ".";
+            this.lbl_GridSquare.Visible = false;
             // 
-            // Grid3
+            // TileMapGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_Grid);
             this.MinimumSize = new System.Drawing.Size(300, 300);
-            this.Name = "Grid3";
+            this.Name = "TileMapGrid";
             this.Size = new System.Drawing.Size(300, 300);
             this.Load += new System.EventHandler(this.Grid3_Load);
             this.pnl_Grid.ResumeLayout(false);

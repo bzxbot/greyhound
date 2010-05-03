@@ -155,16 +155,13 @@ namespace Greyhound
             {
                 Point o = (Point)e.Data.GetData(typeof(Point));
 
-                if (o is Point)
+                if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
                 {
-                    if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
-                    {
-                        e.Effect = DragDropEffects.Copy;
-                    }
-                    else
-                    {
-                        e.Effect = DragDropEffects.Move;
-                    }
+                    e.Effect = DragDropEffects.Copy;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.Move;
                 }
             }
             else
@@ -186,7 +183,9 @@ namespace Greyhound
                 return;
             }
 
-            Tile tile;
+            Tile tile = null;
+
+            Point p = new Point(-1, -1);
 
             if (e.Data.GetDataPresent(DataFormats.Bitmap))
             {
@@ -195,18 +194,29 @@ namespace Greyhound
             }
             else if (e.Data is object && e.Data.GetData(typeof(Point)) is Point)
             {
-                Point p = (Point)e.Data.GetData(typeof(Point));
-                tile = TileMap.Tiles[TileMap.TileMatrix[p.X, p.Y]];
+                p = (Point)e.Data.GetData(typeof(Point));
+
+                if (TileMap.TileMatrix[p.X, p.Y] != -1)
+                {
+                    tile = TileMap.Tiles[TileMap.TileMatrix[p.X, p.Y]];
+                }
             }
             else
             {
                 return;
             }
 
-            TileMap.SetTile(point.X, point.Y, tile);
+            if (tile != null)
+            {
+                if (e.Effect == DragDropEffects.Move)
+                {
+                    TileMap.TileMatrix[p.X, p.Y] = -1;
+                }
 
-            this.DrawTiles(pnl_Grid.CreateGraphics());
+                TileMap.SetTile(point.X, point.Y, tile);
 
+                this.DrawTiles(pnl_Grid.CreateGraphics());
+            }
 
             //if ((e.Data.GetDataPresent(DataFormats.Bitmap)) && tileTarget != null)
             //{
@@ -592,6 +602,26 @@ namespace Greyhound
             }
 
             this.TileMap = new TileMap(SquareLines, SquareColumns, tileSize);
+
+            this.Refresh();
+        }
+
+        public void ReloadValues(TileMap tileMap)
+        {
+            this.SquareColumns = tileMap.Columns;
+            this.SquareLines = tileMap.Lines;
+
+            if (this.SquareColumns > MAXHEIGHTWIDTH)
+            {
+                this.SquareColumns = MAXHEIGHTWIDTH;
+            }
+
+            if (this.SquareLines > MAXHEIGHTWIDTH)
+            {
+                this.SquareLines = MAXHEIGHTWIDTH;
+            }
+
+            this.TileMap = tileMap;
 
             this.Refresh();
         }

@@ -75,9 +75,6 @@ namespace Greyhound
             TileWidth = int.Parse(split[0]);
             TileHeight = int.Parse(split[1]);
 
-            TileWidth = 32;
-            TileHeight = 32;
-
             line = sw.ReadLine();
             split = line.Split(' ');
 
@@ -220,6 +217,11 @@ namespace Greyhound
             if (index == -1)
             {
                 Tiles.Add(tile);
+
+                if (TileMatrix[x, y] != -1)
+                {
+                    RemoveTile(x, y);
+                }
 
                 TileMatrix[x, y] = Tiles.Count - 1;
             }

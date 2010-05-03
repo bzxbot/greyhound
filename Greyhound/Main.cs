@@ -87,9 +87,9 @@ namespace Greyhound
             {
                 try
                 {
-                    tileMapGrid.TileMap.Load(ofdTMap.FileName);
+                    TileMap tileMap = new TileMap(ofdTMap.FileName);
 
-                    tileMapGrid.Refresh();
+                    this.tileMapGrid.ReloadValues(tileMap);
 
                     tileSetPanel.ClearImages();
 
