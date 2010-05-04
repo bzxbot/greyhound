@@ -9,14 +9,15 @@ namespace Greyhound
 {
     public class TileMap
     {
-        public int Lines { get; set; }
-        public int Columns { get; set; }
-        public int[,] TileMatrix { get; set; }
-        public int TileWidth { get; set; }
-        public int TileHeight { get; set; }
-        public int TileCount { get; set; }
-        public TileFormat TileFormat { get; set; }
-        public List<Tile> Tiles { get; set; }
+        private int[,] TileMatrix { get; set; }
+
+        public int Lines { get; private set; }
+        public int Columns { get; private set; }
+        public int TileWidth { get; private set; }
+        public int TileHeight { get; private set; }
+        public int TileCount { get; private set; }
+        public TileFormat TileFormat { get; private set; }
+        public List<Tile> Tiles { get; private set; }
 
         public TileMap(int lines, int columns, int tileSize)
         {
@@ -210,6 +211,14 @@ namespace Greyhound
             TileMatrix[x, y] = -1;
         }
 
+        public void RemoveInUseTile(int x, int y)
+        {
+            if (x < 0 || y < 0)
+                throw new ArgumentException();
+
+            TileMatrix[x, y] = -1;
+        }
+
         public void SetTile(int x, int y, Tile tile)
         {
             int index = Tiles.FindIndex(t => t.ImageHash == tile.ImageHash);
@@ -229,6 +238,25 @@ namespace Greyhound
             {
                 TileMatrix[x, y] = index;
             }
+        }
+
+        public bool HasTile(int x, int y)
+        {
+            if (x < 0 || y < 0)
+                throw new ArgumentException();
+
+            return TileMatrix[x, y] != -1;
+        }
+
+        public Tile GetTile(int x, int y)
+        {
+            if (x < 0 || y < 0)
+                throw new ArgumentException();
+
+            if (!HasTile(x,y))
+                return null;
+            else
+                return Tiles[TileMatrix[x, y]];
         }
     }
 

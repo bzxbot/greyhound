@@ -10,6 +10,15 @@ namespace Greyhound
 {
     public class Tile
     {
+        public Tile()
+        {
+        }
+
+        public Tile(Bitmap bitmap)
+        {
+            Bitmap = bitmap;
+        }
+
         public Bitmap bitmap;
         public Bitmap Bitmap
         {

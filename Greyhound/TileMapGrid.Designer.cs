@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.pnl_Grid = new System.Windows.Forms.Panel();
             this.cms_TileOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmi_Selecionar = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_Rotate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_Erase = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_GridPlace = new System.Windows.Forms.Label();
@@ -54,7 +53,6 @@
             this.pnl_Grid.Size = new System.Drawing.Size(288, 288);
             this.pnl_Grid.TabIndex = 0;
             this.pnl_Grid.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Grid_Paint);
-            this.pnl_Grid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnl_Grid_MouseMove);
             this.pnl_Grid.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnl_Grid_DragDrop);
             this.pnl_Grid.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnl_Grid_MouseClick);
             this.pnl_Grid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnl_Grid_MouseDown);
@@ -64,32 +62,23 @@
             // cms_TileOptions
             // 
             this.cms_TileOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_Selecionar,
             this.tsmi_Rotate,
             this.tsmi_Erase});
             this.cms_TileOptions.Name = "cms_TileOptions";
-            this.cms_TileOptions.Size = new System.Drawing.Size(129, 70);
+            this.cms_TileOptions.Size = new System.Drawing.Size(153, 70);
             this.cms_TileOptions.Opening += new System.ComponentModel.CancelEventHandler(this.cms_TileOptions_Opening);
-            // 
-            // tsmi_Selecionar
-            // 
-            this.tsmi_Selecionar.Name = "tsmi_Selecionar";
-            this.tsmi_Selecionar.Size = new System.Drawing.Size(128, 22);
-            this.tsmi_Selecionar.Text = "Selecionar";
-            this.tsmi_Selecionar.Visible = false;
-            this.tsmi_Selecionar.Click += new System.EventHandler(this.tsmi_Selecionar_Click);
             // 
             // tsmi_Rotate
             // 
             this.tsmi_Rotate.Name = "tsmi_Rotate";
-            this.tsmi_Rotate.Size = new System.Drawing.Size(128, 22);
+            this.tsmi_Rotate.Size = new System.Drawing.Size(152, 22);
             this.tsmi_Rotate.Text = "Girar";
             this.tsmi_Rotate.Click += new System.EventHandler(this.tsmi_Rotate_Click);
             // 
             // tsmi_Erase
             // 
             this.tsmi_Erase.Name = "tsmi_Erase";
-            this.tsmi_Erase.Size = new System.Drawing.Size(128, 22);
+            this.tsmi_Erase.Size = new System.Drawing.Size(152, 22);
             this.tsmi_Erase.Text = "Apagar";
             this.tsmi_Erase.Click += new System.EventHandler(this.tsmi_Erase_Click);
             // 
@@ -125,7 +114,7 @@
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "TileMapGrid";
             this.Size = new System.Drawing.Size(300, 300);
-            this.Load += new System.EventHandler(this.Grid3_Load);
+            this.Load += new System.EventHandler(this.TileMapGrid_Load);
             this.pnl_Grid.ResumeLayout(false);
             this.pnl_Grid.PerformLayout();
             this.cms_TileOptions.ResumeLayout(false);
@@ -141,6 +130,5 @@
         private System.Windows.Forms.ContextMenuStrip cms_TileOptions;
         private System.Windows.Forms.ToolStripMenuItem tsmi_Rotate;
         private System.Windows.Forms.ToolStripMenuItem tsmi_Erase;
-        private System.Windows.Forms.ToolStripMenuItem tsmi_Selecionar;
     }
 }

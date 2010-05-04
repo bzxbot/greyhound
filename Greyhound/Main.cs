@@ -21,36 +21,6 @@ namespace Greyhound
 
         #endregion Constructors
 
-        #region Private Methods
-
-        private void LoadImages(Bitmap[] images)
-        {
-            //int margin = 5;
-            //int LastPosition = 0;
-
-            //for (int bmCounter = 0; bmCounter < images.Length; bmCounter++)
-            //{
-            //    PictureBox pic_Source = new PictureBox();
-            //    pic_Source.Image = images[bmCounter];
-            //    pic_Source.SizeMode = PictureBoxSizeMode.Zoom;
-
-            //    pic_Source.Parent = pnl_Bottom;
-            //    pic_Source.BorderStyle = BorderStyle.FixedSingle;
-            //    pic_Source.MouseClick += new MouseEventHandler(pic_Source_MouseClick);
-            //    pic_Source.MouseMove += new MouseEventHandler(pic_Source_MouseMove);
-
-            //    pic_Source.Top = margin;
-            //    pic_Source.Left = LastPosition + margin;
-
-            //    pic_Source.Width = 32;
-            //    pic_Source.Height = 32;
-
-            //    LastPosition = pic_Source.Width + pic_Source.Left;
-            //}
-        }
-
-        #endregion Private Methods
-
         #region Private Events
 
         private void Main_Load(object sender, EventArgs e)
@@ -129,8 +99,9 @@ namespace Greyhound
         private void tsmi_openTileImage_Click(object sender, EventArgs e)
         {
             this.ofd_Tiles.Multiselect = false;
-            this.ofd_Tiles.Title = "Abrir imagem com tiles.";
+            this.ofd_Tiles.Title = "Abrir imagem com tiles";
             Image image = null;
+
             if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
             {
                 FileInfo fInfo = new FileInfo(this.ofd_Tiles.FileName);
@@ -165,37 +136,38 @@ namespace Greyhound
         private void tsmi_OpenTile_Click(object sender, EventArgs e)
         {
             this.ofd_Tiles.Multiselect = true;
+
             this.ofd_Tiles.Title = "Abrir tile(s)";
+
+            if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
             {
-                if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
+                List<Image> images = new List<Image>();
+
+                string[] files = this.ofd_Tiles.FileNames;
+
+                foreach (string file in files)
                 {
-                    string[] files = this.ofd_Tiles.FileNames;
-                    List<Image> images = new List<Image>();
+                    FileInfo fInfo = new FileInfo(file);
 
-                    foreach (string file in files)
+                    try
                     {
-                        FileInfo fInfo = new FileInfo(file);
-
-                        try
+                        if (fInfo.Extension.ToLower() == ".ppm")
                         {
-                            if (fInfo.Extension.ToLower() == ".ppm")
-                            {
-                                PPMReader ppmReader = new PPMReader();
-                                images.Add(ppmReader.GetImage(fInfo.FullName));
-                            }
-                            else
-                            {
-                                images.Add(Image.FromFile(fInfo.FullName));
-                            }
+                            PPMReader ppmReader = new PPMReader();
+                            images.Add(ppmReader.GetImage(fInfo.FullName));
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            ErrorMessageBox.Show(String.Format("Erro ao carregar imagem {0}", fInfo.FullName), ex);
+                            images.Add(Image.FromFile(fInfo.FullName));
                         }
                     }
-
-                    this.tileSetPanel.AddImages(images.ToArray());
+                    catch (Exception ex)
+                    {
+                        ErrorMessageBox.Show(String.Format("Erro ao carregar imagem {0}", fInfo.FullName), ex);
+                    }
                 }
+
+                this.tileSetPanel.AddImages(images.ToArray());
             }
         }
 
@@ -204,6 +176,7 @@ namespace Greyhound
             if (this.tileSetPanel.SelectedPic != null)
             {
                 Frm_TileEditor frm_TileEditor = new Frm_TileEditor(this.tileSetPanel.SelectedPic.Image);
+
                 if (frm_TileEditor.ShowDialog() == DialogResult.OK)
                 {
                     if (frm_TileEditor.EditedImage != null)
@@ -222,47 +195,17 @@ namespace Greyhound
             }
         }
 
-        //private void pic_Source_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    if (e.Button == MouseButtons.Middle && sender is PictureBox)
-        //    {
-        //        PictureBox picBox = (PictureBox)sender;
-
-        //        if (picBox.Image == null)
-        //        {
-        //            return;
-        //        }
-
-        //        picBox.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-        //        picBox.Refresh();
-        //    }
-        //}
-
-        //private void pic_Source_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if (e.Button == MouseButtons.Left && sender is PictureBox)
-        //    {
-        //        PictureBox picBox = (PictureBox)sender;
-
-        //        if (picBox.Image == null)
-        //        {
-        //            return;
-        //        }
-
-        //        picBox.DoDragDrop(picBox.Image, DragDropEffects.All);
-        //    }
-        //}
-
-        private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
+        private void splTileSetGrid_SplitterMoved(object sender, SplitterEventArgs e)
         {
             int limitLocation = this.pnl_Fill.Top + this.pnl_Fill.MinimumSize.Height;
 
-            if (this.splitter1.Top < limitLocation)
+            if (this.splTileSetGrid.Top < limitLocation)
             {
                 e.SplitY = limitLocation;
             }
         }
 
         #endregion Private Events
+
     }
 }
