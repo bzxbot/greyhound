@@ -15,13 +15,15 @@ namespace Greyhound
         #region Private Fields
 
         public static int _MaxHeightWidth = 20;
+
+        private Color _selectionColor = Color.Red;
+        private Point _invalidPosition = new Point(-1, -1);
+
         private int _squareLines;
         private int _squareColumns;
         private int _gridMargin = 5;
         private int _penWidth = 1;
         private int _selectionThickness = 1;
-        private Color _selectionColor = Color.Red;
-        private Point _invalidPosition = new Point(-1, -1);
 
         #endregion Private Fields
 
