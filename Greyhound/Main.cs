@@ -51,9 +51,7 @@ namespace Greyhound
 
         private void tsb_Open_Click(object sender, EventArgs e)
         {
-            ofdTMap.ShowDialog();
-
-            if (!string.IsNullOrEmpty(ofdTMap.FileName))
+            if (ofdTMap.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(ofdTMap.FileName))
             {
                 try
                 {
@@ -70,20 +68,18 @@ namespace Greyhound
                 }
                 catch (IOException ex)
                 {
-                    ErrorMessageBox.Show("Não foi possível ler o arquivo especificado. Verifique se o arquivo está acessível.", ex);
+                    ErrorMessageBox.Show("Não foi possível ler o arquivo especificado, verifique se o arquivo está acessível.", ex);
                 }
                 catch (Exception ex)
                 {
-                    ErrorMessageBox.Show("Ocorreu um erro na leitura do arquivo. Verifique se o arquivo tem um formato válido.", ex);
+                    ErrorMessageBox.Show("Ocorreu um erro ao abrir o arquivo, verifique o formato do arquivo.", ex);
                 }
             }
         }
 
         private void tsb_Save_Click(object sender, EventArgs e)
         {
-            sfdTMap.ShowDialog();
-
-            if (!string.IsNullOrEmpty(sfdTMap.FileName))
+            if (sfdTMap.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(sfdTMap.FileName))
             {
                 try
                 {
@@ -91,7 +87,7 @@ namespace Greyhound
                 }
                 catch (Exception ex)
                 {
-                    ErrorMessageBox.Show("Não foi possível salvar a imagem no local informado. Verifique o nome e o local do arquivo.", ex);
+                    ErrorMessageBox.Show("Não foi possível salvar a imagem no local informado, verifique o nome e o local do arquivo.", ex);
                 }
             }
         }
@@ -100,6 +96,7 @@ namespace Greyhound
         {
             this.ofd_Tiles.Multiselect = false;
             this.ofd_Tiles.Title = "Abrir imagem com tiles";
+            
             Image image = null;
 
             if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
@@ -136,7 +133,6 @@ namespace Greyhound
         private void tsmi_OpenTile_Click(object sender, EventArgs e)
         {
             this.ofd_Tiles.Multiselect = true;
-
             this.ofd_Tiles.Title = "Abrir tile(s)";
 
             if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
