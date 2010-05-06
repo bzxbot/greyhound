@@ -2,3 +2,4 @@ syntax: glob
 Greyhound\bin
 Greyhound\obj
 Greyhound\Greyhound.suo
+Greyhound\StyleCop.Cache

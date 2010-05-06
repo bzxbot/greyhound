@@ -49,7 +49,7 @@ namespace Greyhound.TileSplitter
             //this.fbd_SaveTiles.Description = "Pasta onde salvar os tiles.";
             //if (this.fbd_SaveTiles.ShowDialog() == DialogResult.OK)
             //{
-            resolveTiles(this.fbd_SaveTiles.SelectedPath);
+            this.resolveTiles(this.fbd_SaveTiles.SelectedPath);
             //}
         }
 
@@ -138,7 +138,7 @@ namespace Greyhound.TileSplitter
         {
             int totalCollumTiles = this.pic_Tiles.Image.Width / (int)nud_PixelsPerTile.Value;
             int totalLineTiles = this.pic_Tiles.Image.Height / (int)nud_PixelsPerTile.Value;
-            int tileSize = (int)nud_PixelsPerTile.Value; ;
+            int tileSize = (int)nud_PixelsPerTile.Value;
 
             Bitmap bmpImage = new Bitmap(this.pic_Tiles.Image);
             //Bitmap bmpCrop = bmpImage.Clone(cropArea,

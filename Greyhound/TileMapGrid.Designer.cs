@@ -54,7 +54,6 @@
             this.pnl_Grid.TabIndex = 0;
             this.pnl_Grid.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Grid_Paint);
             this.pnl_Grid.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnl_Grid_DragDrop);
-            this.pnl_Grid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.pnl_Grid_Scroll);
             this.pnl_Grid.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnl_Grid_MouseClick);
             this.pnl_Grid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnl_Grid_MouseDown);
             this.pnl_Grid.Resize += new System.EventHandler(this.pnl_Grid_Resize);

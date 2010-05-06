@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace Greyhound
+﻿namespace Greyhound
 {
+    using System;
+    using System.Windows.Forms;
+
     public static class ErrorMessageBox
     {
         public static void Show(String message, Exception ex)

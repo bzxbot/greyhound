@@ -43,12 +43,6 @@ namespace Greyhound.Tile_Editor
 
         #endregion Constructors
 
-        #region Private Methods
-
-
-
-        #endregion Private Methods
-
         #region Private Events
 
         private void Frm_TileEditor_Load(object sender, EventArgs e)

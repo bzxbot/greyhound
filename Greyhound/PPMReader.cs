@@ -13,21 +13,20 @@ namespace Greyhound
                 {
                     char c = reader.ReadChar();
 
-                    if (c == '1')
+                    switch (c)
                     {
-                        return ReadTextBitmapImage(reader);
-                    }
-                    else if (c == '2')
-                    {
-                        return ReadTextGreyscaleImage(reader);
-                    }
-                    else if (c == '3')
-                    {
-                        return ReadTextPixelImage(reader);
-                    }
-                    else if (c == '6')
-                    {
-                        return ReadBinaryPixelImage(reader);
+                        case '1':
+                            return this.ReadTextBitmapImage(reader);
+                        case '2':
+                            return this.ReadTextGreyscaleImage(reader);
+                        case '3':
+                            return this.ReadTextPixelImage(reader);
+                        case '4':
+                            return this.ReadBinaryBitmapImage(reader);
+                        case '5':
+                            return this.ReadBinaryGreyscaleImage(reader);
+                        case '6':
+                            return this.ReadBinaryPixelImage(reader);
                     }
                 }
             }

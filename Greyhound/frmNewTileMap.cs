@@ -43,7 +43,6 @@ namespace Greyhound
 
         private void Frm_NewTileMap_Load(object sender, EventArgs e)
         {
-
         }
 
         #endregion Private Events

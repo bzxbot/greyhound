@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -58,7 +59,7 @@
             this.splTileSetGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splTileSetGrid.Location = new System.Drawing.Point(0, 363);
             this.splTileSetGrid.Name = "splTileSetGrid";
-            this.splTileSetGrid.Size = new System.Drawing.Size(761, 4);
+            this.splTileSetGrid.Size = new System.Drawing.Size(762, 4);
             this.splTileSetGrid.TabIndex = 4;
             this.splTileSetGrid.TabStop = false;
             this.splTileSetGrid.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splTileSetGrid_SplitterMoved);
@@ -78,7 +79,7 @@
             this.tsb_EditTile});
             this.ts_Menu.Location = new System.Drawing.Point(0, 0);
             this.ts_Menu.Name = "ts_Menu";
-            this.ts_Menu.Size = new System.Drawing.Size(761, 39);
+            this.ts_Menu.Size = new System.Drawing.Size(762, 39);
             this.ts_Menu.TabIndex = 6;
             this.ts_Menu.Text = "toolStrip1";
             // 
@@ -184,7 +185,7 @@
             this.pnl_Fill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Fill.Location = new System.Drawing.Point(0, 39);
             this.pnl_Fill.Name = "pnl_Fill";
-            this.pnl_Fill.Size = new System.Drawing.Size(761, 324);
+            this.pnl_Fill.Size = new System.Drawing.Size(762, 324);
             this.pnl_Fill.TabIndex = 7;
             // 
             // ofd_Tiles
@@ -207,10 +208,11 @@
             this.tileMapGrid.GridThickness = 1;
             this.tileMapGrid.Location = new System.Drawing.Point(0, 0);
             this.tileMapGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.tileMapGrid.MinimumSize = new System.Drawing.Size(300, 300);
             this.tileMapGrid.Name = "tileMapGrid";
             this.tileMapGrid.SelectionColor = System.Drawing.Color.Red;
             this.tileMapGrid.SelectionThickness = 3;
-            this.tileMapGrid.Size = new System.Drawing.Size(761, 324);
+            this.tileMapGrid.Size = new System.Drawing.Size(762, 324);
             this.tileMapGrid.TabIndex = 8;
             // 
             // tileSetPanel
@@ -220,7 +222,7 @@
             this.tileSetPanel.Location = new System.Drawing.Point(0, 367);
             this.tileSetPanel.Name = "tileSetPanel";
             this.tileSetPanel.SelectedColor = System.Drawing.Color.Red;
-            this.tileSetPanel.Size = new System.Drawing.Size(761, 95);
+            this.tileSetPanel.Size = new System.Drawing.Size(762, 95);
             this.tileSetPanel.TabIndex = 5;
             this.tileSetPanel.TileMargin = ((short)(2));
             // 
@@ -228,12 +230,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 462);
+            this.ClientSize = new System.Drawing.Size(762, 462);
             this.Controls.Add(this.pnl_Fill);
             this.Controls.Add(this.ts_Menu);
             this.Controls.Add(this.splTileSetGrid);
             this.Controls.Add(this.tileSetPanel);
-            this.MinimumSize = new System.Drawing.Size(300, 300);
+            this.MinimumSize = new System.Drawing.Size(770, 490);
             this.Name = "frmMain";
             this.Text = "Tileset Editor";
             this.Load += new System.EventHandler(this.Main_Load);

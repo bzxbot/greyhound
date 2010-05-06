@@ -29,7 +29,10 @@ namespace Greyhound
         private Color _selectedColor = Color.Red;
         public Color SelectedColor
         {
-            get { return this._selectedColor; }
+            get 
+            { 
+                return this._selectedColor; 
+            }
             set
             {
                 if (this._selectedColor != value)
@@ -152,9 +155,9 @@ namespace Greyhound
             pic_Source.Image = image;
             pic_Source.SizeMode = PictureBoxSizeMode.Zoom;
             pic_Source.BackColor = Color.Black;
-            pic_Source.MouseClick += new MouseEventHandler(tile_Source_MouseClick);
-            pic_Source.MouseMove += new MouseEventHandler(tile_Source_MouseMove);
-            pic_Source.Paint += new PaintEventHandler(tile_Source_Paint);
+            pic_Source.MouseClick += new MouseEventHandler(this.tile_Source_MouseClick);
+            pic_Source.MouseMove += new MouseEventHandler(this.tile_Source_MouseMove);
+            pic_Source.Paint += new PaintEventHandler(this.tile_Source_Paint);
             pic_Source.ContextMenuStrip = this.cms_TileOptions;
             pic_Source.Margin = new Padding(this.TileMargin);
             pic_Source.Width = 48;

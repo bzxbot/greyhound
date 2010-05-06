@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
-using Greyhound.Properties;
-using Greyhound.Tile_Editor;
-using Greyhound.TileSplitter;
-
-namespace Greyhound
+﻿namespace Greyhound
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Windows.Forms;
+    using Greyhound.Properties;
+    using Greyhound.Tile_Editor;
+    using Greyhound.TileSplitter;
+
     public partial class frmMain : Form
     {
         #region Contructors
@@ -20,18 +20,21 @@ namespace Greyhound
 
         #endregion Constructors
 
-        #region Private Events
+        #region Events
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Bitmap[] images = new Bitmap[] { Resources.Tile_01, Resources.Tile_02, Resources.Tile_03, 
-                                             Resources.Tile_04, Resources.Tile_05, Resources.Tile_06,
-                                             Resources.Tile_07, Resources.Tile_08, Resources.Tile_09,
-                                             Resources.Tile_10, Resources.Tile_11, Resources.Tile_12,
-                                             Resources.Tile_13, Resources.Tile_14, Resources.Tile_15,
-                                             Resources.Tile_16, Resources.Tile_17, Resources.Tile_18,
-                                             Resources.Tile_19, Resources.Tile_20, Resources.Tile_21,
-                                             Resources.Tile_22, Resources.Tile_23, Resources.Tile_24 };
+            Bitmap[] images = new Bitmap[] 
+            { 
+                Resources.Tile_01, Resources.Tile_02, Resources.Tile_03, 
+                Resources.Tile_04, Resources.Tile_05, Resources.Tile_06,
+                Resources.Tile_07, Resources.Tile_08, Resources.Tile_09,
+                Resources.Tile_10, Resources.Tile_11, Resources.Tile_12,
+                Resources.Tile_13, Resources.Tile_14, Resources.Tile_15,
+                Resources.Tile_16, Resources.Tile_17, Resources.Tile_18,
+                Resources.Tile_19, Resources.Tile_20, Resources.Tile_21,
+                Resources.Tile_22, Resources.Tile_23, Resources.Tile_24 
+            };
 
             this.tileSetPanel.AddImages(images);
         }
@@ -50,7 +53,7 @@ namespace Greyhound
 
         private void tsb_Open_Click(object sender, EventArgs e)
         {
-            if (ofdTMap.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(ofdTMap.FileName))
+            if (this.ofdTMap.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(ofdTMap.FileName))
             {
                 try
                 {
@@ -78,11 +81,18 @@ namespace Greyhound
 
         private void tsb_Save_Click(object sender, EventArgs e)
         {
-            if (sfdTMap.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(sfdTMap.FileName))
+            if (this.sfdTMap.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(sfdTMap.FileName))
             {
                 try
                 {
-                    tileMapGrid.TileMap.Save(sfdTMap.FileName);
+                    if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+                    {
+
+                    }
+                    else
+                    {
+                        tileMapGrid.TileMap.Save(sfdTMap.FileName);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -95,31 +105,12 @@ namespace Greyhound
         {
             this.ofd_Tiles.Multiselect = false;
             this.ofd_Tiles.Title = "Abrir imagem com tiles";
-            
+
             Image image = null;
 
             if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
             {
-                FileInfo fInfo = new FileInfo(this.ofd_Tiles.FileName);
-
-                try
-                {
-                    string fileExtension = fInfo.Extension.ToLower();
-
-                    if (fileExtension == ".pbm" || fileExtension == ".pgm" || fileExtension == ".ppm")
-                    {
-                        image = new PNMReader().ReadImage(fInfo.FullName);
-                    }
-                    else
-                    {
-                        image = Image.FromFile(fInfo.FullName);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ErrorMessageBox.Show(String.Format("Erro ao carregar imagem {0}", fInfo.FullName), ex);
-                    return;
-                }
+                image = this.OpenImage(ofd_Tiles.FileName);
 
                 if (image != null)
                 {
@@ -127,7 +118,10 @@ namespace Greyhound
 
                     if (tileSplitter.ShowDialog() == DialogResult.OK)
                     {
-                        this.tileSetPanel.AddImages(tileSplitter.SplittedTiles);
+                        foreach (Bitmap bitmap in tileSplitter.SplittedTiles)
+                        {
+                            this.tileSetPanel.AddImage(ResizeBitmap((Bitmap)image, tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight));
+                        }
                     }
                 }
             }
@@ -146,30 +140,9 @@ namespace Greyhound
 
                 foreach (string file in files)
                 {
-                    FileInfo fInfo = new FileInfo(file);
+                    Bitmap bitmap = this.OpenImage(file);
 
-                    try
-                    {
-                        string fileExtension = fInfo.Extension.ToLower();
-
-                        if (fileExtension == ".pbm" || fileExtension == ".pgm" || fileExtension == ".ppm")
-                        {
-                            Image image = new PNMReader().ReadImage(fInfo.FullName);
-                            
-                            if (image != null)
-                            {
-                                images.Add(image);
-                            }
-                        }
-                        else
-                        {
-                            images.Add(Image.FromFile(fInfo.FullName));
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ErrorMessageBox.Show(String.Format("Erro ao carregar imagem {0}", fInfo.FullName), ex);
-                    }
+                    images.Add(bitmap);
                 }
 
                 this.tileSetPanel.AddImages(images.ToArray());
@@ -211,5 +184,48 @@ namespace Greyhound
         }
 
         #endregion Private Events
+
+        #region Methods
+
+        private Bitmap OpenImage(string filePath)
+        {
+            FileInfo fInfo = new FileInfo(filePath);
+
+            try
+            {
+                string fileExtension = fInfo.Extension.ToLower();
+
+                if (fileExtension == ".pbm" || fileExtension == ".pgm" || fileExtension == ".ppm")
+                {
+                    Image image = new PNMReader().ReadImage(fInfo.FullName);
+
+                    return ResizeBitmap((Bitmap)image, tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight);
+                }
+                else
+                {
+                    return ResizeBitmap((Bitmap)Image.FromFile(fInfo.FullName), tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageBox.Show(String.Format("Erro ao carregar imagem {0}", fInfo.FullName), ex);
+            }
+
+            return null;
+        }
+
+        private Bitmap ResizeBitmap(Bitmap bitmap, int width, int height)
+        {
+            Bitmap result = new Bitmap(width, height);
+
+            using (Graphics g = Graphics.FromImage((Image)result))
+            {
+                g.DrawImage(bitmap, 0, 0, width, height);
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }

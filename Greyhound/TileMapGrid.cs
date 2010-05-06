@@ -49,7 +49,10 @@ namespace Greyhound
 
         public Color SelectionColor
         {
-            get { return this._selectionColor; }
+            get 
+            { 
+                return this._selectionColor; 
+            }
             set
             {
                 if (this._selectionColor != value)
@@ -62,7 +65,10 @@ namespace Greyhound
 
         public int SelectionThickness
         {
-            get { return this._selectionThickness; }
+            get 
+            { 
+                return this._selectionThickness;
+            }
             set
             {
                 if (this._selectionThickness != value)
@@ -238,7 +244,7 @@ namespace Greyhound
 
         #endregion Private Events
 
-        #region Private Methods
+        #region Methods
 
         private void DrawGrid(Graphics g)
         {
@@ -337,11 +343,6 @@ namespace Greyhound
             return GetMatrixPosition(new Point(x, y));
         }
 
-        private bool Inside(int x, int y, int l, int r, int b, int t)//x,y are the point, l,r,b,t are the extents of the rectangle
-        {
-            return x > l && x < r && y > t && y < b;
-        }
-
         private Point GetMatrixPosition(Point pos)
         {
             int lin;
@@ -349,37 +350,36 @@ namespace Greyhound
 
             Pen pen = new Pen(Brushes.Black);
 
-            int maxHeight = this.pnl_Grid.Height / _squareLines;
-            int maxWidth = this.pnl_Grid.Width / _squareColumns;
+            int maxHeight = this.pnl_Grid.Height / this._squareLines;
+            int maxWidth = this.pnl_Grid.Width / this._squareColumns;
             int maxSize;
-            int SquareSize;
+            int squareSize;
 
             if (maxHeight <= maxWidth)
             {
-                maxSize = (this.pnl_Grid.Height) - (_gridMargin / 2);
-                SquareSize = (maxSize / _squareLines) - (int)pen.Width;
+                maxSize = (this.pnl_Grid.Height) - (this._gridMargin / 2);
+                squareSize = (maxSize / this._squareLines) - (int)pen.Width;
             }
             else
             {
-                maxSize = (this.pnl_Grid.Width) - (_gridMargin / 2);
-                SquareSize = (maxSize / _squareColumns) - (int)pen.Width;
+                maxSize = (this.pnl_Grid.Width) - (this._gridMargin / 2);
+                squareSize = (maxSize / this._squareColumns) - (int)pen.Width;
             }
 
-            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * _squareLines) / 2);
-            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * _squareColumns) / 2);
-
+            int topStart = (this.pnl_Grid.Height / 2) - ((squareSize * _squareLines) / 2);
+            int leftStart = (this.pnl_Grid.Width / 2) - ((squareSize * _squareColumns) / 2);
 
             // Testa se é uma posição válida.
-            if ((pos.X - leftStart) % SquareSize == 0 || (pos.Y - topStart) % SquareSize == 0 ||
+            if ((pos.X - leftStart) % squareSize == 0 || (pos.Y - topStart) % squareSize == 0 ||
                 (pos.X - leftStart) < 0 || (pos.Y - topStart) < 0 ||
-                (pos.X - leftStart) > (SquareSize * _squareColumns) ||
-                (pos.Y - topStart) > (SquareSize * _squareLines))
+                (pos.X - leftStart) > (squareSize * _squareColumns) ||
+                (pos.Y - topStart) > (squareSize * _squareLines))
             {
                 return _invalidPosition;
             }
 
-            col = (pos.X - leftStart) / SquareSize;
-            lin = (pos.Y - topStart) / SquareSize;
+            col = (pos.X - leftStart) / squareSize;
+            lin = (pos.Y - topStart) / squareSize;
 
             return new Point(lin, col);
         }
@@ -399,8 +399,6 @@ namespace Greyhound
                 this.DrawTiles(pnl_Grid.CreateGraphics());
             }
         }
-
-        #endregion Private Methods
 
         public void ReloadValues(int heigh, int width, int tileSize)
         {
@@ -442,9 +440,6 @@ namespace Greyhound
             this.Refresh();
         }
 
-        private void pnl_Grid_Scroll(object sender, ScrollEventArgs e)
-        {
-            pnl_Grid.Refresh();
-        }
+        #endregion Private Methods
     }
 }

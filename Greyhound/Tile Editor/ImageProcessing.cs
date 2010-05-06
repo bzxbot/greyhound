@@ -41,7 +41,6 @@ namespace Greyhound.Tile_Editor
                     int greenColor = Convert.ToInt32((pixel.R * .349 + pixel.G * .686 + pixel.B * .168));
                     int blueColor = Convert.ToInt32((pixel.R * .272 + pixel.G * .534 + pixel.B * .131));
 
-
                     if (redColor > 255)
                         redColor = 255;
 
@@ -196,7 +195,6 @@ namespace Greyhound.Tile_Editor
             //    }
             //}
                       
-            
             //hsl.H *= 60;
 
             //while (hsl.H < 0)

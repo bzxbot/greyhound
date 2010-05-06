@@ -46,9 +46,9 @@ namespace Greyhound
 
         public void Load(string path)
         {
-            StreamReader sw = new StreamReader(path);
+            StreamReader sr = new StreamReader(path);
 
-            string line = sw.ReadLine();
+            string line = sr.ReadLine();
             string[] split = line.Split(' ');
 
             Lines = int.Parse(split[0]);
@@ -58,7 +58,7 @@ namespace Greyhound
 
             for (int i = 0; i < Lines; i++)
             {
-                line = sw.ReadLine();
+                line = sr.ReadLine();
 
                 split = line.Split(' ');
 
@@ -68,13 +68,13 @@ namespace Greyhound
                 }
             }
 
-            line = sw.ReadLine();
+            line = sr.ReadLine();
             split = line.Split(' ');
 
             TileWidth = int.Parse(split[0]);
             TileHeight = int.Parse(split[1]);
 
-            line = sw.ReadLine();
+            line = sr.ReadLine();
             split = line.Split(' ');
 
             TileCount = int.Parse(split[0]);
@@ -82,8 +82,23 @@ namespace Greyhound
 
             Tiles = new List<Tile>();
 
-            line = sw.ReadLine();
-            split = line.Split(' ');
+            switch (TileFormat)
+            {
+                case TileFormat.Text:
+                    LoadTextTiles(sr);
+                    break;
+                case TileFormat.Binary:
+                    LoadBinaryTiles(sr);
+                    break;
+            }
+
+            sr.Close();
+        }
+
+        public void LoadTextTiles(StreamReader sr)
+        {
+            string line = sr.ReadLine();
+            string[] split = line.Split(' ');
 
             int offset = 0;
 
@@ -106,45 +121,88 @@ namespace Greyhound
 
                 Tiles.Add(tile);
             }
-
-            sw.Close();
         }
 
-        public void Save(string path)
+        public void LoadBinaryTiles(StreamReader sr)
         {
-            StreamWriter sw = new StreamWriter(path);
+            BinaryReader br = new BinaryReader(sr.BaseStream);
 
-            sw.Write(Lines);
-            sw.Write(" ");
-            sw.WriteLine(Columns);
-
-            for (int i = 0; i < Lines; i++)
+            for (int i = 0; i < TileCount; i++)
             {
-                for (int j = 0; j < Columns; j++)
+                Tile tile = new Tile();
+
+                Bitmap bitmap = new Bitmap(TileWidth, TileHeight);
+
+                for (int j = 0; j < TileHeight * TileWidth; j++)
                 {
-                    sw.Write(TileMatrix[i, j]);
+                    int r = br.ReadByte();
+                    int g = br.ReadByte();
+                    int b = br.ReadByte();
+
+                    bitmap.SetPixel(j / TileWidth, j % TileHeight, Color.FromArgb(r, g, b));
+                }
+
+                tile.Bitmap = bitmap;
+
+                Tiles.Add(tile);
+            }
+        }
+
+        public void Save(string filePath)
+        {
+            this.Save(filePath, TileFormat.Text);
+        }
+
+        public void Save(string filePath, TileFormat format)
+        {
+            StreamWriter sw = new StreamWriter(filePath);
+
+            sw.Write(this.Lines);
+            sw.Write(" ");
+            sw.WriteLine(this.Columns);
+
+            for (int i = 0; i < this.Lines; i++)
+            {
+                for (int j = 0; j < this.Columns; j++)
+                {
+                    sw.Write(this.TileMatrix[i, j]);
                     sw.Write(" ");
                 }
 
                 sw.WriteLine();
             }
 
-            sw.Write(TileWidth);
+            sw.Write(this.TileWidth);
             sw.Write(" ");
-            sw.WriteLine(TileHeight);
+            sw.WriteLine(this.TileHeight);
 
             sw.Write(Tiles.Count);
             sw.Write(" ");
-            sw.WriteLine((int)TileFormat);
+            sw.WriteLine((int)format);
 
+            switch (format)
+            {
+                case TileFormat.Text:
+                    this.SaveTextTiles(sw);
+                    break;
+                case TileFormat.Binary:
+                    this.SaveBinaryTiles(sw);
+                    break;
+            }
+
+            sw.Close();
+        }
+
+        public void SaveTextTiles(StreamWriter sw)
+        {
             foreach (Tile tile in Tiles)
             {
                 if (tile.Bitmap == null)
                     continue;
 
-                for (int x = 0; x < tile.Bitmap.Width; x++)
+                for (int x = 0; x < this.TileWidth; x++)
                 {
-                    for (int y = 0; y < tile.Bitmap.Height; y++)
+                    for (int y = 0; y < this.TileHeight; y++)
                     {
                         Color color = tile.Bitmap.GetPixel(x, y);
 
@@ -157,31 +215,57 @@ namespace Greyhound
                     }
                 }
             }
+        }
 
-            sw.Close();
+        public void SaveBinaryTiles(StreamWriter sw)
+        {
+            BinaryWriter bw = new BinaryWriter(sw.BaseStream);
+
+            foreach (Tile tile in Tiles)
+            {
+                if (tile.Bitmap == null)
+                    continue;
+
+                for (int x = 0; x < this.TileWidth; x++)
+                {
+                    for (int y = 0; y < this.TileHeight; y++)
+                    {
+                        Color color = tile.Bitmap.GetPixel(x, y);
+
+                        bw.Write(color.R);
+                        bw.Write(color.G);
+                        bw.Write(color.B);
+                    }
+                }
+            }
+
+            bw.Close();
         }
 
         public void RemoveTile(int x, int y)
         {
-            if (TileMatrix[x, y] == -1)
+            if (x < 0 || y < 0 || x > this.Lines || y > this.Columns)
+                throw new ArgumentException();
+
+            if (this.TileMatrix[x, y] == -1)
             {
                 return;
             }
 
-            int index = TileMatrix[x, y];
+            int index = this.TileMatrix[x, y];
 
             bool inUse = false;
 
-            for (int i = 0; i < Lines; i++)
+            for (int i = 0; i < this.Lines; i++)
             {
                 if (inUse)
                 {
                     break;
                 }
 
-                for (int j = 0; j < Columns; j++)
+                for (int j = 0; j < this.Columns; j++)
                 {
-                    if ((x != i || y != j) && TileMatrix[i, j] == TileMatrix[x, y])
+                    if ((x != i || y != j) && this.TileMatrix[i, j] == this.TileMatrix[x, y])
                     {
                         inUse = true;
 
@@ -192,55 +276,58 @@ namespace Greyhound
 
             if (!inUse)
             {
-                Tiles.RemoveAt(index);
+                this.Tiles.RemoveAt(index);
 
                 for (int i = 0; i < Lines; i++)
                 {
                     for (int j = 0; j < Columns; j++)
                     {
-                        if (TileMatrix[i, j] > index)
+                        if (this.TileMatrix[i, j] > index)
                         {
-                            TileMatrix[i, j]--;
+                            this.TileMatrix[i, j]--;
                         }
                     }
                 }
             }
 
-            TileMatrix[x, y] = -1;
+            this.TileMatrix[x, y] = -1;
         }
 
         public void RemoveInUseTile(int x, int y)
         {
-            if (x < 0 || y < 0 || x > Lines || y > Columns)
+            if (x < 0 || y < 0 || x > this.Lines || y > this.Columns)
                 throw new ArgumentException();
 
-            TileMatrix[x, y] = -1;
+            this.TileMatrix[x, y] = -1;
         }
 
         public void SetTile(int x, int y, Tile tile)
         {
-            int index = Tiles.FindIndex(t => t.ImageHash == tile.ImageHash);
+            if (x < 0 || y < 0 || x > this.Lines || y > this.Columns)
+                throw new ArgumentException();
+
+            int index = this.Tiles.FindIndex(t => t.ImageHash == tile.ImageHash);
 
             if (index == -1)
             {
-                Tiles.Add(tile);
+                this.Tiles.Add(tile);
 
-                if (TileMatrix[x, y] != -1)
+                if (this.TileMatrix[x, y] != -1)
                 {
-                    RemoveTile(x, y);
+                    this.RemoveTile(x, y);
                 }
 
-                TileMatrix[x, y] = Tiles.Count - 1;
+                this.TileMatrix[x, y] = this.Tiles.Count - 1;
             }
             else
             {
-                TileMatrix[x, y] = index;
+                this.TileMatrix[x, y] = index;
             }
         }
 
         public bool HasTile(int x, int y)
         {
-            if (x < 0 || y < 0 || x > Lines || y > Columns)
+            if (x < 0 || y < 0 || x > this.Lines || y > this.Columns)
                 throw new ArgumentException();
 
             return TileMatrix[x, y] != -1;
@@ -248,13 +335,13 @@ namespace Greyhound
 
         public Tile GetTile(int x, int y)
         {
-            if (x < 0 || y < 0 || x > Lines || y > Columns)
+            if (x < 0 || y < 0 || x > this.Lines || y > this.Columns)
                 throw new ArgumentException();
 
-            if (!HasTile(x,y))
+            if (!this.HasTile(x, y))
                 return null;
             else
-                return Tiles[TileMatrix[x, y]];
+                return this.Tiles[TileMatrix[x, y]];
         }
     }
 
