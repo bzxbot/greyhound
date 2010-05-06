@@ -54,6 +54,7 @@
             this.pnl_Grid.TabIndex = 0;
             this.pnl_Grid.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Grid_Paint);
             this.pnl_Grid.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnl_Grid_DragDrop);
+            this.pnl_Grid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.pnl_Grid_Scroll);
             this.pnl_Grid.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnl_Grid_MouseClick);
             this.pnl_Grid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnl_Grid_MouseDown);
             this.pnl_Grid.Resize += new System.EventHandler(this.pnl_Grid_Resize);
@@ -65,20 +66,20 @@
             this.tsmi_Rotate,
             this.tsmi_Erase});
             this.cms_TileOptions.Name = "cms_TileOptions";
-            this.cms_TileOptions.Size = new System.Drawing.Size(153, 70);
+            this.cms_TileOptions.Size = new System.Drawing.Size(113, 48);
             this.cms_TileOptions.Opening += new System.ComponentModel.CancelEventHandler(this.cms_TileOptions_Opening);
             // 
             // tsmi_Rotate
             // 
             this.tsmi_Rotate.Name = "tsmi_Rotate";
-            this.tsmi_Rotate.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_Rotate.Size = new System.Drawing.Size(112, 22);
             this.tsmi_Rotate.Text = "Girar";
             this.tsmi_Rotate.Click += new System.EventHandler(this.tsmi_Rotate_Click);
             // 
             // tsmi_Erase
             // 
             this.tsmi_Erase.Name = "tsmi_Erase";
-            this.tsmi_Erase.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_Erase.Size = new System.Drawing.Size(112, 22);
             this.tsmi_Erase.Text = "Apagar";
             this.tsmi_Erase.Click += new System.EventHandler(this.tsmi_Erase_Click);
             // 
@@ -111,7 +112,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_Grid);
-            this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "TileMapGrid";
             this.Size = new System.Drawing.Size(300, 300);
             this.Load += new System.EventHandler(this.TileMapGrid_Load);

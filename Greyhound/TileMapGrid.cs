@@ -100,6 +100,8 @@ namespace Greyhound
             InitializeComponent();
 
             this.TileMap = new TileMap(_squareLines, _squareColumns, tileSize);
+
+            pnl_Grid.AutoScrollMinSize = new Size(TileMap.Columns * TileMap.TileWidth, TileMap.Lines * TileMap.TileHeight);
         }
 
         #endregion Constructors
@@ -114,7 +116,7 @@ namespace Greyhound
         private void pnl_Grid_Paint(object sender, PaintEventArgs e)
         {
             DrawGrid(e.Graphics);
-            DrawTiles(e.Graphics);
+            //DrawTiles(e.Graphics);
         }
 
         private void pnl_Grid_Resize(object sender, EventArgs e)
@@ -244,43 +246,53 @@ namespace Greyhound
         {
             Pen pen = new Pen(Brushes.Black) { Width = this.GridThickness };
 
-            int maxHeight = this.pnl_Grid.Height / _squareLines;
-            int maxWidth = this.pnl_Grid.Width / _squareColumns;
-            int maxSize;
-            int squareSize;
+            Point p = GetMatrixPosition(new Point(pnl_Grid.AutoScrollPosition.X * -1, pnl_Grid.AutoScrollPosition.Y * -1));
 
-            if (maxHeight <= maxWidth)
+            for (int x = p.X * TileMap.TileWidth; x < TileMap.Columns * TileMap.TileWidth; x += TileMap.TileWidth)
             {
-                maxSize = (this.pnl_Grid.Height) - (_gridMargin / 2);
-                squareSize = (maxSize / _squareLines) - (int)pen.Width;
-            }
-            else
-            {
-                maxSize = (this.pnl_Grid.Width) - (_gridMargin / 2);
-                squareSize = (maxSize / _squareColumns) - (int)pen.Width;
-            }
-
-            int topStart = (this.pnl_Grid.Height / 2) - ((squareSize * _squareLines) / 2);
-            int leftStart = (this.pnl_Grid.Width / 2) - ((squareSize * _squareColumns) / 2);
-
-            Point startPoint;
-            Point endPoint;
-
-            for (int collumCounter = 0; collumCounter <= _squareColumns; collumCounter++)
-            {
-                // Coluna.
-                startPoint = new Point(leftStart + (collumCounter * squareSize), topStart);
-                endPoint = new Point(leftStart + (collumCounter * squareSize), topStart + (squareSize * _squareLines));
-                g.DrawLine(pen, startPoint, endPoint);
-
-                for (int lineCounter = 0; lineCounter <= _squareLines; lineCounter++)
+                for (int y = p.Y * TileMap.TileHeight; y < TileMap.Lines * TileMap.TileHeight; y += TileMap.TileHeight)
                 {
-                    // Linha.
-                    startPoint = new Point(leftStart, topStart + (lineCounter * squareSize));
-                    endPoint = new Point(leftStart + (squareSize * _squareColumns), topStart + (lineCounter * squareSize));
-                    g.DrawLine(pen, startPoint, endPoint);
+                    g.DrawRectangle(pen, x, y, TileMap.TileWidth, TileMap.TileHeight);
                 }
             }
+
+            //int maxHeight = this.pnl_Grid.Height / _squareLines;
+            //int maxWidth = this.pnl_Grid.Width / _squareColumns;
+            //int maxSize;
+            //int squareSize;
+
+            //if (maxHeight <= maxWidth)
+            //{
+            //    maxSize = (this.pnl_Grid.Height) - (_gridMargin / 2);
+            //    squareSize = (maxSize / _squareLines) - (int)pen.Width;
+            //}
+            //else
+            //{
+            //    maxSize = (this.pnl_Grid.Width) - (_gridMargin / 2);
+            //    squareSize = (maxSize / _squareColumns) - (int)pen.Width;
+            //}
+
+            //int topStart = (this.pnl_Grid.Height / 2) - ((squareSize * _squareLines) / 2);
+            //int leftStart = (this.pnl_Grid.Width / 2) - ((squareSize * _squareColumns) / 2);
+
+            //Point startPoint;
+            //Point endPoint;
+
+            //for (int collumCounter = 0; collumCounter <= _squareColumns; collumCounter++)
+            //{
+            //    // Coluna.
+            //    startPoint = new Point(leftStart + (collumCounter * squareSize), topStart);
+            //    endPoint = new Point(leftStart + (collumCounter * squareSize), topStart + (squareSize * _squareLines));
+            //    g.DrawLine(pen, startPoint, endPoint);
+
+            //    for (int lineCounter = 0; lineCounter <= _squareLines; lineCounter++)
+            //    {
+            //        // Linha.
+            //        startPoint = new Point(leftStart, topStart + (lineCounter * squareSize));
+            //        endPoint = new Point(leftStart + (squareSize * _squareColumns), topStart + (lineCounter * squareSize));
+            //        g.DrawLine(pen, startPoint, endPoint);
+            //    }
+            //}
         }
 
         private void DrawTiles(Graphics g)
@@ -337,46 +349,67 @@ namespace Greyhound
             return GetMatrixPosition(new Point(x, y));
         }
 
+        private bool Inside(int x, int y, int l, int r, int b, int t)//x,y are the point, l,r,b,t are the extents of the rectangle
+        {
+            return x > l && x < r && y > t && y < b;
+        }
+
         private Point GetMatrixPosition(Point pos)
         {
-            int lin;
-            int col;
-
-            Pen pen = new Pen(Brushes.Black);
-
-            int maxHeight = this.pnl_Grid.Height / _squareLines;
-            int maxWidth = this.pnl_Grid.Width / _squareColumns;
-            int maxSize;
-            int SquareSize;
-
-            if (maxHeight <= maxWidth)
+            for (int x = 0; x < TileMap.Columns * TileMap.TileWidth; x += TileMap.TileWidth)
             {
-                maxSize = (this.pnl_Grid.Height) - (_gridMargin / 2);
-                SquareSize = (maxSize / _squareLines) - (int)pen.Width;
-            }
-            else
-            {
-                maxSize = (this.pnl_Grid.Width) - (_gridMargin / 2);
-                SquareSize = (maxSize / _squareColumns) - (int)pen.Width;
+                for (int y = 0; y < TileMap.Lines * TileMap.TileHeight; y += TileMap.TileHeight)
+                {
+                    Rectangle rectangle = new Rectangle(x, y, TileMap.TileWidth, TileMap.TileHeight);
+
+                    if (Inside(pos.X, pos.Y, rectangle.Left, rectangle.Right, rectangle.Bottom, rectangle.Top))
+                    {
+                        //MessageBox.Show(x / TileMap.TileWidth + " " + y / TileMap.TileHeight);
+                        return new Point(x / TileMap.TileWidth, y / TileMap.TileHeight);
+                    }
+                }
             }
 
-            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * _squareLines) / 2);
-            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * _squareColumns) / 2);
+            return _invalidPosition;
+
+            //int lin;
+            //int col;
+
+            //Pen pen = new Pen(Brushes.Black);
+
+            //int maxHeight = this.pnl_Grid.Height / _squareLines;
+            //int maxWidth = this.pnl_Grid.Width / _squareColumns;
+            //int maxSize;
+            //int SquareSize;
+
+            //if (maxHeight <= maxWidth)
+            //{
+            //    maxSize = (this.pnl_Grid.Height) - (_gridMargin / 2);
+            //    SquareSize = (maxSize / _squareLines) - (int)pen.Width;
+            //}
+            //else
+            //{
+            //    maxSize = (this.pnl_Grid.Width) - (_gridMargin / 2);
+            //    SquareSize = (maxSize / _squareColumns) - (int)pen.Width;
+            //}
+
+            //int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * _squareLines) / 2);
+            //int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * _squareColumns) / 2);
 
 
-            // Testa se é uma posição válida.
-            if ((pos.X - leftStart) % SquareSize == 0 || (pos.Y - topStart) % SquareSize == 0 ||
-                (pos.X - leftStart) < 0 || (pos.Y - topStart) < 0 ||
-                (pos.X - leftStart) > (SquareSize * _squareColumns) ||
-                (pos.Y - topStart) > (SquareSize * _squareLines))
-            {
-                return _invalidPosition;
-            }
+            //// Testa se é uma posição válida.
+            //if ((pos.X - leftStart) % SquareSize == 0 || (pos.Y - topStart) % SquareSize == 0 ||
+            //    (pos.X - leftStart) < 0 || (pos.Y - topStart) < 0 ||
+            //    (pos.X - leftStart) > (SquareSize * _squareColumns) ||
+            //    (pos.Y - topStart) > (SquareSize * _squareLines))
+            //{
+            //    return _invalidPosition;
+            //}
 
-            col = (pos.X - leftStart) / SquareSize;
-            lin = (pos.Y - topStart) / SquareSize;
+            //col = (pos.X - leftStart) / SquareSize;
+            //lin = (pos.Y - topStart) / SquareSize;
 
-            return new Point(lin, col);
+            //return new Point(lin, col);
         }
 
         private void FlipTile(Point position)
@@ -435,6 +468,11 @@ namespace Greyhound
             this.TileMap = tileMap;
 
             this.Refresh();
+        }
+
+        private void pnl_Grid_Scroll(object sender, ScrollEventArgs e)
+        {
+            pnl_Grid.Refresh();
         }
     }
 }
