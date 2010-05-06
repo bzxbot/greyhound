@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Greyhound
 {
-    public partial class Frm_NewTileMap : Form
+    public partial class frmNewTileMap : Form
     {
         #region Properties
 
@@ -32,7 +32,7 @@ namespace Greyhound
 
         #region Constructors
 
-        public Frm_NewTileMap()
+        public frmNewTileMap()
         {
             InitializeComponent();
         }

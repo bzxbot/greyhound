@@ -1,6 +1,6 @@
 ﻿namespace Greyhound
 {
-    partial class Main
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.splTileSetGrid = new System.Windows.Forms.Splitter();
             this.ts_Menu = new System.Windows.Forms.ToolStrip();
             this.tsb_New = new System.Windows.Forms.ToolStripButton();
@@ -183,14 +183,14 @@
             this.pnl_Fill.Controls.Add(this.tileMapGrid);
             this.pnl_Fill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Fill.Location = new System.Drawing.Point(0, 39);
-            this.pnl_Fill.MinimumSize = new System.Drawing.Size(300, 300);
             this.pnl_Fill.Name = "pnl_Fill";
             this.pnl_Fill.Size = new System.Drawing.Size(761, 324);
             this.pnl_Fill.TabIndex = 7;
             // 
             // ofd_Tiles
             // 
-            this.ofd_Tiles.Filter = "Image Files(*.bmp,*.jpg,*.gif,*.png,*.pnm)|*.bmp;*.jpg;*.gif;*.png;*.pnm";
+            this.ofd_Tiles.Filter = "Image Files(*.bmp,*.jpg,*.gif,*.png,*.pnm)|*.bmp;*.jpg;*.gif;*.png;*.pbm;*.pgm;*." +
+                "ppm";
             // 
             // ofdTMap
             // 
@@ -202,11 +202,11 @@
             // 
             // tileMapGrid
             // 
+            this.tileMapGrid.AutoScroll = true;
             this.tileMapGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tileMapGrid.GridThickness = 1;
             this.tileMapGrid.Location = new System.Drawing.Point(0, 0);
             this.tileMapGrid.Margin = new System.Windows.Forms.Padding(0);
-            this.tileMapGrid.MinimumSize = new System.Drawing.Size(300, 300);
             this.tileMapGrid.Name = "tileMapGrid";
             this.tileMapGrid.SelectionColor = System.Drawing.Color.Red;
             this.tileMapGrid.SelectionThickness = 3;
@@ -224,7 +224,7 @@
             this.tileSetPanel.TabIndex = 5;
             this.tileSetPanel.TileMargin = ((short)(2));
             // 
-            // Main
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -233,8 +233,8 @@
             this.Controls.Add(this.ts_Menu);
             this.Controls.Add(this.splTileSetGrid);
             this.Controls.Add(this.tileSetPanel);
-            this.MinimumSize = new System.Drawing.Size(769, 490);
-            this.Name = "Main";
+            this.MinimumSize = new System.Drawing.Size(300, 300);
+            this.Name = "frmMain";
             this.Text = "Tileset Editor";
             this.Load += new System.EventHandler(this.Main_Load);
             this.ts_Menu.ResumeLayout(false);

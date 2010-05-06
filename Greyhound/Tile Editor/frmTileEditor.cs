@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Greyhound.Tile_Editor
 {
-    public partial class Frm_TileEditor : Form
+    public partial class frmTileEditor : Form
     {
         #region Fields
 
@@ -34,7 +34,7 @@ namespace Greyhound.Tile_Editor
 
         #region Constructors
 
-        public Frm_TileEditor(Image img)
+        public frmTileEditor(Image img)
         {
             InitializeComponent();
 

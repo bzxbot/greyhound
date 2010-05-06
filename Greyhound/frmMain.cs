@@ -6,15 +6,14 @@ using System.Windows.Forms;
 using Greyhound.Properties;
 using Greyhound.Tile_Editor;
 using Greyhound.TileSplitter;
-using PNMReader;
 
 namespace Greyhound
 {
-    public partial class Main : Form
+    public partial class frmMain : Form
     {
         #region Contructors
 
-        public Main()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -39,7 +38,7 @@ namespace Greyhound
 
         private void tsb_New_Click(object sender, EventArgs e)
         {
-            Frm_NewTileMap tileMapInstance = new Frm_NewTileMap();
+            frmNewTileMap tileMapInstance = new frmNewTileMap();
 
             if (tileMapInstance.ShowDialog() == DialogResult.OK)
             {
@@ -105,10 +104,11 @@ namespace Greyhound
 
                 try
                 {
-                    if (fInfo.Extension.ToLower() == "pnm")
+                    string fileExtension = fInfo.Extension.ToLower();
+
+                    if (fileExtension == ".pbm" || fileExtension == ".pgm" || fileExtension == ".ppm")
                     {
-                        PPMReader ppmReader = new PPMReader();
-                        image = ppmReader.GetImage(fInfo.FullName);
+                        image = new PNMReader().ReadImage(fInfo.FullName);
                     }
                     else
                     {
@@ -121,11 +121,14 @@ namespace Greyhound
                     return;
                 }
 
-                Frm_TileSplitter tileSplitter = new Frm_TileSplitter(image);
-
-                if (tileSplitter.ShowDialog() == DialogResult.OK)
+                if (image != null)
                 {
-                    this.tileSetPanel.AddImages(tileSplitter.SplittedTiles);
+                    Frm_TileSplitter tileSplitter = new Frm_TileSplitter(image);
+
+                    if (tileSplitter.ShowDialog() == DialogResult.OK)
+                    {
+                        this.tileSetPanel.AddImages(tileSplitter.SplittedTiles);
+                    }
                 }
             }
         }
@@ -147,10 +150,16 @@ namespace Greyhound
 
                     try
                     {
-                        if (fInfo.Extension.ToLower() == ".ppm")
+                        string fileExtension = fInfo.Extension.ToLower();
+
+                        if (fileExtension == ".pbm" || fileExtension == ".pgm" || fileExtension == ".ppm")
                         {
-                            PPMReader ppmReader = new PPMReader();
-                            images.Add(ppmReader.GetImage(fInfo.FullName));
+                            Image image = new PNMReader().ReadImage(fInfo.FullName);
+                            
+                            if (image != null)
+                            {
+                                images.Add(image);
+                            }
                         }
                         else
                         {
@@ -171,7 +180,7 @@ namespace Greyhound
         {
             if (this.tileSetPanel.SelectedPic != null)
             {
-                Frm_TileEditor frm_TileEditor = new Frm_TileEditor(this.tileSetPanel.SelectedPic.Image);
+                frmTileEditor frm_TileEditor = new frmTileEditor(this.tileSetPanel.SelectedPic.Image);
 
                 if (frm_TileEditor.ShowDialog() == DialogResult.OK)
                 {
@@ -202,6 +211,5 @@ namespace Greyhound
         }
 
         #endregion Private Events
-
     }
 }

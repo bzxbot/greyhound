@@ -1,6 +1,6 @@
 ﻿namespace Greyhound
 {
-    partial class Frm_NewTileMap
+    partial class frmNewTileMap
     {
         /// <summary>
         /// Required designer variable.
