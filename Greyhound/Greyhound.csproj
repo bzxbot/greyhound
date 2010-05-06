@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{390D89D0-23E4-49D6-A0C9-A59CFC50075C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorMessageBox.cs" />
-    <Compile Include="Frm_NewTileMap.cs">
+    <Compile Include="frmNewTileMap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_NewTileMap.Designer.cs">
-      <DependentUpon>Frm_NewTileMap.cs</DependentUpon>
+    <Compile Include="frmNewTileMap.Designer.cs">
+      <DependentUpon>frmNewTileMap.cs</DependentUpon>
     </Compile>
     <Compile Include="Tile Editor\ColorConverter.cs" />
     <Compile Include="Tile Editor\HSLColor.cs" />
@@ -65,24 +65,25 @@
     <Compile Include="TileMapGrid.Designer.cs">
       <DependentUpon>TileMapGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
+    <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="PPMReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Frm_NewTileMap.resx">
-      <DependentUpon>Frm_NewTileMap.cs</DependentUpon>
+    <EmbeddedResource Include="frmNewTileMap.resx">
+      <DependentUpon>frmNewTileMap.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TileMapGrid.resx">
       <DependentUpon>TileMapGrid.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -90,12 +91,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tile Editor\Frm_TileEditor.resx">
-      <DependentUpon>Frm_TileEditor.cs</DependentUpon>
+    <EmbeddedResource Include="Tile Editor\frmTileEditor.resx">
+      <DependentUpon>frmTileEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tile Splitter\TileSplitter.resx">
-      <DependentUpon>TileSplitter.cs</DependentUpon>
+    <EmbeddedResource Include="Tile Splitter\frmTileSplitter.resx">
+      <DependentUpon>frmTileSplitter.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TileSetPanel.resx">
@@ -116,18 +117,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Tile Editor\Frm_TileEditor.cs">
+    <Compile Include="Tile Editor\frmTileEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tile Editor\Frm_TileEditor.Designer.cs">
-      <DependentUpon>Frm_TileEditor.cs</DependentUpon>
+    <Compile Include="Tile Editor\frmTileEditor.Designer.cs">
+      <DependentUpon>frmTileEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Tile Editor\ImageFilters.cs" />
-    <Compile Include="Tile Splitter\TileSplitter.cs">
+    <Compile Include="Tile Splitter\frmTileSplitter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tile Splitter\TileSplitter.Designer.cs">
-      <DependentUpon>TileSplitter.cs</DependentUpon>
+    <Compile Include="Tile Splitter\frmTileSplitter.Designer.cs">
+      <DependentUpon>frmTileSplitter.cs</DependentUpon>
     </Compile>
     <Compile Include="Tile.cs" />
     <Compile Include="TileSetPanel.cs">
@@ -137,12 +138,6 @@
       <DependentUpon>TileSetPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="TileMap.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Image1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Chrysanthemum.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icons\32x32\32x32_EditImage.png" />

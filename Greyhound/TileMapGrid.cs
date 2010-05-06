@@ -247,21 +247,21 @@ namespace Greyhound
             int maxHeight = this.pnl_Grid.Height / _squareLines;
             int maxWidth = this.pnl_Grid.Width / _squareColumns;
             int maxSize;
-            int SquareSize;
+            int squareSize;
 
             if (maxHeight <= maxWidth)
             {
                 maxSize = (this.pnl_Grid.Height) - (_gridMargin / 2);
-                SquareSize = (maxSize / _squareLines) - (int)pen.Width;
+                squareSize = (maxSize / _squareLines) - (int)pen.Width;
             }
             else
             {
                 maxSize = (this.pnl_Grid.Width) - (_gridMargin / 2);
-                SquareSize = (maxSize / _squareColumns) - (int)pen.Width;
+                squareSize = (maxSize / _squareColumns) - (int)pen.Width;
             }
 
-            int topStart = (this.pnl_Grid.Height / 2) - ((SquareSize * _squareLines) / 2);
-            int leftStart = (this.pnl_Grid.Width / 2) - ((SquareSize * _squareColumns) / 2);
+            int topStart = (this.pnl_Grid.Height / 2) - ((squareSize * _squareLines) / 2);
+            int leftStart = (this.pnl_Grid.Width / 2) - ((squareSize * _squareColumns) / 2);
 
             Point startPoint;
             Point endPoint;
@@ -269,15 +269,15 @@ namespace Greyhound
             for (int collumCounter = 0; collumCounter <= _squareColumns; collumCounter++)
             {
                 // Coluna.
-                startPoint = new Point(leftStart + (collumCounter * SquareSize), topStart);
-                endPoint = new Point(leftStart + (collumCounter * SquareSize), topStart + (SquareSize * _squareLines));
+                startPoint = new Point(leftStart + (collumCounter * squareSize), topStart);
+                endPoint = new Point(leftStart + (collumCounter * squareSize), topStart + (squareSize * _squareLines));
                 g.DrawLine(pen, startPoint, endPoint);
 
                 for (int lineCounter = 0; lineCounter <= _squareLines; lineCounter++)
                 {
                     // Linha.
-                    startPoint = new Point(leftStart, topStart + (lineCounter * SquareSize));
-                    endPoint = new Point(leftStart + (SquareSize * _squareColumns), topStart + (lineCounter * SquareSize));
+                    startPoint = new Point(leftStart, topStart + (lineCounter * squareSize));
+                    endPoint = new Point(leftStart + (squareSize * _squareColumns), topStart + (lineCounter * squareSize));
                     g.DrawLine(pen, startPoint, endPoint);
                 }
             }

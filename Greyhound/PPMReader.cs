@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 
-namespace PNMReader
+namespace Greyhound
 {
-    class PPMReader
+    class PNMReader
     {
-        public Image GetImage(string path)
+        public Image ReadImage(string path)
         {
             using (BinaryReader reader = new BinaryReader(new FileStream(path, FileMode.Open)))
             {
@@ -17,13 +13,21 @@ namespace PNMReader
                 {
                     char c = reader.ReadChar();
 
-                    if (c == '3')
+                    if (c == '1')
                     {
-                        return GetTextImage(reader);
+                        return ReadTextBitmapImage(reader);
+                    }
+                    else if (c == '2')
+                    {
+                        return ReadTextGreyscaleImage(reader);
+                    }
+                    else if (c == '3')
+                    {
+                        return ReadTextPixelImage(reader);
                     }
                     else if (c == '6')
                     {
-                        return GetBinaryImage(reader);
+                        return ReadBinaryPixelImage(reader);
                     }
                 }
             }
@@ -31,10 +35,28 @@ namespace PNMReader
             return null;
         }
 
-        private Image GetBinaryImage(BinaryReader reader)
+        private Image ReadTextBitmapImage(BinaryReader reader)
         {
-            reader.ReadChar();
+            int width = GetNextHeaderValue(reader);
+            int height = GetNextHeaderValue(reader);
 
+            Bitmap bitmap = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int bit = GetNextTextValue(reader) == 0 ? 255 : 0;
+
+                    bitmap.SetPixel(x, y, Color.FromArgb(bit, bit, bit));
+                }
+            }
+
+            return bitmap;
+        }
+
+        private Image ReadTextGreyscaleImage(BinaryReader reader)
+        {
             int width = GetNextHeaderValue(reader);
             int height = GetNextHeaderValue(reader);
             int scale = GetNextHeaderValue(reader);
@@ -45,9 +67,30 @@ namespace PNMReader
             {
                 for (int x = 0; x < width; x++)
                 {
-                    int red = reader.ReadByte();
-                    int green = reader.ReadByte();
-                    int blue = reader.ReadByte();
+                    int grey = GetNextTextValue(reader) * 255 / scale;
+
+                    bitmap.SetPixel(x, y, Color.FromArgb(grey, grey, grey));
+                }
+            }
+
+            return bitmap;
+        }
+
+        private Image ReadTextPixelImage(BinaryReader reader)
+        {
+            int width = GetNextHeaderValue(reader);
+            int height = GetNextHeaderValue(reader);
+            int scale = GetNextHeaderValue(reader);
+
+            Bitmap bitmap = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int red = GetNextTextValue(reader) * 255 / scale;
+                    int green = GetNextTextValue(reader) * 255 / scale;
+                    int blue = GetNextTextValue(reader) * 255 / scale;
 
                     bitmap.SetPixel(x, y, Color.FromArgb(red, green, blue));
                 }
@@ -56,12 +99,28 @@ namespace PNMReader
             return bitmap;
         }
 
-        private Image GetTextImage(BinaryReader reader)
+        private Image ReadBinaryBitmapImage(BinaryReader reader)
         {
-            reader.ReadChar();
+            int width = GetNextHeaderValue(reader);
+            int height = GetNextHeaderValue(reader);
 
-            char c;
+            Bitmap bitmap = new Bitmap(width, height);
 
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int bit = reader.ReadByte() == 0 ? 255 : 0;
+
+                    bitmap.SetPixel(x, y, Color.FromArgb(bit, bit, bit));
+                }
+            }
+
+            return bitmap;
+        }
+
+        private Image ReadBinaryGreyscaleImage(BinaryReader reader)
+        {
             int width = GetNextHeaderValue(reader);
             int height = GetNextHeaderValue(reader);
             int scale = GetNextHeaderValue(reader);
@@ -72,41 +131,32 @@ namespace PNMReader
             {
                 for (int x = 0; x < width; x++)
                 {
-                    string red = string.Empty;
-                    string green = string.Empty;
-                    string blue = string.Empty;
+                    int grey = reader.ReadByte() * 255 / scale;
 
-                    c = reader.ReadChar();
+                    bitmap.SetPixel(x, y, Color.FromArgb(grey, grey, grey));
+                }
+            }
 
-                    do
-                    {
-                        red += c;
+            return bitmap;
+        }
 
-                        c = reader.ReadChar();
+        private Image ReadBinaryPixelImage(BinaryReader reader)
+        {
+            int width = GetNextHeaderValue(reader);
+            int height = GetNextHeaderValue(reader);
+            int scale = GetNextHeaderValue(reader);
 
-                    } while (!(c == '\n' || c == ' ' || c == '\t'));
+            Bitmap bitmap = new Bitmap(width, height);
 
-                    c = reader.ReadChar();
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int red = reader.ReadByte() * 255 / scale;
+                    int green = reader.ReadByte() * 255 / scale;
+                    int blue = reader.ReadByte() * 255 / scale;
 
-                    do
-                    {
-                        green += c;
-
-                        c = reader.ReadChar();
-
-                    } while (!(c == '\n' || c == ' ' || c == '\t'));
-
-                    c = reader.ReadChar();
-
-                    do
-                    {
-                        blue += c;
-
-                        c = reader.ReadChar();
-
-                    } while (!(c == '\n' || c == ' ' || c == '\t'));
-
-                    bitmap.SetPixel(x, y, Color.FromArgb(int.Parse(red), int.Parse(green), int.Parse(blue)));
+                    bitmap.SetPixel(x, y, Color.FromArgb(red, green, blue));
                 }
             }
 
@@ -141,7 +191,7 @@ namespace PNMReader
 
                 if (!hasValue)
                 {
-                    if (c == '\n' || c == ' ' || c == '\t')
+                    if ((c == '\n' || c == ' ' || c == '\t') && value.Length != 0)
                     {
                         hasValue = true;
                     }
@@ -152,6 +202,22 @@ namespace PNMReader
                 }
 
             } while (!hasValue);
+
+            return int.Parse(value);
+        }
+
+        private int GetNextTextValue(BinaryReader reader)
+        {
+            string value = string.Empty;
+            char c = reader.ReadChar();
+
+            do
+            {
+                value += c;
+
+                c = reader.ReadChar();
+
+            } while (!(c == '\n' || c == ' ' || c == '\t') || value.Length == 0);
 
             return int.Parse(value);
         }

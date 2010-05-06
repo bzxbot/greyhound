@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Greyhound
@@ -24,7 +21,7 @@ namespace Greyhound
 
             if (details != string.Empty)
             {
-                MessageBox.Show(String.Format("{0}\n\nDetalhes:\n{1}", message, details), "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format("{0}\n\nDetalhes:\n{1}", message, details), "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

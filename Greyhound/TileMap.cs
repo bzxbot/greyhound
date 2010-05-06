@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using System.Drawing;
+using System.IO;
 
 namespace Greyhound
 {
@@ -213,7 +211,7 @@ namespace Greyhound
 
         public void RemoveInUseTile(int x, int y)
         {
-            if (x < 0 || y < 0)
+            if (x < 0 || y < 0 || x > Lines || y > Columns)
                 throw new ArgumentException();
 
             TileMatrix[x, y] = -1;
@@ -242,7 +240,7 @@ namespace Greyhound
 
         public bool HasTile(int x, int y)
         {
-            if (x < 0 || y < 0)
+            if (x < 0 || y < 0 || x > Lines || y > Columns)
                 throw new ArgumentException();
 
             return TileMatrix[x, y] != -1;
@@ -250,7 +248,7 @@ namespace Greyhound
 
         public Tile GetTile(int x, int y)
         {
-            if (x < 0 || y < 0)
+            if (x < 0 || y < 0 || x > Lines || y > Columns)
                 throw new ArgumentException();
 
             if (!HasTile(x,y))
