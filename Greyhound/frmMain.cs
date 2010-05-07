@@ -91,11 +91,11 @@
                 {
                     if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
                     {
-
+                        tileMapGrid.TileMap.Save(sfdTMap.FileName, TileFormat.Binary);
                     }
                     else
                     {
-                        tileMapGrid.TileMap.Save(sfdTMap.FileName);
+                        tileMapGrid.TileMap.Save(sfdTMap.FileName, TileFormat.Text);
                     }
                 }
                 catch (Exception ex)

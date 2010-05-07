@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-
-namespace Greyhound
+﻿namespace Greyhound
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Text;
+
     public class TileMap
     {
         private int[,] TileMatrix { get; set; }
@@ -127,19 +128,24 @@ namespace Greyhound
         {
             BinaryReader br = new BinaryReader(sr.BaseStream);
 
+            br.BaseStream.Position = br.BaseStream.Length - 3 * this.TileWidth * this.TileHeight * this.TileCount;
+
             for (int i = 0; i < TileCount; i++)
             {
                 Tile tile = new Tile();
 
                 Bitmap bitmap = new Bitmap(TileWidth, TileHeight);
 
-                for (int j = 0; j < TileHeight * TileWidth; j++)
+                for (int x = 0; x < this.TileWidth; x++)
                 {
-                    int r = br.ReadByte();
-                    int g = br.ReadByte();
-                    int b = br.ReadByte();
+                    for (int y = 0; y < this.TileHeight; y++)
+                    {
+                        int r = br.ReadByte();
+                        int g = br.ReadByte();
+                        int b = br.ReadByte();
 
-                    bitmap.SetPixel(j / TileWidth, j % TileHeight, Color.FromArgb(r, g, b));
+                        bitmap.SetPixel(x, y, Color.FromArgb(r, g, b));
+                    }
                 }
 
                 tile.Bitmap = bitmap;
@@ -186,6 +192,7 @@ namespace Greyhound
                     this.SaveTextTiles(sw);
                     break;
                 case TileFormat.Binary:
+                    sw.Flush();
                     this.SaveBinaryTiles(sw);
                     break;
             }
@@ -239,7 +246,7 @@ namespace Greyhound
                 }
             }
 
-            bw.Close();
+            bw.Flush();
         }
 
         public void RemoveTile(int x, int y)
