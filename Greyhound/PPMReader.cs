@@ -214,9 +214,10 @@ namespace Greyhound
             {
                 value += c;
 
-                c = reader.ReadChar();
+                if (reader.BaseStream.Position < reader.BaseStream.Length)
+                    c = reader.ReadChar();
 
-            } while (!(c == '\n' || c == ' ' || c == '\t') || value.Length == 0);
+            } while ((!(c == '\n' || c == ' ' || c == '\t') || value.Length == 0) && reader.BaseStream.Position < reader.BaseStream.Length);
 
             return int.Parse(value);
         }
