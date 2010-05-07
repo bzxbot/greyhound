@@ -49,21 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErrorMessageBox.cs" />
+    <Compile Include="Classes\ErrorMessageBox.cs" />
     <Compile Include="frmNewTileMap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmNewTileMap.Designer.cs">
       <DependentUpon>frmNewTileMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tile Editor\ColorConverter.cs" />
-    <Compile Include="Tile Editor\HSLColor.cs" />
-    <Compile Include="Tile Editor\ImageProcessing.cs" />
-    <Compile Include="TileMapGrid.cs">
+    <Compile Include="Classes\ColorConverter.cs" />
+    <Compile Include="Classes\HSLColor.cs" />
+    <Compile Include="Classes\ImageProcessing.cs" />
+    <Compile Include="ucTileMapGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TileMapGrid.Designer.cs">
-      <DependentUpon>TileMapGrid.cs</DependentUpon>
+    <Compile Include="ucTileMapGrid.Designer.cs">
+      <DependentUpon>ucTileMapGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -71,15 +71,15 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="PPMReader.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\PPMReader.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmNewTileMap.resx">
       <DependentUpon>frmNewTileMap.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TileMapGrid.resx">
-      <DependentUpon>TileMapGrid.cs</DependentUpon>
+    <EmbeddedResource Include="ucTileMapGrid.resx">
+      <DependentUpon>ucTileMapGrid.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
@@ -91,16 +91,16 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tile Editor\frmTileEditor.resx">
+    <EmbeddedResource Include="frmTileEditor.resx">
       <DependentUpon>frmTileEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tile Splitter\frmTileSplitter.resx">
+    <EmbeddedResource Include="frmTileSplitter.resx">
       <DependentUpon>frmTileSplitter.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TileSetPanel.resx">
-      <DependentUpon>TileSetPanel.cs</DependentUpon>
+    <EmbeddedResource Include="ucTileSetPanel.resx">
+      <DependentUpon>ucTileSetPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -117,27 +117,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Tile Editor\frmTileEditor.cs">
+    <Compile Include="frmTileEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tile Editor\frmTileEditor.Designer.cs">
+    <Compile Include="frmTileEditor.Designer.cs">
       <DependentUpon>frmTileEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tile Editor\ImageFilters.cs" />
-    <Compile Include="Tile Splitter\frmTileSplitter.cs">
+    <Compile Include="Classes\ImageFilters.cs" />
+    <Compile Include="frmTileSplitter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tile Splitter\frmTileSplitter.Designer.cs">
+    <Compile Include="frmTileSplitter.Designer.cs">
       <DependentUpon>frmTileSplitter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tile.cs" />
-    <Compile Include="TileSetPanel.cs">
+    <Compile Include="Classes\Tile.cs" />
+    <Compile Include="ucTileSetPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TileSetPanel.Designer.cs">
-      <DependentUpon>TileSetPanel.cs</DependentUpon>
+    <Compile Include="ucTileSetPanel.Designer.cs">
+      <DependentUpon>ucTileSetPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="TileMap.cs" />
+    <Compile Include="Classes\TileMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icons\32x32\32x32_EditImage.png" />

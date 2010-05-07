@@ -1,6 +1,6 @@
 ﻿namespace Greyhound
 {
-    partial class TileMapGrid
+    partial class ucTileMapGrid
     {
         /// <summary> 
         /// Required designer variable.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Greyhound.Tile_Editor
+namespace Greyhound.TileEditor
 {
     public class HSLColor
     {

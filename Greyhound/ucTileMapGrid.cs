@@ -10,7 +10,7 @@ using Greyhound.Properties;
 
 namespace Greyhound
 {
-    public partial class TileMapGrid : UserControl
+    public partial class ucTileMapGrid : UserControl
     {
         #region Private Fields
 
@@ -93,12 +93,12 @@ namespace Greyhound
 
         #region Constructors
 
-        public TileMapGrid()
+        public ucTileMapGrid()
             : this(10, 16, 32)
         {
         }
 
-        public TileMapGrid(int heigh, int width, int tileSize)
+        public ucTileMapGrid(int heigh, int width, int tileSize)
         {
             this._squareColumns = width;
             this._squareLines = heigh;

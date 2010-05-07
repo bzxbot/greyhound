@@ -1,6 +1,6 @@
-﻿namespace Greyhound.Tile_Editor
+﻿namespace Greyhound.TileEditor
 {
-    partial class Frm_TileEditor
+    partial class frmTileEditor
     {
         /// <summary>
         /// Required designer variable.

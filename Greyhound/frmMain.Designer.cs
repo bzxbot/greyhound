@@ -44,11 +44,11 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_EditTile = new System.Windows.Forms.ToolStripButton();
             this.pnl_Fill = new System.Windows.Forms.Panel();
-            this.tileMapGrid = new Greyhound.TileMapGrid();
+            this.tileMapGrid = new Greyhound.ucTileMapGrid();
             this.ofd_Tiles = new System.Windows.Forms.OpenFileDialog();
             this.ofdTMap = new System.Windows.Forms.OpenFileDialog();
             this.sfdTMap = new System.Windows.Forms.SaveFileDialog();
-            this.tileSetPanel = new Greyhound.TileSetPanel();
+            this.tileSetPanel = new Greyhound.ucTileSetPanel();
             this.ts_Menu.SuspendLayout();
             this.pnl_Fill.SuspendLayout();
             this.SuspendLayout();
@@ -263,9 +263,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_OpenTileImage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton tsb_EditTile;
-        private TileSetPanel tileSetPanel;
+        private ucTileSetPanel tileSetPanel;
         private System.Windows.Forms.Panel pnl_Fill;
-        private TileMapGrid tileMapGrid;
+        private ucTileMapGrid tileMapGrid;
         private System.Windows.Forms.OpenFileDialog ofd_Tiles;
         private System.Windows.Forms.SaveFileDialog sfdTMap;
         private System.Windows.Forms.OpenFileDialog ofdTMap;

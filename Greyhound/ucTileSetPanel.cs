@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace Greyhound
 {
-    public partial class TileSetPanel : UserControl
+    public partial class ucTileSetPanel : UserControl
     {
         #region Constructors
 
-        public TileSetPanel()
+        public ucTileSetPanel()
         {
             InitializeComponent();
         }

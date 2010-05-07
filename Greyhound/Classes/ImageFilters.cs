@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace Greyhound.Tile_Editor
+namespace Greyhound.TileEditor
 {
     static class ImageFilters
     {

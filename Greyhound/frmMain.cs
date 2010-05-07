@@ -6,7 +6,7 @@
     using System.IO;
     using System.Windows.Forms;
     using Greyhound.Properties;
-    using Greyhound.Tile_Editor;
+    using Greyhound.TileEditor;
     using Greyhound.TileSplitter;
 
     public partial class frmMain : Form

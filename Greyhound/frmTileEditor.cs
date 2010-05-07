@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Greyhound.Tile_Editor
+namespace Greyhound.TileEditor
 {
     public partial class frmTileEditor : Form
     {
