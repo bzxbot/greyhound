@@ -41,13 +41,17 @@
 
         private void tsb_New_Click(object sender, EventArgs e)
         {
-            frmNewTileMap tileMapInstance = new frmNewTileMap();
+            frmNewTileMap tileMapInstance = new frmNewTileMap(this.tileMapGrid.SquareColumns,
+                                                              this.tileMapGrid.SquareLines,
+                                                              this.tileMapGrid.TileMap.TileWidth);
 
             if (tileMapInstance.ShowDialog() == DialogResult.OK)
             {
                 this.tileMapGrid.ReloadValues(tileMapInstance.TileMapWidth,
                                                    tileMapInstance.TileMapHeight,
                                                    tileMapInstance.TileImageSize);
+
+                this.tileSetPanel.ClearImages();
             }
         }
 
@@ -110,7 +114,7 @@
 
             if (this.ofd_Tiles.ShowDialog() == DialogResult.OK)
             {
-                image = this.OpenImage(ofd_Tiles.FileName);
+                image = this.OpenImage(ofd_Tiles.FileName, false);
 
                 if (image != null)
                 {
@@ -120,7 +124,7 @@
                     {
                         foreach (Bitmap bitmap in tileSplitter.SplittedTiles)
                         {
-                            this.tileSetPanel.AddImage(ResizeBitmap((Bitmap)image, tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight));
+                            this.tileSetPanel.AddImage(ResizeBitmap(bitmap, tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight));
                         }
                     }
                 }
@@ -140,7 +144,7 @@
 
                 foreach (string file in files)
                 {
-                    Bitmap bitmap = this.OpenImage(file);
+                    Bitmap bitmap = this.OpenImage(file, true);
 
                     images.Add(bitmap);
                 }
@@ -187,7 +191,7 @@
 
         #region Methods
 
-        private Bitmap OpenImage(string filePath)
+        private Bitmap OpenImage(string filePath, bool resizeImage)
         {
             FileInfo fInfo = new FileInfo(filePath);
 
@@ -199,11 +203,25 @@
                 {
                     Image image = new PNMReader().ReadImage(fInfo.FullName);
 
-                    return ResizeBitmap((Bitmap)image, tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight);
+                    if (resizeImage)
+                    {
+                        return ResizeBitmap((Bitmap)image, tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight);
+                    }
+                    else
+                    {
+                        return (Bitmap)image;
+                    }
                 }
                 else
                 {
-                    return ResizeBitmap((Bitmap)Image.FromFile(fInfo.FullName), tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight);
+                    if (resizeImage)
+                    {
+                        return ResizeBitmap((Bitmap)Image.FromFile(fInfo.FullName), tileMapGrid.TileMap.TileWidth, tileMapGrid.TileMap.TileHeight);
+                    }
+                    else
+                    {
+                        return (Bitmap)Image.FromFile(fInfo.FullName);
+                    }
                 }
             }
             catch (Exception ex)

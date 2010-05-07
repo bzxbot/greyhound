@@ -29,6 +29,16 @@ namespace Greyhound
 
         #region Properties
 
+        public int SquareColumns
+        {
+            get { return this._squareColumns; }
+        }
+
+        public int SquareLines
+        {
+            get { return this._squareLines; }
+        }
+
         public TileMap TileMap { get; set; }
 
         public int GridThickness
@@ -400,10 +410,10 @@ namespace Greyhound
             }
         }
 
-        public void ReloadValues(int heigh, int width, int tileSize)
+        public void ReloadValues(int width, int height, int tileSize)
         {
             this._squareColumns = width;
-            this._squareLines = heigh;
+            this._squareLines = height;
 
             if (this._squareColumns > _MaxHeightWidth)
             {

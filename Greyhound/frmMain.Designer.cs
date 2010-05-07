@@ -44,10 +44,10 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_EditTile = new System.Windows.Forms.ToolStripButton();
             this.pnl_Fill = new System.Windows.Forms.Panel();
+            this.tileMapGrid = new Greyhound.TileMapGrid();
             this.ofd_Tiles = new System.Windows.Forms.OpenFileDialog();
             this.ofdTMap = new System.Windows.Forms.OpenFileDialog();
             this.sfdTMap = new System.Windows.Forms.SaveFileDialog();
-            this.tileMapGrid = new Greyhound.TileMapGrid();
             this.tileSetPanel = new Greyhound.TileSetPanel();
             this.ts_Menu.SuspendLayout();
             this.pnl_Fill.SuspendLayout();
@@ -188,19 +188,6 @@
             this.pnl_Fill.Size = new System.Drawing.Size(762, 324);
             this.pnl_Fill.TabIndex = 7;
             // 
-            // ofd_Tiles
-            // 
-            this.ofd_Tiles.Filter = "Image Files(*.bmp,*.jpg,*.gif,*.png,*.pnm)|*.bmp;*.jpg;*.gif;*.png;*.pbm;*.pgm;*." +
-                "ppm";
-            // 
-            // ofdTMap
-            // 
-            this.ofdTMap.Filter = "Arquivo Tmap (*.tmap)|*.tmap";
-            // 
-            // sfdTMap
-            // 
-            this.sfdTMap.Filter = "Arquivo Tmap (*.tmap)|*.tmap";
-            // 
             // tileMapGrid
             // 
             this.tileMapGrid.AutoScroll = true;
@@ -214,6 +201,19 @@
             this.tileMapGrid.SelectionThickness = 3;
             this.tileMapGrid.Size = new System.Drawing.Size(762, 324);
             this.tileMapGrid.TabIndex = 8;
+            // 
+            // ofd_Tiles
+            // 
+            this.ofd_Tiles.Filter = "Image Files(*.bmp,*.jpg,*.gif,*.png,*.pnm)|*.bmp;*.jpg;*.gif;*.png;*.pbm;*.pgm;*." +
+                "ppm";
+            // 
+            // ofdTMap
+            // 
+            this.ofdTMap.Filter = "Arquivo Tmap (*.tmap)|*.tmap";
+            // 
+            // sfdTMap
+            // 
+            this.sfdTMap.Filter = "Arquivo Tmap (*.tmap)|*.tmap";
             // 
             // tileSetPanel
             // 
@@ -238,6 +238,7 @@
             this.MinimumSize = new System.Drawing.Size(770, 490);
             this.Name = "frmMain";
             this.Text = "Tileset Editor";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Load);
             this.ts_Menu.ResumeLayout(false);
             this.ts_Menu.PerformLayout();

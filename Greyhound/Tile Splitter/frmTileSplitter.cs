@@ -114,7 +114,7 @@ namespace Greyhound.TileSplitter
 
         #endregion Private Events
 
-        #region Private Mehtods
+        #region Private Methods
 
         private bool validatePicSize()
         {
@@ -124,12 +124,12 @@ namespace Greyhound.TileSplitter
                 return false;
             }
 
-            if (this.pic_Tiles.Image.Width % nud_PixelsPerTile.Value != 0 ||
-                this.pic_Tiles.Image.Height % nud_PixelsPerTile.Value != 0)
-            {
-                MessageBox.Show("Tamanho da imagem nao confere com tamanho dos tiles", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            //if (this.pic_Tiles.Image.Width % nud_PixelsPerTile.Value != 0 ||
+            //    this.pic_Tiles.Image.Height % nud_PixelsPerTile.Value != 0)
+            //{
+            //    MessageBox.Show("Tamanho da imagem nao confere com tamanho dos tiles", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
 
             return true;
         }

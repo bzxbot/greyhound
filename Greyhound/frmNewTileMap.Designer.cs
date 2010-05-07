@@ -78,7 +78,7 @@
             0});
             this.nud_Height.Name = "nud_Height";
             this.nud_Height.Size = new System.Drawing.Size(57, 20);
-            this.nud_Height.TabIndex = 1;
+            this.nud_Height.TabIndex = 0;
             this.nud_Height.Value = new decimal(new int[] {
             5,
             0,
@@ -129,7 +129,7 @@
             0});
             this.nud_TileSize.Name = "nud_TileSize";
             this.nud_TileSize.Size = new System.Drawing.Size(57, 20);
-            this.nud_TileSize.TabIndex = 1;
+            this.nud_TileSize.TabIndex = 2;
             this.nud_TileSize.Value = new decimal(new int[] {
             16,
             0,
@@ -176,7 +176,7 @@
             this.inf_Height.TabIndex = 2;
             this.inf_Height.Text = "Largura:";
             // 
-            // Frm_NewTileMap
+            // frmNewTileMap
             // 
             this.AcceptButton = this.cmb_Ok;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,7 +189,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Frm_NewTileMap";
+            this.Name = "frmNewTileMap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Novo Tile Map";
             this.Load += new System.EventHandler(this.Frm_NewTileMap_Load);

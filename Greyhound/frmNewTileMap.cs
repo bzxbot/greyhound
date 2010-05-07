@@ -32,9 +32,18 @@ namespace Greyhound
 
         #region Constructors
 
-        public frmNewTileMap()
+        public frmNewTileMap(): this(16,10,32)
+        {
+            
+        }
+
+        public frmNewTileMap(int columns, int lines, int size)
         {
             InitializeComponent();
+
+            this.nud_Width.Value = columns;
+            this.nud_Height.Value = lines;
+            this.nud_TileSize.Value = size;            
         }
 
         #endregion Constructors
