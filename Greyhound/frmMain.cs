@@ -61,6 +61,8 @@
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
+
                     TileMap tileMap = new TileMap(ofdTMap.FileName);
 
                     this.tileMapGrid.ReloadValues(tileMap);
@@ -79,6 +81,10 @@
                 catch (Exception ex)
                 {
                     ErrorMessageBox.Show("Ocorreu um erro ao abrir o arquivo, verifique o formato do arquivo.", ex);
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Arrow;
                 }
             }
         }
